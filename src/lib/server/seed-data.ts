@@ -1,0 +1,64 @@
+// Mirror of supabase/seed.sql, used by the local development store.
+// tests/server.test.ts checks that the two stay in sync.
+import type { Captain, Player } from '../types';
+
+type CaptainSeed = Omit<Captain, 'claimed' | 'ready'>;
+type PlayerSeed = Omit<Player, 'id' | 'team_captain_id' | 'pick_number'>;
+
+const opgg = (riotId: string) =>
+  'https://op.gg/lol/summoners/na/' + encodeURIComponent(riotId).replace('%23', '-');
+
+const c = (slot: number, display_name: string, riot_id: string, peak_rank: string, rank_score: number): CaptainSeed =>
+  ({ id: slot, slot, display_name, riot_id, opgg_url: opgg(riot_id), peak_rank, rank_score });
+
+export const CAPTAINS: CaptainSeed[] = [
+  c(1, 'Chomania', 'Thechomania2#SION', 'Diamond 4', 24),
+  c(2, 'Admirality', 'Admirality#Death', 'Emerald 2', 22),
+  c(3, 'Ethers', 'ethers#000', 'Master 16 LP', 28.16),
+  c(4, 'Kyle', 'Ezhister#NA1', 'Diamond 1', 27),
+  c(5, 'Allen', 'CatGPT#YouMe', 'Master 2 LP', 28.02),
+  c(6, 'Brian (Holiday)', 'holiday#001', 'Master 415 LP', 32.15),
+  c(7, 'Envy', 'foryoutoenvy#astro', 'Master 330 LP', 31.3),
+  c(8, 'Ethan (UPMC Kassadin)', 'UPMC Kassadin#CMU', 'Master 594 LP', 33.94),
+];
+
+const p = (display_name: string, riot_id: string, peak_rank: string, rank_score: number): PlayerSeed =>
+  ({ display_name, riot_id, opgg_url: opgg(riot_id), peak_rank, rank_score });
+
+export const PLAYERS: PlayerSeed[] = [
+  p('ruk', 'rakwillsuk#uwu', 'Master 1041 LP (S2026)', 38.41),
+  p('Caden', 'GamerNamer#NA1', 'Master 551 LP (S2026)', 33.51),
+  p('victor', 'Xeuhktal#NA1', 'Master 326 LP (S2026)', 31.26),
+  p('Ulysses', 'westieyy#3uu', 'Master 300 LP (S2023 S1)', 31),
+  p('Jenesis / Jacob', 'jenesis#oguri', 'Master 171 LP (S2026)', 29.71),
+  p('dragonguy168 / David', 'Curse Of Dragons#NA1', 'Master 147 LP (S2026)', 29.47),
+  p('Drock/Derek', 'Drock#2000', 'Master 132 LP (S2026)', 29.32),
+  p('Alex/Rukasuk', 'Rukasuk#000', 'Master 130 LP (S2023 S2)', 29.3),
+  p('wa_ge314', 'WaGe#314', 'Diamond 1 (S2026)', 27),
+  p('greyswag', 'GreySwag#6877', 'Diamond 1 (S2026)', 27),
+  p('boomsiru', 'boomsiru#NA1', 'Diamond 2 (S2026)', 26),
+  p('Yazurak', 'Yazurak#000', 'Diamond 3 (S2026)', 25),
+  p('Alex', 'Azenkora#na2', 'Diamond 4 (S2026)', 24),
+  p('Sparkeyz / Austin', 'Sparkeyz#NA1', 'Diamond 4 (S2026)', 24),
+  p('physiX / Phy', 'physiX#TPX', 'Diamond 4 (S2026)', 24),
+  p('luffydoc777/Peter', 'luffydoc777#Unc', 'Emerald 2 (S2026)', 22),
+  p('adocado', 'TPX adocado1024#TPX', 'Emerald 2 (S2026)', 22),
+  p('Charlie-SquigglyLine', 'SquigglyLine#Fart', 'Emerald 2 (S2026)', 22),
+  p('Sid', 'Dark#zhang', 'Emerald 2 (S2026)', 22),
+  p('billiam', 'owlCrest#268', 'Emerald 3 (S2026)', 21),
+  p('Flammable Tea / Rohan', 'Flammable Tea#NA1', 'Emerald 3 (S2026)', 21),
+  p('Jade', 'HinYok#777', 'Emerald 3 (S2024 S2)', 21),
+  p('Doh', 'Doh#9054', 'Emerald 4 (S2026)', 20),
+  p('adctonio', 'adctonio#adc', 'Emerald 4 (S2024 S1)', 20),
+  p('Gato', 'Gato#Fato', 'Emerald 4 (S2026)', 20),
+  p('moon', 'moon#90849', 'Emerald 4 (S2026)', 20),
+  p('Cat', 'Catheon#2nd', 'Platinum 1 (S2025)', 19),
+  p('SonionEmperor', 'Insulated Window#toot', 'Platinum 2 (S2026)', 18),
+  p('Psychopomp333', 'Psychopomp333#NA1', 'Platinum 2 (S2026)', 18),
+  p('ChessDouDou', 'ChessDouDou#2383', 'Platinum 4 (S2026)', 16),
+  p('Koral / Andrew', 'BorkenBlender347#kor4l', 'Gold 1 (S2026)', 15),
+  p('gostmeaper', 'Gost#5757', 'Gold 2 (S2026)', 14),
+  p('Mitosis/Max', 'Mitosis#143', 'Gold 3 (S2026)', 13),
+  p('qtrf', 'mymelody#428', 'Gold 4 (S2026)', 12),
+  p('Noah - Sumeguy whatever works', '诺音和#FtFF', 'Silver 3 (S2026)', 9),
+];

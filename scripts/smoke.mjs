@@ -1,0 +1,158 @@
+// Run only against this app's disposable local-practice server.
+import assert from "node:assert/strict";
+
+const base = process.env.DRAFT_TEST_URL || "http://127.0.0.1:3000";
+const adminKey = process.env.ADMIN_KEY || "change-me-dev-admin-key";
+async function call(path, body, key) {
+  const response = await fetch(base + path, {
+    method: body === undefined ? "GET" : "POST",
+    headers: {
+      "content-type": "application/json",
+      ...(key ? { "x-admin-key": key } : {}),
+    },
+    body: body === undefined ? undefined : JSON.stringify(body),
+  });
+  const data = await response.json();
+  return { status: response.status, data };
+}
+const admin = (action, payload = {}) =>
+  call("/api/admin", { action, ...payload }, adminKey);
+const snapshot = async () => {
+  const r = await call("/api/state");
+  assert.equal(r.status, 200);
+  return r.data;
+};
+const initial = await snapshot();
+assert.equal(
+  initial.mode,
+  "local",
+  "Smoke tests refuse to mutate a real Supabase draft.",
+);
+assert.equal(
+  (await admin("verify")).status,
+  200,
+  "Use the dev server ADMIN_KEY",
+);
+assert.equal(
+  (await call("/api/admin", { action: "verify" }, "wrong-key")).status,
+  401,
+);
+await admin("full-reset");
+try {
+  const clients = new Map();
+  const races = await Promise.all(
+    Array.from({ length: 8 }, () => call("/api/claim", { captainId: 1 })),
+  );
+  assert.equal(races.filter((r) => r.status === 200).length, 1);
+  assert.equal(
+    races.filter((r) => r.status === 409 && r.data.error === "Already taken")
+      .length,
+    7,
+  );
+  clients.set(1, races.find((r) => r.status === 200).data.token);
+  for (let captainId = 2; captainId <= 8; captainId++) {
+    const r = await call("/api/claim", { captainId });
+    assert.equal(r.status, 200);
+    clients.set(captainId, r.data.token);
+  }
+  for (let captainId = 1; captainId <= 8; captainId++) {
+    const token = clients.get(captainId);
+    assert.equal((await call("/api/me", { token })).data.captainId, captainId);
+    assert.equal(
+      (await call("/api/ready", { token, ready: true })).status,
+      200,
+    );
+    assert.equal(
+      (await snapshot()).draft.phase,
+      captainId === 8 ? "drafting" : "lobby",
+    );
+  }
+  const order = [
+    1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1, 1, 2, 3, 4, 5, 6, 7, 8, 8,
+    7, 6, 5, 4, 3, 2, 1,
+  ];
+  for (let k = 0; k < 32; k++) {
+    let s = await snapshot();
+    const player = s.players.find((p) => p.team_captain_id === null);
+    const token = clients.get(order[k]);
+    const wrong = clients.get(order[k] === 1 ? 2 : 1);
+    assert.equal(
+      (
+        await call("/api/pick", {
+          token: wrong,
+          playerId: player.id,
+          expectedPickIndex: k,
+        })
+      ).status,
+      409,
+    );
+    const r = await call("/api/pick", {
+      token,
+      playerId: player.id,
+      expectedPickIndex: k,
+    });
+    assert.equal(r.status, 200);
+    // Exact replay never advances, including consecutive snake-end turns.
+    assert.notEqual(
+      (
+        await call("/api/pick", {
+          token,
+          playerId: player.id,
+          expectedPickIndex: k,
+        })
+      ).status,
+      200,
+    );
+    s = await snapshot();
+    assert.equal(s.draft.pick_index, k + 1);
+    const picked = s.players.find((p) => p.id === player.id);
+    assert.equal(picked.team_captain_id, order[k]);
+    assert.equal(picked.pick_number, k + 1);
+  }
+  let s = await snapshot();
+  assert.equal(s.draft.phase, "complete");
+  assert.equal(s.players.filter((p) => p.team_captain_id === null).length, 3);
+  for (let id = 1; id <= 8; id++)
+    assert.equal(s.players.filter((p) => p.team_captain_id === id).length, 4);
+  await admin("undo");
+  s = await snapshot();
+  assert.equal(s.draft.phase, "drafting");
+  assert.equal(s.draft.pick_index, 31);
+  const oldToken = clients.get(1);
+  await admin("release", { captainId: 1 });
+  assert.equal(
+    (await call("/api/me", { token: oldToken })).data.captainId,
+    null,
+  );
+  assert.equal(
+    (
+      await call("/api/pick", {
+        token: oldToken,
+        playerId: s.players.find((p) => p.team_captain_id === null).id,
+        expectedPickIndex: 31,
+      })
+    ).status,
+    403,
+  );
+  const reclaim = await call("/api/claim", { captainId: 1 });
+  assert.equal(reclaim.status, 200);
+  assert.notEqual(reclaim.data.token, oldToken);
+  await admin("reset");
+  s = await snapshot();
+  assert.equal(s.draft.phase, "lobby");
+  assert.equal(s.captains.filter((c) => c.claimed).length, 8);
+  assert.equal(
+    s.captains.some((c) => c.ready),
+    false,
+  );
+  assert.equal(
+    s.players.every((p) => p.team_captain_id === null),
+    true,
+  );
+  console.log(
+    "PASS: HTTP full draft, 8-way claim race, authorization, 32 picks, replay protection, completion, undo, token revocation, reclaim and reset.",
+  );
+} finally {
+  await admin("full-reset");
+}
+console.log("Practice board restored to a fresh lobby.");

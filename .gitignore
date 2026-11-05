@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.env*
+!.env.example
+*.tsbuildinfo
+.local/
+.vercel/
+test-results/
+playwright-report/
+.DS_Store
+COLLABORATION.md
+docs/claude-review/
