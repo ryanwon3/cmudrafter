@@ -51,10 +51,12 @@ Re-running `schema.sql` wipes everything; re-run `seed.sql` after it. To add lat
 npm test                 # unit tests: draft rules, local store, tokens, admin key, seed data
 npm run typecheck
 npm run build
-npm run test:smoke        # separate terminal; disposable local-practice server only
+npm run test:smoke        # separate terminal; disposable local-practice server by default
 ```
 
-`npm test` also runs the actual schema and SQL acceptance script in an isolated embedded PostgreSQL database (PGlite), verifies lock-before-token ordering and unrelated RPC permissions, and tests captain storage events with the real API handlers in a DOM environment. The smoke script exercises an eight-way claim race and full 32-pick draft over HTTP, then restores a fresh lobby; it refuses to mutate a Supabase-backed board.
+`npm test` also runs the actual schema and SQL acceptance script in an isolated embedded PostgreSQL database (PGlite), verifies lock-before-token ordering, fixed function search paths and unrelated RPC permissions, and tests captain storage events with the real API handlers in a DOM environment. The smoke script exercises an eight-way claim race and full 32-pick draft over HTTP, then restores a fresh lobby. Hosted tests require explicit operator approval, an unused lobby, an HTTPS target, and `--hosted-reset`; ordinary runs refuse to mutate Supabase.
+
+Tracked migrations are in `supabase/migrations/`. The initial migration contains the schema and fixed roster; subsequent migrations are incremental. Never rerun the standalone `schema.sql` on a live draft: it rebuilds the tables.
 
 The Postgres functions also have a standalone self-checking test. Run it only against a **throwaway** database (it resets the draft):
 

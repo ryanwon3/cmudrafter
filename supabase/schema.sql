@@ -50,6 +50,8 @@ create table players (
   pick_number     int unique
 );
 
+create index players_team_captain_id_idx on players(team_captain_id);
+
 -- Row-level security: the public role can read the 3 state tables, nothing else.
 alter table draft          enable row level security;
 alter table captains       enable row level security;
@@ -73,21 +75,21 @@ grant usage on sequence players_id_seq to service_role;
 
 -- Captain slot on the clock for 0-based pick index k (snake order).
 create or replace function slot_on_clock(k int, n int default 8) returns int
-language sql immutable as $$
+language sql immutable set search_path = public as $$
   select case when (k / n) % 2 = 0 then (k % n) + 1 else n - (k % n) end
 $$;
 
 create or replace function touch_draft() returns void
-language sql as $$ update draft set updated_at = now() where id = 1 $$;
+language sql set search_path = public as $$ update draft set updated_at = now() where id = 1 $$;
 
 create or replace function captain_for_token(p_token_hash text) returns int
-language sql stable as $$
+language sql stable set search_path = public as $$
   select captain_id from captain_tokens where token_hash = p_token_hash
 $$;
 
 -- Saves a pick for the captain on the clock. Caller must hold the draft row lock.
 create or replace function do_pick(p_captain_id int, p_player_id int, p_expected_pick_index int default null) returns json
-language plpgsql as $$
+language plpgsql set search_path = public as $$
 declare
   d draft;
   on_clock captains;
@@ -134,7 +136,7 @@ end $$;
 -- ---------------------------------------------------------------------------
 
 create or replace function claim_captain(p_captain_id int, p_token_hash text) returns json
-language plpgsql as $$
+language plpgsql set search_path = public as $$
 declare
   d draft;
   c captains;
@@ -161,7 +163,7 @@ begin
 end $$;
 
 create or replace function release_captain(p_token_hash text) returns void
-language plpgsql as $$
+language plpgsql set search_path = public as $$
 declare
   d draft;
   cid int;
@@ -180,7 +182,7 @@ begin
 end $$;
 
 create or replace function set_ready(p_token_hash text, p_ready boolean) returns json
-language plpgsql as $$
+language plpgsql set search_path = public as $$
 declare
   d draft;
   cid int;
@@ -207,7 +209,7 @@ begin
 end $$;
 
 create or replace function make_pick(p_token_hash text, p_player_id int, p_expected_pick_index int default null) returns json
-language plpgsql as $$
+language plpgsql set search_path = public as $$
 declare
   cid int;
 begin
@@ -226,7 +228,7 @@ end $$;
 -- ---------------------------------------------------------------------------
 
 create or replace function admin_release(p_captain_id int) returns void
-language plpgsql as $$
+language plpgsql set search_path = public as $$
 begin
   perform 1 from draft where id = 1 for update;
   delete from captain_tokens where captain_id = p_captain_id;
@@ -235,7 +237,7 @@ begin
 end $$;
 
 create or replace function admin_force_start() returns void
-language plpgsql as $$
+language plpgsql set search_path = public as $$
 declare
   d draft;
 begin
@@ -247,10 +249,10 @@ begin
 end $$;
 
 create or replace function admin_pick(p_player_id int, p_expected_pick_index int default null) returns json
-language sql as $$ select do_pick(null, p_player_id, p_expected_pick_index) $$;
+language sql set search_path = public as $$ select do_pick(null, p_player_id, p_expected_pick_index) $$;
 
 create or replace function admin_undo() returns json
-language plpgsql as $$
+language plpgsql set search_path = public as $$
 declare
   d draft;
   p players;
@@ -266,7 +268,7 @@ begin
 end $$;
 
 create or replace function admin_set_picks_per_team(p_picks int) returns void
-language plpgsql as $$
+language plpgsql set search_path = public as $$
 declare
   d draft;
   n_players int;
@@ -284,7 +286,7 @@ end $$;
 
 -- p_full = false: clear picks and Ready, keep claims. p_full = true: also clear claims.
 create or replace function admin_reset(p_full boolean) returns void
-language plpgsql as $$
+language plpgsql set search_path = public as $$
 begin
   perform 1 from draft where id = 1 for update;
   update players set team_captain_id = null, pick_number = null where team_captain_id is not null;
@@ -298,7 +300,7 @@ end $$;
 
 -- One consistent snapshot of the whole board, in a single statement.
 create or replace function get_state() returns json
-language sql stable as $$
+language sql stable set search_path = public as $$
   select json_build_object(
     'draft',    (select row_to_json(d) from draft d where id = 1),
     'captains', coalesce((select json_agg(c order by c.slot) from captains c), '[]'::json),

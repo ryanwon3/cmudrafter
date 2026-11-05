@@ -10,3 +10,4 @@ playwright-report/
 .DS_Store
 COLLABORATION.md
 docs/claude-review/
+.vercel

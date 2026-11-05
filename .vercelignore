@@ -1,0 +1,11 @@
+.git/
+node_modules/
+.next/
+.vercel/
+.env*
+!.env.example
+*.tsbuildinfo
+COLLABORATION.md
+docs/claude-review/
+test-results/
+playwright-report/

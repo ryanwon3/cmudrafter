@@ -35,6 +35,23 @@ test("installing draft functions preserves unrelated public RPC access", async (
   }
 });
 
+test("snapshot uses the app schema even when a caller changes search_path", async () => {
+  const db = await database();
+  try {
+    await db.exec(`create schema shadow;
+      create table shadow.draft (like public.draft including all);
+      insert into shadow.draft (id,phase,pick_index,picks_per_team) values (1,'complete',999,4);
+      set search_path = shadow, public;`);
+    const result = await db.query<{
+      state: { draft: { phase: string; pick_index: number } };
+    }>("select public.get_state() as state");
+    assert.equal(result.rows[0].state.draft.phase, "lobby");
+    assert.equal(result.rows[0].state.draft.pick_index, 0);
+  } finally {
+    await db.close();
+  }
+});
+
 test("captain pick holds the draft lock before resolving its claim token", async () => {
   const db = await database();
   try {

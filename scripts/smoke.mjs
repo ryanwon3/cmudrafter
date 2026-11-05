@@ -1,8 +1,9 @@
-// Run only against this app's disposable local-practice server.
+// Local by default. Hosted runs require explicit approval and --hosted-reset.
 import assert from "node:assert/strict";
 
 const base = process.env.DRAFT_TEST_URL || "http://127.0.0.1:3000";
 const adminKey = process.env.ADMIN_KEY || "change-me-dev-admin-key";
+const hostedReset = process.argv.includes("--hosted-reset");
 async function call(path, body, key) {
   const response = await fetch(base + path, {
     method: body === undefined ? "GET" : "POST",
@@ -23,11 +24,31 @@ const snapshot = async () => {
   return r.data;
 };
 const initial = await snapshot();
-assert.equal(
-  initial.mode,
-  "local",
-  "Smoke tests refuse to mutate a real Supabase draft.",
-);
+if (initial.mode !== "local") {
+  assert.ok(
+    hostedReset,
+    "Hosted smoke test requires explicit approval and --hosted-reset.",
+  );
+  assert.equal(new URL(base).protocol, "https:");
+  assert.equal(initial.mode, "supabase");
+  assert.equal(
+    initial.draft.phase,
+    "lobby",
+    "Hosted draft must be an unused lobby.",
+  );
+  assert.equal(initial.draft.pick_index, 0);
+  assert.equal(initial.draft.picks_per_team, 4);
+  assert.equal(initial.captains.length, 8);
+  assert.equal(initial.players.length, 35);
+  assert.ok(
+    initial.captains.every((c) => !c.claimed && !c.ready),
+    "Hosted draft has occupied seats.",
+  );
+  assert.ok(
+    initial.players.every((p) => p.team_captain_id === null),
+    "Hosted draft already has picks.",
+  );
+}
 assert.equal(
   (await admin("verify")).status,
   200,
@@ -37,7 +58,7 @@ assert.equal(
   (await call("/api/admin", { action: "verify" }, "wrong-key")).status,
   401,
 );
-await admin("full-reset");
+if (initial.mode === "local") await admin("full-reset");
 try {
   const clients = new Map();
   const races = await Promise.all(
@@ -155,4 +176,4 @@ try {
 } finally {
   await admin("full-reset");
 }
-console.log("Practice board restored to a fresh lobby.");
+console.log("Board restored to a fresh lobby.");
