@@ -21,10 +21,16 @@ Claude authored the initial database, server adapters, API routes and backend te
 
 ## Hosted acceptance procedure
 
-Hosted smoke tests require explicit operator approval, an HTTPS URL, an unused lobby and `--hosted-reset`. Without that flag the script refuses a Supabase-backed board. After approval, run with the production URL and ADMIN_KEY supplied through the environment; the script restores a fresh lobby afterward. Release verification should also observe public Realtime events on all three tables and check both `/` and `/admin`.
+Hosted smoke tests require explicit operator approval, an HTTPS URL, an unused lobby and `--hosted-reset`. Without that flag the script refuses a Supabase-backed board. The organizer explicitly approved the hosted test and reset.
+
+- The production HTTP test passed at `https://cmudrafter.vercel.app`: eight-way claim race, authorization, 32 picks, replay protection, completion, undo, token revocation, reclaim and reset.
+- A separate subscriber using the browser publishable key received public Realtime events for `captains`, `draft` and `players` during the test.
+- The final state returned to a fresh lobby: eight captains, 35 available players, zero claims, zero ready captains and zero picks.
+- The production deployment is linked to GitHub `main`, has status `READY`, and serves the `cmudrafter.vercel.app` alias. Request logs showed no HTTP 5xx responses during the hosted test.
+- Native Chrome inspection confirmed live draft updates and the desktop layout. A 400px responsive viewport showed the mobile lobby, and spectator mode removed all claim buttons. A missing favicon identified in the console was corrected.
 
 ## Verification limits
 
-The browser bridge could not reliably navigate or capture page screenshots. Desktop/mobile visual checks, nine isolated browser windows, and actual clipboard/download button clicks are not covered by the API/SQL tests. DOM tests cover captain storage events and export helpers cover Discord text and CSV escaping.
+The browser bridge could not reliably automate navigation, so native Chrome controls were used for desktop/mobile inspection. Nine isolated browser windows and actual clipboard/download button clicks are not covered by the API/SQL tests. DOM tests cover captain storage events and export helpers cover Discord text and CSV escaping.
 
 Node 24 is required. The computer's default Node 20.17 fails current DOM-test dependencies and the Tailwind compiler; `.nvmrc` and package engines record the supported runtime.
