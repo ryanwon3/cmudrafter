@@ -7,6 +7,7 @@
 - Independent review found and reproduced one cross-tab token race; the fix and regression both pass, with no remaining actionable findings.
 - The hosted attendance migration preserved the existing claimed captain seat and token. Hosted acceptance uses read-only checks and rejected operations; the current event is not reset for testing.
 - The organizer password is configured only as a production Vercel Secret and in ignored local configuration. No password appears in source or public bundles.
+- The live update at `https://cmudrafter.vercel.app` returned HTTP 200 for the home/admin pages, accepted the requested organizer password, rejected an incorrect password and unauthorized attendance corrections, enforced the 32-present-player gate, and denied browser-key reads of both token tables. The lobby retained one claim and zero picks/check-ins. Vercel request logs reported zero HTTP 5xx responses during these checks.
 - Native Chrome navigation/capture is unreliable in this session, so the new UI has DOM coverage but final visual inspection remains limited.
 
 Claude authored the initial database, server adapters, API routes and backend tests. Codex authored the UI, shared contracts and integration tests, and completed integration and hosted setup. Independent review identified and covered authorization and synchronization regressions.

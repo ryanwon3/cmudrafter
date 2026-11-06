@@ -13,4 +13,4 @@ Review focus: attendance spoofing/withdrawal, absent picks through admin routes,
 - [x] Add /api/attendance actions check-in, me, leave. Extend protected /api/admin with attendance, announcement and publish actions.
 - [x] Add lobby check-in component, explicit Unselect seat, eligible player filtering, clear Admin login and password form, attendance management, start checklist, announcements and publish controls.
 - [x] Extend DOM and HTTP smoke coverage; run all tests, typecheck and production build. Independently review changes.
-- [ ] Push to GitHub and verify the resulting Vercel deployment and live read-only checks. Migration applied and production password updated; existing captain claim preserved.
+- [x] Push to GitHub and verify the resulting Vercel deployment and live read-only checks. Migration applied and production password updated; existing captain claim preserved. Production verifies the attendance gate, requested password, protected corrections and private token tables without altering event data.
