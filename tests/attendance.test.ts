@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { LocalStore } from "../src/lib/server/local-store";
+import { CAPTAINS } from "../src/lib/server/seed-data";
 
 async function present(s: LocalStore, count = 32) {
   for (let id = 1; id <= count; id++) await s.checkIn(id, `player-${id}`);
@@ -8,7 +9,7 @@ async function present(s: LocalStore, count = 32) {
 
 test("all ready waits for organizer approval; start requires 32 present players", async () => {
   const s = new LocalStore();
-  for (let id = 1; id <= 8; id++) {
+  for (const { id } of CAPTAINS) {
     await s.claim(id, `captain-${id}`);
     assert.equal((await s.setReady(`captain-${id}`, true)).started, false);
   }

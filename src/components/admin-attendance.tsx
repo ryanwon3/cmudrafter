@@ -26,7 +26,7 @@ export function AdminAttendance({
           <h2>Attendance</h2>
         </div>
         <span className="count-pill">
-          {players.filter((p) => p.present).length}/35 present
+          {players.filter((p) => p.present).length}/{players.length} present
         </span>
       </div>
       {!lobby && <p>Attendance locked.</p>}

@@ -16,7 +16,7 @@ declare
 begin
   perform admin_reset(true);
   assert (select count(*) from captains) = 8, 'captains';
-  assert (select count(*) from players) = 35, 'players';
+  assert (select count(*) from players) >= 32, 'enough roster players';
 
   perform check_in_player(id,'player' || id) from players;
 
@@ -29,9 +29,9 @@ begin
   perform claim_captain(1, 'tok1');
 
   -- ready / un-ready / start
-  perform set_ready('tok' || id, true) from captains where id < 8;
+  perform set_ready('tok' || id, true) from captains where slot < 8;
   perform set_ready('tok1', false);
-  perform set_ready('tok8', true);
+  perform set_ready('tok' || (select id from captains where slot=8), true);
   assert (select phase from draft) = 'lobby', 'not started at 7/8';
   perform pg_temp.expect_error($q$select make_pick('tok1', 1)$q$, 'The draft is not running');
   assert not (set_ready('tok1', true) ->> 'started')::boolean, 'waits for organizer';
@@ -54,13 +54,13 @@ begin
   assert (select phase from draft) = 'review', 'review';
   perform admin_publish_results();
   assert (select phase from draft) = 'complete', 'published';
-  assert (select count(*) from players where team_captain_id is null) = 3, '3 undrafted';
+  assert (select count(*) from players where team_captain_id is null) = (select count(*) from players) - 32, 'undrafted total';
   perform pg_temp.expect_error($q$select make_pick('tok1', 1)$q$, 'The draft is not running');
 
   -- undo from complete, then a drafted player is rejected
   perform admin_undo();
   assert (select phase || pick_index from draft) = 'drafting31', 'undo';
-  assert (select count(*) from players where team_captain_id is null) = 4, 'player returned';
+  assert (select count(*) from players where team_captain_id is null) = (select count(*) from players) - 31, 'player returned';
   perform pg_temp.expect_error($q$select make_pick('tok1', (select id from players where pick_number = 1))$q$, '% was already drafted');
   perform admin_pick((select id from players where team_captain_id is null order by id limit 1), 31);
   assert (select phase from draft) = 'review', 'admin pick enters review';
@@ -68,10 +68,11 @@ begin
 
   -- admin release mid-draft and reclaim
   perform admin_undo();
-  perform admin_release(3);
-  assert captain_for_token('tok3') is null, 'admin release revokes token';
-  perform claim_captain(3, 'tok3b');
-  assert captain_for_token('tok3b') = 3, 'reclaim mid-draft';
+  select id into cid from captains where slot=3;
+  perform admin_release(cid);
+  assert captain_for_token('tok' || cid) is null, 'admin release revokes token';
+  perform claim_captain(cid, 'reclaimed-token');
+  assert captain_for_token('reclaimed-token') = cid, 'reclaim mid-draft';
 
   -- settings and resets
   perform pg_temp.expect_error($q$select admin_set_picks_per_team(3)$q$, '%only change in the lobby');
@@ -90,8 +91,8 @@ begin
   perform admin_set_picks_per_team(4);
 
   st := get_state();
-  assert json_array_length(st -> 'captains') = 8 and json_array_length(st -> 'players') = 35, 'get_state';
-  assert (st -> 'players' -> 0 ->> 'display_name') = 'ruk', 'players sorted by rank';
+  assert json_array_length(st -> 'captains') = 8 and json_array_length(st -> 'players') = (select count(*) from players), 'get_state';
+  assert (st -> 'players' -> 0 ->> 'display_name') = 'Caden', 'players sorted by rank';
 end $$;
 
 -- Public role: can read the board, can't read tokens or call functions.

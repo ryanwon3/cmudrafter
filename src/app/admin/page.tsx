@@ -161,7 +161,7 @@ export default function Admin() {
                     </h2>
                     <p>
                       {state.captains.filter((c) => c.ready).length}/8 captains
-                      ready · {state.players.filter((p) => p.present).length}/35
+                      ready · {state.players.filter((p) => p.present).length}/{state.players.length}
                       players present · {state.draft.pick_index}/32 picks made
                     </p>
                     {state.draft.phase === "lobby" && (

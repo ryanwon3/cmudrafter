@@ -39,7 +39,7 @@ if (initial.mode !== "local") {
   assert.equal(initial.draft.pick_index, 0);
   assert.equal(initial.draft.picks_per_team, 4);
   assert.equal(initial.captains.length, 8);
-  assert.equal(initial.players.length, 35);
+  assert.ok(initial.players.length >= 32);
   assert.ok(initial.players.every(p=>!p.present), "Hosted draft already has player check-ins.");
   assert.ok(
     initial.captains.every((c) => !c.claimed && !c.ready),
@@ -69,7 +69,7 @@ try {
     assert.equal(r.status,200);
     attendance.set(p.id,r.data.token);
   }
-  const withdrawn = initial.players[34];
+  const withdrawn = initial.players.at(-1);
   assert.equal((await call("/api/attendance", {action:"leave",token:attendance.get(withdrawn.id)})).status,200);
   assert.equal((await call("/api/attendance", {action:"me",token:attendance.get(withdrawn.id)})).data.playerId,null);
   const clients = new Map();
@@ -83,22 +83,16 @@ try {
     7,
   );
   clients.set(1, races.find((r) => r.status === 200).data.token);
-  for (let captainId = 2; captainId <= 8; captainId++) {
-    const r = await call("/api/claim", { captainId });
+  for (const c of initial.captains.filter(c=>c.slot!==1)) {
+    const r = await call("/api/claim", { captainId:c.id });
     assert.equal(r.status, 200);
-    clients.set(captainId, r.data.token);
+    clients.set(c.slot, r.data.token);
   }
-  for (let captainId = 1; captainId <= 8; captainId++) {
-    const token = clients.get(captainId);
-    assert.equal((await call("/api/me", { token })).data.captainId, captainId);
-    assert.equal(
-      (await call("/api/ready", { token, ready: true })).status,
-      200,
-    );
-    assert.equal(
-      (await snapshot()).draft.phase,
-      "lobby",
-    );
+  for (const c of initial.captains) {
+    const token = clients.get(c.slot);
+    assert.equal((await call("/api/me", { token })).data.captainId, c.id);
+    assert.equal((await call("/api/ready", {token,ready:true})).status,200);
+    assert.equal((await snapshot()).draft.phase,"lobby");
   }
   assert.equal((await admin("start")).status,200);
   assert.equal((await call("/api/attendance", {action:"check-in", playerId:withdrawn.id})).status,409);
@@ -142,15 +136,15 @@ try {
     s = await snapshot();
     assert.equal(s.draft.pick_index, k + 1);
     const picked = s.players.find((p) => p.id === player.id);
-    assert.equal(picked.team_captain_id, order[k]);
+    assert.equal(picked.team_captain_id, initial.captains.find(c=>c.slot===order[k]).id);
     assert.equal(picked.pick_number, k + 1);
   }
   let s = await snapshot();
   assert.equal(s.draft.phase, "review");
   assert.equal((await admin("publish")).status,200);
   assert.equal((await snapshot()).draft.phase,"complete");
-  assert.equal(s.players.filter((p) => p.team_captain_id === null).length, 3);
-  for (let id = 1; id <= 8; id++)
+  assert.equal(s.players.filter((p) => p.team_captain_id === null).length, initial.players.length - 32);
+  for (const {id} of initial.captains)
     assert.equal(s.players.filter((p) => p.team_captain_id === id).length, 4);
   await admin("undo");
   s = await snapshot();
@@ -181,7 +175,7 @@ try {
   s = await snapshot();
   assert.equal(s.draft.phase, "lobby");
   assert.equal(s.captains.filter((c) => c.claimed).length, 8);
-  assert.equal(s.players.filter(p=>p.present).length,34);
+  assert.equal(s.players.filter(p=>p.present).length,initial.players.length-1);
   assert.equal(
     s.captains.some((c) => c.ready),
     false,

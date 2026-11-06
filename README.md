@@ -1,6 +1,6 @@
 # Team Draft
 
-A live snake draft: 8 captains draft 4 players each from a pool of 35, and everyone (captains and spectators) watches the same board update live.
+A live snake draft: 8 captains draft 4 players each from a pool of 43, and everyone (captains and spectators) watches the same board update live.
 
 Built with Next.js (App Router, TypeScript, Tailwind), Supabase (Postgres + Realtime) and Vercel.
 
@@ -12,7 +12,7 @@ Built with Next.js (App Router, TypeScript, Tailwind), Supabase (Postgres + Real
 - Claim tokens are random, returned once, and stored in the captain's `localStorage`. The database keeps only a SHA-256 hash in `captain_tokens`, which the public key can't read.
 - Every browser reloads `/api/state` on any Realtime change, every 5 seconds, and when the tab regains focus.
 
-Defaults (from the spec): 4 picks per captain (teams of 5, 3 players undrafted), no pick timer, no claim password.
+Event format: 4 picks per captain (teams of 5, 11 players undrafted if all 43 check in), no pick timer, no claim password.
 
 ## Run it locally
 
@@ -91,3 +91,7 @@ All endpoints return JSON; errors are `{ "error": "<message to show the user>" }
 ## Attendance and phase approval
 
 Players start absent. They choose their own roster name and confirm attendance in the lobby. Check-in tokens are random, hashed on the server, and private under RLS. Captains confirm presence through Ready. The admin can correct player attendance while the lobby is open. At least 32 present players are required, and all picks (including admin picks) reject absent players. Attendance freezes when drafting starts. A final pick enters review; the organizer explicitly publishes the results. A draft reset keeps attendance and seats; full reset clears both and revokes their tokens. Apply the tracked attendance migration to an existing project; do not rerun schema.sql on a hosted event. The migration requires the event to be in the lobby and preserves existing captain claims.
+
+## Current roster
+
+The November 6, 2026 signup-sheet snapshot contains 51 participants: eight captains and 43 draftable players. Captain order: Chomania, Admirality, Kyle, Allen, Brian (Holiday), Envy, Ethan, Nelson. Ethan is UPMC Kassadin#CMU; Nelson is rakwillsuk#uwu. Captains are excluded from the player pool, and attendance totals follow the roster size. The existing lobby can be upgraded with the tracked roster migration, which preserves matching identities and check-ins by Riot ID and refuses to run after drafting begins.

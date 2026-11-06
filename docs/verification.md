@@ -1,5 +1,13 @@
 # Verification record
 
+## Roster refresh — November 6, 2026
+
+- Imported 51 complete signup-sheet entries: eight captains in the organizer's specified order and 43 draftable players. Ethan uses UPMC Kassadin#CMU; Nelson uses rakwillsuk#uwu. The separate Ethan/lil E955 entry remains a player, and Ethers returns to the pool. An incomplete timestamp-only row was excluded.
+- Seed data and the hosted migration share the same names, profiles, peak ranks and scores. Attendance denominators use the actual roster size; the start requirement stays at 32 present players.
+- Captain IDs remain stable when their slots change. The migration preserves matching captain sessions and player check-ins, revokes removed/promoted role tokens, and refuses to run after picks have started. Three real-PostgreSQL regressions cover identity preservation, stale former-captain confirmations, replay and active-draft protection.
+- All 42 tests, the production build and the full local HTTP draft test passed. Independent review confirmed the complete 51-person source mapping and no remaining actionable issues.
+- Hosted migration `20261106055132_refresh_event_roster` applied successfully. The hosted lobby contains the requested captain order, 43 players, zero overlapping captain/player profiles and no picks.
+
 ## Minimal UI update — November 6, 2026
 
 - Removed school branding, promotional hero sections, event ticket, footer, avatars and repeated copy. Kept functional phase/status information, controls and confirmation consequences. Metadata, favicon, exported text title and CSV filename are neutral.

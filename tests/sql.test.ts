@@ -21,7 +21,7 @@ test('PostgreSQL attendance, manual phase approval and private tokens match the 
     await assert.rejects(db.exec("select check_in_player(1,'other')"), /already checked in/i);
     await assert.rejects(db.exec("select release_player('other')"), /not checked in/i);
     await db.exec("select release_player('mine');");
-    for (let id=1;id<=8;id++) await db.exec(`select claim_captain(${id},'c${id}'); select set_ready('c${id}',true);`);
+    await db.exec("select claim_captain(id,'c'||id) from captains; select set_ready('c'||id,true) from captains;");
     assert.equal((await db.query<{phase:string}>('select phase from draft')).rows[0].phase,'lobby');
     await assert.rejects(db.exec('select admin_force_start()'), /32.*present/);
     for (let id=1;id<=32;id++) await db.exec(`select check_in_player(${id},'p${id}');`);

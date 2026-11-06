@@ -132,7 +132,7 @@ export function AttendancePanel({
         <div>
           <h2 id="attendance-title">Player check-in</h2>
         </div>
-        <strong className="attendance-count">{present}/35 present</strong>
+        <strong className="attendance-count">{present}/{players.length} present</strong>
       </div>
       <p>Players check in here. Captains use Ready.</p>
       {me ? (

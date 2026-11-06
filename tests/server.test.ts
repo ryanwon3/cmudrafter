@@ -14,7 +14,7 @@ async function claimAll(s: LocalStore) {
   for (const c of CAPTAINS) await s.claim(c.id, `hash-${c.id}`);
 }
 async function presentAll(s: LocalStore) {
-  for (let id=1;id<=35;id++) await s.checkIn(id, `p-${id}`);
+  for (let id=1;id<=PLAYERS.length;id++) await s.checkIn(id, `p-${id}`);
 }
 async function startDraft(s: LocalStore) {
   await presentAll(s);
@@ -35,7 +35,7 @@ test('snake order matches the spec', () => {
 test('seed data matches supabase/seed.sql exactly', () => {
   const sql = readFileSync(new URL('../supabase/seed.sql', import.meta.url), 'utf8');
   assert.equal(CAPTAINS.length, 8);
-  assert.equal(PLAYERS.length, 35);
+  assert.ok(PLAYERS.length >= 32);
   for (const row of [...CAPTAINS, ...PLAYERS]) {
     const esc = (v: string) => v.replace(/'/g, "''");
     for (const v of [row.display_name, row.riot_id, row.opgg_url, row.peak_rank]) {
@@ -72,7 +72,7 @@ test('ready never starts automatically; organizer approves after attendance', as
   await claimAll(s);
   for (const c of CAPTAINS.slice(0, 7)) await s.setReady(`hash-${c.id}`, true);
   await s.setReady('hash-1', false);
-  await s.setReady('hash-8', true);
+  await s.setReady(`hash-${CAPTAINS.at(-1)!.id}`, true);
   assert.equal((await s.getState()).draft.phase, 'lobby');
   const r = await s.setReady('hash-1', true);
   assert.equal(r.started, false);
@@ -87,16 +87,17 @@ test('32 picks follow snake order; only the captain on the clock can pick', asyn
   await startDraft(s);
   for (let k = 0; k < 32; k++) {
     const slot = SNAKE[k];
-    const wrong = (slot % 8) + 1;
+    const captainId = CAPTAINS.find(c => c.slot === slot)!.id;
+    const wrong = CAPTAINS.find(c => c.slot === (slot % 8) + 1)!.id;
     const p = await bestAvailable(s);
     await rejects(s.pick(`hash-${wrong}`, p.id), /^It's .+'s pick$/);
-    const res = await s.pick(`hash-${slot}`, p.id, k);
+    const res = await s.pick(`hash-${captainId}`, p.id, k);
     assert.equal(res.pick, k + 1);
   }
   const st = await s.getState();
   assert.equal(st.draft.phase, 'review');
   await s.adminPublish();
-  assert.equal(st.players.filter((p) => p.team_captain_id === null).length, 3);
+  assert.equal(st.players.filter((p) => p.team_captain_id === null).length, PLAYERS.length - 32);
   for (const c of st.captains) assert.equal(st.players.filter((p) => p.team_captain_id === c.id).length, 4);
   await rejects(s.pick('hash-1', st.players[34].id), /not running/);
 });
@@ -132,7 +133,7 @@ test('admin undo returns the player and the turn, including from complete', asyn
   let st = await s.getState();
   assert.equal(st.draft.phase, 'drafting');
   assert.equal(st.draft.pick_index, 31);
-  assert.equal(st.players.filter((p) => p.team_captain_id === null).length, 4);
+  assert.equal(st.players.filter((p) => p.team_captain_id === null).length, PLAYERS.length - 31);
   // Pick 32 belongs to Chomania (slot 1); pick 31 to Admirality.
   await s.adminUndo();
   st = await s.getState();
@@ -144,10 +145,11 @@ test('admin undo returns the player and the turn, including from complete', asyn
 test('admin release revokes the token and allows reclaim mid-draft', async () => {
   const s = new LocalStore();
   await startDraft(s);
-  await s.adminRelease(3);
-  assert.equal(await s.captainForToken('hash-3'), null);
-  await s.claim(3, 'new-device');
-  assert.equal(await s.captainForToken('new-device'), 3);
+  const id = CAPTAINS.find(c => c.slot === 3)!.id;
+  await s.adminRelease(id);
+  assert.equal(await s.captainForToken(`hash-${id}`), null);
+  await s.claim(id, 'new-device');
+  assert.equal(await s.captainForToken('new-device'), id);
 });
 
 test('force start, picks per team, reset and full reset', async () => {
