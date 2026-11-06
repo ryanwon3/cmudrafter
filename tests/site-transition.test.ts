@@ -27,6 +27,7 @@ test('first entry plays the supplied clip and phase changes replay it without po
     const ui=render(React.createElement(Header,{phase:'lobby',connected:true}));
     const video=await waitFor(()=>ui.getByRole('dialog',{name:'Page transition'}).querySelector('video')!);
     assert.ok(video);assert.equal(video.muted,true);assert.equal(video.playsInline,true);
+    assert.equal(Boolean(ui.queryByRole('button',{name:'Skip animation'})),false);
     assert.match(video.getAttribute('src')??'',/eclipse/);
     fireEvent.ended(video);
     await waitFor(()=>assert.equal(Boolean(ui.queryByRole('dialog',{name:'Page transition'})),false));
@@ -44,7 +45,7 @@ test('first entry plays the supplied clip and phase changes replay it without po
   } finally {env.restore();}
 });
 
-test('skip and video errors release the page, and rapid phase updates do not restart playback',async()=>{
+test('Escape and video errors release the page, and rapid phase updates do not restart playback',async()=>{
   const env=environment();
   try {
     const ui=render(React.createElement(Header,{phase:'lobby',connected:true}));
@@ -53,7 +54,7 @@ test('skip and video errors release the page, and rapid phase updates do not res
     ui.rerender(React.createElement(Header,{phase:'drafting',connected:true}));
     assert.ok(ui.getByRole('dialog',{name:'Page transition'}).querySelector('video')===video);
     assert.equal(video.currentTime,0.8);
-    fireEvent.click(ui.getByRole('button',{name:'Skip animation'}));
+    fireEvent(ui.getByRole('dialog',{name:'Page transition'}),new env.dom.window.Event('cancel',{cancelable:true}));
     await waitFor(()=>assert.equal(Boolean(ui.queryByRole('dialog',{name:'Page transition'})),false));
     ui.rerender(React.createElement(Header,{phase:'complete',connected:true}));
     const failed=await waitFor(()=>ui.getByRole('dialog',{name:'Page transition'}).querySelector('video')!);
@@ -103,7 +104,8 @@ test('blocked storage does not prevent phase changes or dismissing the clip',asy
     fireEvent.ended(await waitFor(()=>ui.getByRole('dialog',{name:'Page transition'}).querySelector('video')!));
     await waitFor(()=>assert.equal(Boolean(ui.queryByRole('dialog',{name:'Page transition'})),false));
     ui.rerender(React.createElement(Header,{phase:'drafting',connected:true}));
-    fireEvent.click(await waitFor(()=>ui.getByRole('button',{name:'Skip animation'})));
+    const dialog=await waitFor(()=>ui.getByRole('dialog',{name:'Page transition'}));
+    fireEvent(dialog,new env.dom.window.Event('cancel',{cancelable:true}));
     await waitFor(()=>assert.equal(Boolean(ui.queryByRole('dialog',{name:'Page transition'})),false));
   } finally {env.restore();}
 });

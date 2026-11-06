@@ -24,7 +24,6 @@ function remember(key: string, value: string) {
 
 export function SiteTransition({ screen }: { screen: string | null }) {
   const [active, setActive] = useState(false);
-  const [playing, setPlaying] = useState(false);
   const [exiting, setExiting] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -49,7 +48,6 @@ export function SiteTransition({ screen }: { screen: string | null }) {
     closingRef.current = false;
     if (!mountedRef.current) return;
     setActive(false);
-    setPlaying(false);
     setExiting(false);
   }, [clearTimers]);
 
@@ -66,7 +64,6 @@ export function SiteTransition({ screen }: { screen: string | null }) {
     if (!mountedRef.current || reducedRef.current || activeRef.current) return;
     activeRef.current = true;
     closingRef.current = false;
-    setPlaying(false);
     setExiting(false);
     setActive(true);
   }, []);
@@ -121,8 +118,9 @@ export function SiteTransition({ screen }: { screen: string | null }) {
   return (
     <dialog
       ref={dialogRef}
-      className={`site-transition${playing ? " is-playing" : ""}${exiting ? " is-exiting" : ""}`}
+      className={`site-transition${exiting ? " is-exiting" : ""}`}
       aria-label="Page transition"
+      tabIndex={-1}
       onCancel={(event) => { event.preventDefault(); finish(); }}
     >
       {active && <>
@@ -135,13 +133,9 @@ export function SiteTransition({ screen }: { screen: string | null }) {
           preload="auto"
           disablePictureInPicture
           aria-hidden="true"
-          onPlaying={() => setPlaying(true)}
           onEnded={finish}
           onError={finish}
         />
-        <button type="button" className="transition-skip" onClick={finish}>
-          Skip animation
-        </button>
       </>}
     </dialog>
   );

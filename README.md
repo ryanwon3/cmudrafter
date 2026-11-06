@@ -4,7 +4,7 @@ A live snake draft: 8 captains draft 4 players each from a pool of 44, and every
 
 Published results link to `/bracket`, an eight-team single-elimination tournament. Quarterfinal defaults are draft slots 1–8, 4–5, 2–7 and 3–6. In Admin, edit matchups to reorder the eight teams, select winners to advance them, or clear a result. Editing pairings clears recorded results; correcting a winner clears only dependent later matches. The final winner is shown as champion. Bracket changes update live and require the current revision, preventing an older admin page from overwriting newer results. Resetting or undoing the draft clears the bracket and invalidates old edits.
 
-The supplied eclipse clip plays once per tab session on entry and again when the visible phase changes, including navigation to the bracket. It is muted, skippable, respects reduced motion, and releases the page if playback fails or stalls. Routine state refreshes and picks do not replay it.
+The supplied eclipse clip plays once per tab session on entry and again when the visible phase changes, including navigation to the bracket. It fills the viewport without letterboxing or a skip button, is muted, respects reduced motion, and releases the page if playback fails or stalls. Routine state refreshes and picks do not replay it.
 
 Built with Next.js (App Router, TypeScript, Tailwind), Supabase (Postgres + Realtime) and Vercel.
 
