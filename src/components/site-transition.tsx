@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const INTRO_KEY = "team-draft-eclipse-seen-v1";
+const INTRO_KEY = "team-draft-eclipse-seen-v2";
 const SCREEN_KEY = "team-draft-transition-screen-v1";
 const FADE_MS = 180;
 const MAX_WAIT_MS = 5000;
@@ -126,7 +126,7 @@ export function SiteTransition({ screen }: { screen: string | null }) {
       {active && <>
         <video
           ref={videoRef}
-          src="/transitions/eclipse-v1.mp4"
+          src="/transitions/eclipse-v2.mp4"
           muted
           autoPlay
           playsInline
