@@ -13,6 +13,7 @@ export interface DraftStore {
   pick(tokenHash: string, playerId: number, expectedPickIndex?: number): Promise<PickResult>;
   adminRelease(captainId: number): Promise<void>;
   adminStart(): Promise<void>;
+  adminFinish(): Promise<void>;
   adminPick(playerId: number, expectedPickIndex?: number): Promise<PickResult>;
   adminUndo(): Promise<void>;
   adminSetPicksPerTeam(picks: number): Promise<void>;

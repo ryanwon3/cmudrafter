@@ -161,24 +161,20 @@ export default function Admin() {
                     </h2>
                     <p>
                       {state.captains.filter((c) => c.ready).length}/8 captains
-                      ready · {state.players.filter((p) => p.present).length}/{state.players.length}
+                      ready · {state.players.filter((p) => p.present).length}/{state.players.length}{" "}
                       players present · {state.draft.pick_index}/32 picks made
                     </p>
-                    {state.draft.phase === "lobby" && (
-                      <p>32 present players required to start.</p>
-                    )}
                     <div className="control-buttons">
                       <button
                         className="button primary"
                         disabled={
                           busy ||
-                          state.draft.phase !== "lobby" ||
-                          state.players.filter((p) => p.present).length < 32
+                          state.draft.phase !== "lobby"
                         }
                         onClick={() =>
                           confirm(
                             "Start the draft now?",
-                            `Attendance will close and drafting will begin for everyone. ${state.captains.filter((c) => c.ready).length}/8 captains are ready. You can pick for captains who have not checked in.`,
+                            `${state.players.filter((p) => p.present).length} players are present for 32 picks. Attendance will close. ${state.captains.filter((c) => c.ready).length}/8 captains are ready. You can pick for unclaimed seats and finish with incomplete teams.`,
                             "Start draft",
                             () => action("start"),
                           )
@@ -186,6 +182,22 @@ export default function Admin() {
                       >
                         Start draft
                       </button>
+                      {state.draft.phase === "drafting" && (
+                        <button
+                          className="button primary"
+                          disabled={busy}
+                          onClick={() =>
+                            confirm(
+                              "Finish drafting?",
+                              `${state.draft.pick_index}/32 picks made. Current picks will be kept, empty team slots will remain unfilled, and everyone will move to team review.`,
+                              "Finish draft",
+                              () => action("finish"),
+                            )
+                          }
+                        >
+                          Finish draft
+                        </button>
+                      )}
                       {state.draft.phase === "review" && (
                         <button
                           className="button primary"

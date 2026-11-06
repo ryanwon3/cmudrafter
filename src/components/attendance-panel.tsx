@@ -179,9 +179,7 @@ export function AttendancePanel({
         </form>
       )}
       <p className="attendance-help">
-        {present < 32
-          ? `${32 - present} more players needed to start.`
-          : "Waiting for admin to start."}
+        Waiting for admin to start.
       </p>
       {notice && <p role="status">{notice}</p>}
     </section>

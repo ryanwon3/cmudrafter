@@ -61,8 +61,23 @@ assert.equal(
 );
 if (initial.mode === "local") await admin("full-reset");
 try {
-  assert.equal((await admin("start")).status, 409, "Cannot start without 32 present players");
   assert.equal((await admin("settings", {picksPerTeam:3})).status, 409);
+  assert.equal((await call("/api/admin", {action:"finish"}, "wrong-key")).status, 401);
+  assert.equal((await admin("finish")).status, 409, "Only a running draft can finish");
+  const shortRoster = initial.players.slice(0, 2);
+  for (const p of shortRoster) {
+    assert.equal((await call("/api/attendance", {action:"check-in",playerId:p.id})).status, 200);
+  }
+  assert.equal((await admin("start")).status, 200, "Admin can start with two present players and no claimed seats");
+  assert.equal((await admin("pick", {playerId:shortRoster[0].id,expectedPickIndex:0})).status, 200);
+  assert.equal((await admin("finish")).status, 200);
+  assert.equal((await snapshot()).draft.phase, "review");
+  assert.equal((await snapshot()).draft.pick_index, 1);
+  assert.equal((await admin("pick", {playerId:shortRoster[1].id,expectedPickIndex:1})).status, 409);
+  assert.equal((await admin("publish")).status, 200);
+  assert.equal((await snapshot()).draft.phase, "complete");
+  assert.equal((await snapshot()).players.find(p=>p.id===shortRoster[0].id).team_captain_id, initial.captains.find(c=>c.slot===1).id);
+  assert.equal((await admin("full-reset")).status, 200);
   const attendance = new Map();
   for(const p of initial.players) {
     const r = await call("/api/attendance", {action:"check-in", playerId:p.id});
@@ -185,7 +200,7 @@ try {
     true,
   );
   console.log(
-    "PASS: HTTP attendance ownership, 32-player start gate, manual phases, absent-pick rejection, 8-way claim race, 32 snake picks, publish, undo, revocation and resets.",
+    "PASS: HTTP attendance ownership, incomplete-roster phase overrides, manual phases, absent-pick rejection, 8-way claim race, 32 snake picks, publish, undo, revocation and resets.",
   );
 } finally {
   await admin("full-reset");

@@ -23,7 +23,6 @@ test('PostgreSQL attendance, manual phase approval and private tokens match the 
     await db.exec("select release_player('mine');");
     await db.exec("select claim_captain(id,'c'||id) from captains; select set_ready('c'||id,true) from captains;");
     assert.equal((await db.query<{phase:string}>('select phase from draft')).rows[0].phase,'lobby');
-    await assert.rejects(db.exec('select admin_force_start()'), /32.*present/);
     for (let id=1;id<=32;id++) await db.exec(`select check_in_player(${id},'p${id}');`);
     await db.exec('select admin_force_start();');
     await assert.rejects(db.exec('select admin_set_attendance(1,false)'), /lobby/);
@@ -41,6 +40,30 @@ test('PostgreSQL attendance, manual phase approval and private tokens match the 
   } finally { await db.close(); }
 });
 
+test('PostgreSQL admin can advance incomplete rosters while phase and access rules remain enforced', async () => {
+  const db = await database();
+  try {
+    await assert.rejects(db.exec('select admin_finish_draft()'), /not running/);
+    await db.exec("select check_in_player(1,'present'); select admin_force_start();");
+    await assert.rejects(db.exec('select admin_force_start()'), /already started/);
+    await assert.rejects(db.exec('select admin_pick(2,0)'), /not marked present/);
+    await db.exec('select admin_pick(1,0); select admin_finish_draft();');
+    assert.deepEqual((await db.query('select phase,pick_index from draft')).rows, [{phase:'review',pick_index:1}]);
+    assert.equal((await db.query<{id:number}>('select team_captain_id as id from players where id=1')).rows[0].id,1);
+    await assert.rejects(db.exec('select admin_pick(2,1)'), /not running/);
+    await assert.rejects(db.exec('select admin_finish_draft()'), /not running/);
+    await db.exec('select admin_publish_results(); select admin_undo();');
+    assert.deepEqual((await db.query('select phase,pick_index from draft')).rows, [{phase:'drafting',pick_index:0}]);
+    await db.exec('select admin_reset(true); select admin_force_start(); select admin_finish_draft(); select admin_publish_results();');
+    assert.deepEqual((await db.query('select phase,pick_index from draft')).rows, [{phase:'complete',pick_index:0}]);
+    await db.exec('set role anon');
+    await assert.rejects(db.exec('select admin_force_start()'), /permission denied/);
+    await assert.rejects(db.exec('select admin_finish_draft()'), /permission denied/);
+    await db.exec('reset role; set role authenticated');
+    await assert.rejects(db.exec('select admin_finish_draft()'), /permission denied/);
+  } finally { await db.close(); }
+});
+
 test('tracked attendance upgrade preserves an existing captain claim and token', async () => {
   const db=new PGlite();
   try {
@@ -52,6 +75,24 @@ test('tracked attendance upgrade preserves an existing captain claim and token',
     assert.equal((await db.query<{n:number}>('select count(*)::int as n from players where present')).rows[0].n,0);
     assert.equal((await db.query<{n:number}>('select count(*)::int as n from captains where claimed')).rows[0].n,1);
   }finally{await db.close();}
+});
+
+test('tracked phase override upgrade preserves a running draft and supports early review', async () => {
+  const db = new PGlite();
+  try {
+    await db.exec('create role anon; create role authenticated; create role service_role bypassrls; create publication supabase_realtime;');
+    await db.exec(readFileSync('supabase/migrations/20261105203908_initialize_inhouse_draft.sql','utf8'));
+    await db.exec(readFileSync('supabase/migrations/20261106035130_attendance_and_admin_phases.sql','utf8'));
+    await db.exec("select check_in_player(id,'p'||id) from players; select claim_captain(1,'captain'); select admin_force_start(); select admin_pick(1,0);");
+    const before = (await db.query('select get_state() as state')).rows[0];
+    const migration = readFileSync('supabase/migrations/20261106060543_admin_incomplete_roster_phases.sql','utf8');
+    await db.exec(migration);
+    assert.deepEqual((await db.query('select get_state() as state')).rows[0], before);
+    assert.equal((await db.query<{id:number}>("select captain_for_token('captain') as id")).rows[0].id, 1);
+    await db.exec(migration);
+    await db.exec('set role service_role; select admin_finish_draft(); select admin_publish_results(); select admin_reset(true); select admin_force_start(); select admin_finish_draft();');
+    assert.deepEqual((await db.query('select phase,pick_index from draft')).rows, [{phase:'review',pick_index:0}]);
+  } finally { await db.close(); }
 });
 
 test("actual PostgreSQL schema passes the 32-pick SQL acceptance suite and RLS checks", async () => {

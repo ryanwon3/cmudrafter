@@ -84,6 +84,9 @@ export class SupabaseStore implements DraftStore {
   async adminStart() {
     await this.call("admin_force_start");
   }
+  async adminFinish() {
+    await this.call("admin_finish_draft");
+  }
   adminPick(playerId: number, expectedPickIndex?: number) {
     return this.call<PickResult>("admin_pick", {
       p_player_id: playerId,

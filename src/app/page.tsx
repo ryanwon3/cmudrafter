@@ -419,7 +419,7 @@ export default function Home() {
                             <h2>Awaiting admin approval</h2>
                           )}
                           <p>
-                            {total} picks made ·{" "}
+                            {state.draft.pick_index} picks made ·{" "}
                             {
                               state.players.filter(
                                 (p) => p.present && p.team_captain_id === null,

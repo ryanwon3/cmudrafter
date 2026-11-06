@@ -16,6 +16,9 @@ export async function POST(req: Request) {
       case 'start':
         await store.adminStart();
         return { ok: true };
+      case 'finish':
+        await store.adminFinish();
+        return { ok: true };
       case 'pick':
         return { ok: true, ...(await store.adminPick(intField(b, 'playerId'), optionalIntField(b, 'expectedPickIndex'))) };
       case 'undo':

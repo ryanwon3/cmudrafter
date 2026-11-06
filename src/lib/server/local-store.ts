@@ -100,7 +100,7 @@ export class LocalStore implements DraftStore {
 
   private doPick(captainId: number | null, playerId: number, expected?: number): PickResult {
     const d = this.state.draft;
-    if (d.phase !== 'drafting') throw new DraftError('The draft is not running');
+    if (d.phase !== 'drafting') throw new DraftError('The draft is not running', 409);
     if (expected !== undefined && expected !== d.pick_index) throw new DraftError('The board changed. Try again.', 409);
     const onClock = this.state.captains.find((c) => c.slot === slotOnClock(d.pick_index))!;
     if (captainId !== null && captainId !== onClock.id) throw new DraftError(`It's ${onClock.display_name}'s pick`, 409);
@@ -127,8 +127,13 @@ export class LocalStore implements DraftStore {
 
   async adminStart() {
     if (this.state.draft.phase !== 'lobby') throw new DraftError('The draft has already started');
-    if (this.state.players.filter(p => p.present).length < 32) throw new DraftError('At least 32 players must be marked present before starting', 409);
     this.start();
+    this.touch();
+  }
+
+  async adminFinish() {
+    if (this.state.draft.phase !== 'drafting') throw new DraftError('The draft is not running', 409);
+    this.state.draft.phase = 'review';
     this.touch();
   }
 

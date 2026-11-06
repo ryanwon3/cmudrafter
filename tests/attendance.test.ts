@@ -7,7 +7,7 @@ async function present(s: LocalStore, count = 32) {
   for (let id = 1; id <= count; id++) await s.checkIn(id, `player-${id}`);
 }
 
-test("all ready waits for organizer approval; start requires 32 present players", async () => {
+test("all ready waits for organizer approval; admin can start with fewer than 32 present", async () => {
   const s = new LocalStore();
   for (const { id } of CAPTAINS) {
     await s.claim(id, `captain-${id}`);
@@ -15,10 +15,40 @@ test("all ready waits for organizer approval; start requires 32 present players"
   }
   assert.equal((await s.getState()).draft.phase, "lobby");
   await present(s, 31);
-  await assert.rejects(s.adminStart(), /32.*present/);
-  await s.checkIn(32, "player-32");
   await s.adminStart();
   assert.equal((await s.getState()).draft.phase, "drafting");
+  assert.equal((await s.getState()).players.filter(p => p.present).length, 31);
+});
+
+test("admin can advance an empty draft through review and publish", async () => {
+  const s = new LocalStore();
+  await assert.rejects(s.adminFinish(), /running/);
+  await s.adminStart();
+  await assert.rejects(s.adminStart(), /already started/);
+  await s.adminFinish();
+  assert.equal((await s.getState()).draft.phase, "review");
+  assert.equal((await s.getState()).draft.pick_index, 0);
+  await assert.rejects(s.adminFinish(), /running/);
+  await s.adminPublish();
+  assert.equal((await s.getState()).draft.phase, "complete");
+});
+
+test("finishing an incomplete draft preserves picks, blocks new picks and supports undo", async () => {
+  const s = new LocalStore();
+  await present(s, 2);
+  await s.adminStart();
+  await assert.rejects(s.adminPick(3, 0), /not marked present/);
+  await s.adminPick(1, 0);
+  await s.adminFinish();
+  const state = await s.getState();
+  assert.equal(state.draft.phase, "review");
+  assert.equal(state.draft.pick_index, 1);
+  assert.equal(state.players.find(p => p.id === 1)?.team_captain_id, 1);
+  await assert.rejects(s.adminPick(2, 1), /not running/);
+  await s.adminPublish();
+  await s.adminUndo();
+  assert.equal((await s.getState()).draft.phase, "drafting");
+  assert.equal((await s.getState()).players.find(p => p.id === 1)?.team_captain_id, null);
 });
 
 test("attendance is owned by a browser token and freezes when drafting begins", async () => {
@@ -90,7 +120,7 @@ test("four picks per captain stays fixed and admin correction revokes attendance
   assert.equal((await s.getState()).captains[0].ready, false);
 });
 
-test("a queued start cannot race a player withdrawing attendance", async () => {
+test("withdrawal before admin start stays absent; attendance remains frozen afterward", async () => {
   const s = new LocalStore();
   await present(s);
   const results = await Promise.allSettled([
@@ -98,6 +128,8 @@ test("a queued start cannot race a player withdrawing attendance", async () => {
     s.adminStart(),
   ]);
   assert.equal(results[0].status, "fulfilled");
-  assert.equal(results[1].status, "rejected");
-  assert.equal((await s.getState()).draft.phase, "lobby");
+  assert.equal(results[1].status, "fulfilled");
+  assert.equal((await s.getState()).draft.phase, "drafting");
+  await assert.rejects(s.adminPick(1, 0), /not marked present/);
+  await assert.rejects(s.checkIn(1, "late"), /lobby/);
 });
