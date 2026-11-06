@@ -92,7 +92,7 @@ begin
 
   st := get_state();
   assert json_array_length(st -> 'captains') = 8 and json_array_length(st -> 'players') = (select count(*) from players), 'get_state';
-  assert (st -> 'players' -> 0 ->> 'display_name') = 'Caden', 'players sorted by rank';
+  assert (st -> 'players' -> 0 ->> 'display_name') = 'Umbry', 'players sorted by rank';
 end $$;
 
 -- Public role: can read the board, can't read tokens or call functions.

@@ -18,6 +18,7 @@ export const CAPTAINS: CaptainSeed[] = [
   c(9, 8, "Nelson", "rakwillsuk#uwu", "Master 1041 LP", 38.41),
 ];
 export const PLAYERS: PlayerSeed[] = [
+  p("Umbry", "elfaria#wand", "Master 817 LP", 36.17),
   p("Caden", "GamerNamer#NA1", "Master 551 LP (S2026)", 33.51),
   p("Muffintopper66 (Nick Crosson)", "Muffintopper66#NA1", "Master 409 LP (S2026)", 32.09),
   p("victor", "Xeuhktal#NA1", "Master 326 LP (S2026)", 31.26),
@@ -61,5 +62,4 @@ export const PLAYERS: PlayerSeed[] = [
   p("Mitosis/Max", "Mitosis#143", "Gold 3 (S2026)", 13),
   p("qtrf", "mymelody#428", "Gold 4 (S2026)", 12),
   p("Noah - Sumeguy whatever works", "诺音和#FtFF", "Silver 3 (S2026)", 9),
-  p("Umbry", "elfaria#wand", "Not provided", 0),
 ];

@@ -98,4 +98,4 @@ Reset queries use explicit row criteria for Supabase's PostgREST `safeupdate` ch
 
 The November 6, 2026 signup-sheet snapshot contains 51 participants: eight captains and 43 draftable players. Captain order: Chomania, Admirality, Kyle, Allen, Brian (Holiday), Envy, Ethan, Nelson. Ethan is UPMC Kassadin#CMU; Nelson is rakwillsuk#uwu. Captains are excluded from the player pool, and attendance totals follow the roster size. The existing lobby can be upgraded with the tracked roster migration, which preserves matching identities and check-ins by Riot ID and refuses to run after drafting begins.
 
-Umbry (`elfaria#wand`) was added afterward at the organizer's request, bringing the pool to 44. Their peak rank has not been provided.
+Umbry (`elfaria#wand`) was added afterward at the organizer's request, bringing the pool to 44. Their organizer-provided peak rank is Master 817 LP.
