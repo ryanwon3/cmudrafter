@@ -6,8 +6,8 @@ Built with Next.js (App Router, TypeScript, Tailwind), Supabase (Postgres + Real
 
 ## How it works
 
-- `/` shows whichever phase the draft is in: **Lobby** (captains claim their name and ready up), **Draft** (snake order, 32 picks), **Results** (final teams, Discord copy, CSV).
-- `/admin` is the organizer's page. It asks for `ADMIN_KEY` and can release a name, force start, pick for the captain on the clock, undo the last pick, change picks per team (lobby only), reset, and full reset.
+- `/` shows whichever phase the draft is in: **Lobby** (captains claim/ready and players confirm attendance), **Draft** (snake order, 32 picks), **Review** (organizer confirms final teams), **Results** (published teams, Discord copy, CSV).
+- `/admin` is the organizer's page. A visible Admin login link opens its password form. The server validates `ADMIN_KEY`. Admins can correct attendance, release seats, explicitly start the draft once at least 32 players are present, pick for the captain on the clock, undo, publish final teams, post phase announcements, reset, and full reset. Four picks per captain stays fixed. Ready does not start automatically.
 - Browsers never write to the database. They call the API routes in `src/app/api/`, which hold the secret key and call one Postgres function per action (`supabase/schema.sql`). Each function locks the single `draft` row first, so double clicks and simultaneous picks can't take the same player or skip a turn.
 - Claim tokens are random, returned once, and stored in the captain's `localStorage`. The database keeps only a SHA-256 hash in `captain_tokens`, which the public key can't read.
 - Every browser reloads `/api/state` on any Realtime change, every 5 seconds, and when the tab regains focus.
@@ -74,15 +74,20 @@ All endpoints return JSON; errors are `{ "error": "<message to show the user>" }
 | Endpoint | Body | Notes |
 | --- | --- | --- |
 | `GET /api/state` | | `{ draft, captains, players, mode }`, one consistent snapshot |
+| `POST /api/attendance` | `{ action, playerId?, token? }` | `check-in` returns a private browser token; `me` restores the player identity; `leave` withdraws that token’s attendance in lobby only |
 | `POST /api/claim` | `{ captainId }` | `{ token, captainId }`; "Already taken" if claimed |
 | `POST /api/me` | `{ token }` | `{ captainId }` or `{ captainId: null }` |
 | `POST /api/release` | `{ token }` | lobby only |
-| `POST /api/ready` | `{ token, ready }` | starts the draft at 8/8 ready |
+| `POST /api/ready` | `{ token, ready }` | updates readiness; organizer must start |
 | `POST /api/pick` | `{ token, playerId, expectedPickIndex? }` | captain on the clock only |
-| `POST /api/admin` | `{ action, ... }` + header `x-admin-key` | actions: `verify`, `release` (`captainId`), `start`, `pick` (`playerId`, `expectedPickIndex?`), `undo`, `settings` (`picksPerTeam`), `reset`, `full-reset` |
+| `POST /api/admin` | `{ action, ... }` + header `x-admin-key` | actions: `verify`, `attendance` (`playerId`, `present`), `announcement` (`message`, max 500 characters), `publish`, `release` (`captainId`), `start`, `pick` (`playerId`, `expectedPickIndex?`), `undo`, `settings` (`picksPerTeam`), `reset`, `full-reset` |
 
 ## Pre-draft checklist
 
 - [ ] Open the site in 2 browsers: claiming a name disappears from the other within about a second.
 - [ ] `/admin` rejects a wrong key and accepts yours.
 - [ ] Do a full test draft with admin "Pick for captain on the clock", then **Full reset** before the real one.
+
+## Attendance and phase approval
+
+Players start absent. They choose their own roster name and confirm attendance in the lobby. Check-in tokens are random, hashed on the server, and private under RLS. Captains confirm presence through Ready. The admin can correct player attendance while the lobby is open. At least 32 present players are required, and all picks (including admin picks) reject absent players. Attendance freezes when drafting starts. A final pick enters review; the organizer explicitly publishes the results. A draft reset keeps attendance and seats; full reset clears both and revokes their tokens. Apply the tracked attendance migration to an existing project; do not rerun schema.sql on a hosted event. The migration requires the event to be in the lobby and preserves existing captain claims.

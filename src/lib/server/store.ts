@@ -17,4 +17,10 @@ export interface DraftStore {
   adminUndo(): Promise<void>;
   adminSetPicksPerTeam(picks: number): Promise<void>;
   adminReset(full: boolean): Promise<void>;
+  checkIn(playerId: number, tokenHash: string): Promise<void>;
+  playerForToken(tokenHash: string): Promise<number | null>;
+  leave(tokenHash: string): Promise<void>;
+  adminSetAttendance(playerId: number, present: boolean): Promise<void>;
+  adminAnnouncement(message: string): Promise<void>;
+  adminPublish(): Promise<void>;
 }

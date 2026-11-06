@@ -50,7 +50,7 @@ export function resultsText(state: DraftState): string {
     ]),
     "Undrafted",
     ...state.players
-      .filter((p) => p.team_captain_id === null)
+      .filter((p) => p.present && p.team_captain_id === null)
       .map((p) => `${p.display_name} · ${p.riot_id} · ${p.peak_rank}`),
   ].join("\n");
 }
@@ -82,7 +82,7 @@ export function resultsCsv(state: DraftState): string {
         p.pick_number ?? "",
       ]);
   }
-  for (const p of state.players.filter((p) => p.team_captain_id === null))
+  for (const p of state.players.filter((p) => p.present && p.team_captain_id === null))
     rows.push(["Undrafted", "", p.display_name, p.riot_id, p.peak_rank, ""]);
   return "\uFEFF" + rows.map((row) => row.map(cell).join(",")).join("\r\n");
 }

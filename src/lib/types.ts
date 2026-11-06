@@ -1,4 +1,4 @@
-export type DraftPhase = "lobby" | "drafting" | "complete";
+export type DraftPhase = "lobby" | "drafting" | "review" | "complete";
 export interface Draft {
   id: number;
   phase: DraftPhase;
@@ -6,6 +6,7 @@ export interface Draft {
   picks_per_team: number;
   started_at: string | null;
   updated_at: string;
+  announcement: string;
 }
 export interface Captain {
   id: number;
@@ -27,6 +28,7 @@ export interface Player {
   rank_score: number;
   team_captain_id: number | null;
   pick_number: number | null;
+  present: boolean;
 }
 export interface DraftState {
   draft: Draft;

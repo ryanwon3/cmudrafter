@@ -2103,3 +2103,44 @@ strong {
     transition: none !important;
   }
 }
+
+/* Lobby attendance and organizer phase controls. */
+.header-actions { display:flex; align-items:center; gap:18px; }
+.admin-login-link { font-weight:700; font-size:12px; white-space:nowrap; }
+.organizer-announcement { border:1px solid #cbd6e9; background:#edf2fb; padding:22px 26px; margin:26px 0; }
+.organizer-announcement p { margin-top:8px; white-space:pre-wrap; overflow-wrap:anywhere; }
+.attendance-panel { background:var(--white); border:1px solid var(--line); padding:30px; margin:32px 0; }
+.attendance-panel > p { color:var(--muted); margin:12px 0; }
+.attendance-count { white-space:nowrap; color:var(--green); }
+.attendance-form { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:end; gap:12px; margin:24px 0; }
+.attendance-form label { grid-column:1/-1; font-weight:700; }
+.attendance-form select { width:100%; min-width:0; padding:15px; border:1px solid var(--line); background:var(--paper); color:var(--ink); }
+.attendance-confirmed { display:flex; align-items:center; justify-content:space-between; gap:20px; background:#edf3e8; border:1px solid #ccd9c3; padding:22px; margin-top:20px; }
+.attendance-confirmed p { margin-top:6px; color:var(--muted); }
+.attendance-help { font-size:12px; }
+.attendance-badge { font-size:11px; color:var(--muted); white-space:nowrap; }
+.attendance-badge.present { color:var(--green); font-weight:700; }
+.attendance-search { margin:24px 0 16px; }
+.attendance-admin-list { max-height:460px; overflow-y:auto; }
+.attendance-admin-list > div { display:grid; grid-template-columns:minmax(0,1fr) auto auto; align-items:center; gap:18px; border-bottom:1px solid var(--line); padding:15px 0; }
+.attendance-admin-list small { display:block; color:var(--muted); margin-top:5px; overflow-wrap:anywhere; }
+.attendance-admin-list .button { min-height:40px; padding:10px 14px; font-size:11px; }
+.my-seat .unselect-seat { margin-top:12px; padding:10px 16px; min-height:38px; font-size:12px; }
+.settings-input:has(textarea) { display:flex; flex-direction:column; align-items:stretch; gap:12px; }
+.settings-input textarea { font:inherit; width:100%; padding:12px; border:1px solid var(--line); background:var(--paper); resize:vertical; }
+textarea:focus-visible { outline:3px solid var(--blue); outline-offset:4px; }
+@media(max-width:760px) {
+ .attendance-panel { padding:22px 18px; }
+ .attendance-panel .section-heading { flex-wrap:wrap; gap:12px; }
+ .attendance-form { grid-template-columns:minmax(0,1fr); }
+ .attendance-confirmed { flex-direction:column; align-items:stretch; }
+ .attendance-admin-list > div { grid-template-columns:minmax(0,1fr) auto; gap:12px; }
+ .attendance-admin-list .attendance-badge { grid-column:1; }
+ .attendance-admin-list .button { grid-column:2; grid-row:1/3; }
+ .header-actions { gap:10px; }
+}
+@media(max-width:500px) {
+ .header-actions .connection { display:none; }
+ .admin-login-link { font-size:11px; }
+ .attendance-panel h2 { font-size:23px; }
+}

@@ -13,6 +13,47 @@ async function database() {
   return db;
 }
 
+test('PostgreSQL attendance, manual phase approval and private tokens match the local rules', async () => {
+  const db = await database();
+  try {
+    await db.exec("select check_in_player(1,'mine');");
+    assert.equal((await db.query<{id:number}>("select player_for_token('mine') as id")).rows[0].id, 1);
+    await assert.rejects(db.exec("select check_in_player(1,'other')"), /already checked in/i);
+    await assert.rejects(db.exec("select release_player('other')"), /not checked in/i);
+    await db.exec("select release_player('mine');");
+    for (let id=1;id<=8;id++) await db.exec(`select claim_captain(${id},'c${id}'); select set_ready('c${id}',true);`);
+    assert.equal((await db.query<{phase:string}>('select phase from draft')).rows[0].phase,'lobby');
+    await assert.rejects(db.exec('select admin_force_start()'), /32.*present/);
+    for (let id=1;id<=32;id++) await db.exec(`select check_in_player(${id},'p${id}');`);
+    await db.exec('select admin_force_start();');
+    await assert.rejects(db.exec('select admin_set_attendance(1,false)'), /lobby/);
+    await assert.rejects(db.exec("select release_player('p1')"), /lobby/);
+    await assert.rejects(db.exec('select admin_pick(33,0)'), /not marked present/);
+    for(let id=1;id<=32;id++) await db.exec(`select admin_pick(${id},${id-1})`);
+    assert.equal((await db.query<{phase:string}>('select phase from draft')).rows[0].phase,'review');
+    await db.exec('select admin_publish_results(); select admin_reset(false);');
+    assert.equal((await db.query<{n:number}>('select count(*)::int as n from players where present')).rows[0].n,32);
+    await db.exec('select admin_reset(true);');
+    assert.equal((await db.query<{n:number}>('select count(*)::int as n from player_tokens')).rows[0].n,0);
+    await db.exec('set role anon');
+    await assert.rejects(db.exec('select * from player_tokens'), /permission denied/);
+    await assert.rejects(db.exec("select check_in_player(1,'public')"), /permission denied/);
+  } finally { await db.close(); }
+});
+
+test('tracked attendance upgrade preserves an existing captain claim and token', async () => {
+  const db=new PGlite();
+  try {
+    await db.exec('create role anon; create role authenticated; create role service_role bypassrls; create publication supabase_realtime;');
+    await db.exec(readFileSync('supabase/migrations/20261105203908_initialize_inhouse_draft.sql','utf8'));
+    await db.exec("select claim_captain(1,'existing-captain');");
+    await db.exec(readFileSync('supabase/migrations/20261106035130_attendance_and_admin_phases.sql','utf8'));
+    assert.equal((await db.query<{id:number}>("select captain_for_token('existing-captain') as id")).rows[0].id,1);
+    assert.equal((await db.query<{n:number}>('select count(*)::int as n from players where present')).rows[0].n,0);
+    assert.equal((await db.query<{n:number}>('select count(*)::int as n from captains where claimed')).rows[0].n,1);
+  }finally{await db.close();}
+});
+
 test("actual PostgreSQL schema passes the 32-pick SQL acceptance suite and RLS checks", async () => {
   const db = await database();
   try {
@@ -56,7 +97,7 @@ test("captain pick holds the draft lock before resolving its claim token", async
   const db = await database();
   try {
     await db.exec(
-      "select claim_captain(1,'token'); select admin_force_start();",
+      "select check_in_player(id,'p' || id) from players; select claim_captain(1,'token'); select admin_force_start();",
     );
     // Inspect the database's real lock state at the token lookup boundary.
     await db.exec(`create or replace function captain_for_token(p_token_hash text) returns int

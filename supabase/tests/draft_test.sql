@@ -18,6 +18,8 @@ begin
   assert (select count(*) from captains) = 8, 'captains';
   assert (select count(*) from players) = 35, 'players';
 
+  perform check_in_player(id,'player' || id) from players;
+
   -- claims
   perform claim_captain(id, 'tok' || id) from captains;
   perform pg_temp.expect_error($q$select claim_captain(1, 'x')$q$, 'Already taken');
@@ -32,7 +34,8 @@ begin
   perform set_ready('tok8', true);
   assert (select phase from draft) = 'lobby', 'not started at 7/8';
   perform pg_temp.expect_error($q$select make_pick('tok1', 1)$q$, 'The draft is not running');
-  assert (set_ready('tok1', true) ->> 'started')::boolean, 'started at 8/8';
+  assert not (set_ready('tok1', true) ->> 'started')::boolean, 'waits for organizer';
+  perform admin_force_start();
   assert (select phase from draft) = 'drafting', 'drafting';
   perform pg_temp.expect_error($q$select release_captain('tok1')$q$, 'Names can only be released in the lobby%');
   perform pg_temp.expect_error($q$select make_pick('tok2', 1)$q$, 'It''s Chomania''s pick');
@@ -48,7 +51,9 @@ begin
   select string_agg(c.slot::text, ',' order by p.pick_number) into order_ok
     from players p join captains c on c.id = p.team_captain_id;
   assert order_ok = '1,2,3,4,5,6,7,8,8,7,6,5,4,3,2,1,1,2,3,4,5,6,7,8,8,7,6,5,4,3,2,1', 'snake: ' || order_ok;
-  assert (select phase from draft) = 'complete', 'complete';
+  assert (select phase from draft) = 'review', 'review';
+  perform admin_publish_results();
+  assert (select phase from draft) = 'complete', 'published';
   assert (select count(*) from players where team_captain_id is null) = 3, '3 undrafted';
   perform pg_temp.expect_error($q$select make_pick('tok1', 1)$q$, 'The draft is not running');
 
@@ -58,7 +63,8 @@ begin
   assert (select count(*) from players where team_captain_id is null) = 4, 'player returned';
   perform pg_temp.expect_error($q$select make_pick('tok1', (select id from players where pick_number = 1))$q$, '% was already drafted');
   perform admin_pick((select id from players where team_captain_id is null order by id limit 1), 31);
-  assert (select phase from draft) = 'complete', 'admin pick completes';
+  assert (select phase from draft) = 'review', 'admin pick enters review';
+  perform admin_publish_results();
 
   -- admin release mid-draft and reclaim
   perform admin_undo();
@@ -74,8 +80,8 @@ begin
   assert (select count(*) from captains where claimed) = 8, 'reset keeps claims';
   assert (select count(*) from captains where ready) = 0, 'reset clears ready';
   assert (select count(*) from players where team_captain_id is not null or pick_number is not null) = 0, 'reset clears picks';
-  perform pg_temp.expect_error($q$select admin_set_picks_per_team(5)$q$, 'Picks per team must be between 1 and 4');
-  perform admin_set_picks_per_team(3);
+  perform pg_temp.expect_error($q$select admin_set_picks_per_team(5)$q$, 'This event uses four picks per captain');
+  perform pg_temp.expect_error($q$select admin_set_picks_per_team(3)$q$, 'This event uses four picks per captain');
   perform admin_force_start();
   assert (select phase from draft) = 'drafting', 'force start';
   perform admin_reset(true);

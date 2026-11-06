@@ -40,6 +40,7 @@ if (initial.mode !== "local") {
   assert.equal(initial.draft.picks_per_team, 4);
   assert.equal(initial.captains.length, 8);
   assert.equal(initial.players.length, 35);
+  assert.ok(initial.players.every(p=>!p.present), "Hosted draft already has player check-ins.");
   assert.ok(
     initial.captains.every((c) => !c.claimed && !c.ready),
     "Hosted draft has occupied seats.",
@@ -60,6 +61,17 @@ assert.equal(
 );
 if (initial.mode === "local") await admin("full-reset");
 try {
+  assert.equal((await admin("start")).status, 409, "Cannot start without 32 present players");
+  assert.equal((await admin("settings", {picksPerTeam:3})).status, 409);
+  const attendance = new Map();
+  for(const p of initial.players) {
+    const r = await call("/api/attendance", {action:"check-in", playerId:p.id});
+    assert.equal(r.status,200);
+    attendance.set(p.id,r.data.token);
+  }
+  const withdrawn = initial.players[34];
+  assert.equal((await call("/api/attendance", {action:"leave",token:attendance.get(withdrawn.id)})).status,200);
+  assert.equal((await call("/api/attendance", {action:"me",token:attendance.get(withdrawn.id)})).data.playerId,null);
   const clients = new Map();
   const races = await Promise.all(
     Array.from({ length: 8 }, () => call("/api/claim", { captainId: 1 })),
@@ -85,16 +97,19 @@ try {
     );
     assert.equal(
       (await snapshot()).draft.phase,
-      captainId === 8 ? "drafting" : "lobby",
+      "lobby",
     );
   }
+  assert.equal((await admin("start")).status,200);
+  assert.equal((await call("/api/attendance", {action:"check-in", playerId:withdrawn.id})).status,409);
+  assert.equal((await admin("pick", {playerId:withdrawn.id,expectedPickIndex:0})).status,409);
   const order = [
     1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1, 1, 2, 3, 4, 5, 6, 7, 8, 8,
     7, 6, 5, 4, 3, 2, 1,
   ];
   for (let k = 0; k < 32; k++) {
     let s = await snapshot();
-    const player = s.players.find((p) => p.team_captain_id === null);
+    const player = s.players.find((p) => p.present && p.team_captain_id === null);
     const token = clients.get(order[k]);
     const wrong = clients.get(order[k] === 1 ? 2 : 1);
     assert.equal(
@@ -131,7 +146,9 @@ try {
     assert.equal(picked.pick_number, k + 1);
   }
   let s = await snapshot();
-  assert.equal(s.draft.phase, "complete");
+  assert.equal(s.draft.phase, "review");
+  assert.equal((await admin("publish")).status,200);
+  assert.equal((await snapshot()).draft.phase,"complete");
   assert.equal(s.players.filter((p) => p.team_captain_id === null).length, 3);
   for (let id = 1; id <= 8; id++)
     assert.equal(s.players.filter((p) => p.team_captain_id === id).length, 4);
@@ -149,7 +166,7 @@ try {
     (
       await call("/api/pick", {
         token: oldToken,
-        playerId: s.players.find((p) => p.team_captain_id === null).id,
+        playerId: s.players.find((p) => p.present && p.team_captain_id === null).id,
         expectedPickIndex: 31,
       })
     ).status,
@@ -158,10 +175,13 @@ try {
   const reclaim = await call("/api/claim", { captainId: 1 });
   assert.equal(reclaim.status, 200);
   assert.notEqual(reclaim.data.token, oldToken);
+  assert.equal((await admin("announcement", {message:"Next phase follows organizer approval."})).status,200);
+  assert.equal((await snapshot()).draft.announcement,"Next phase follows organizer approval.");
   await admin("reset");
   s = await snapshot();
   assert.equal(s.draft.phase, "lobby");
   assert.equal(s.captains.filter((c) => c.claimed).length, 8);
+  assert.equal(s.players.filter(p=>p.present).length,34);
   assert.equal(
     s.captains.some((c) => c.ready),
     false,
@@ -171,7 +191,7 @@ try {
     true,
   );
   console.log(
-    "PASS: HTTP full draft, 8-way claim race, authorization, 32 picks, replay protection, completion, undo, token revocation, reclaim and reset.",
+    "PASS: HTTP attendance ownership, 32-player start gate, manual phases, absent-pick rejection, 8-way claim race, 32 snake picks, publish, undo, revocation and resets.",
   );
 } finally {
   await admin("full-reset");

@@ -15,6 +15,7 @@ const p = (
   team: number | null = null,
 ): Player => ({
   id,
+  present: true,
   display_name: name,
   riot_id: `${name}#NA1`,
   opgg_url: "https://op.gg",
@@ -32,6 +33,7 @@ const state: DraftState = {
     picks_per_team: 4,
     started_at: null,
     updated_at: "",
+    announcement: "",
   },
   captains: [
     {

@@ -3,7 +3,7 @@
 import type { Captain, Player } from '../types';
 
 type CaptainSeed = Omit<Captain, 'claimed' | 'ready'>;
-type PlayerSeed = Omit<Player, 'id' | 'team_captain_id' | 'pick_number'>;
+type PlayerSeed = Omit<Player, 'id' | 'team_captain_id' | 'pick_number' | 'present'>;
 
 const opgg = (riotId: string) =>
   'https://op.gg/lol/summoners/na/' + encodeURIComponent(riotId).replace('%23', '-');

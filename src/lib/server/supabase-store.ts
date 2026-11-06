@@ -30,7 +30,7 @@ export class SupabaseStore implements DraftStore {
       if (error.code === "P0001") {
         throw new DraftError(
           error.message,
-          error.message === "You are not a captain" ? 403 : 409,
+          error.message === "You are not a captain" || error.message === "You are not checked in" ? 403 : 409,
         );
       }
       console.error(`Supabase ${fn} failed`, error);
@@ -99,4 +99,16 @@ export class SupabaseStore implements DraftStore {
   async adminReset(full: boolean) {
     await this.call("admin_reset", { p_full: full });
   }
+  async checkIn(playerId: number, tokenHash: string) {
+    await this.call('check_in_player', {p_player_id: playerId, p_token_hash: tokenHash});
+  }
+  playerForToken(tokenHash: string) {
+    return this.call<number | null>('player_for_token', {p_token_hash: tokenHash});
+  }
+  async leave(tokenHash: string) { await this.call('release_player', {p_token_hash: tokenHash}); }
+  async adminSetAttendance(playerId: number, present: boolean) {
+    await this.call('admin_set_attendance', {p_player_id: playerId, p_present: present});
+  }
+  async adminAnnouncement(message: string) { await this.call('admin_announcement', {p_message: message}); }
+  async adminPublish() { await this.call('admin_publish_results'); }
 }

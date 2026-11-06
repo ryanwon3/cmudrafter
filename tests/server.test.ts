@@ -13,9 +13,14 @@ const SNAKE = [1,2,3,4,5,6,7,8,8,7,6,5,4,3,2,1,1,2,3,4,5,6,7,8,8,7,6,5,4,3,2,1];
 async function claimAll(s: LocalStore) {
   for (const c of CAPTAINS) await s.claim(c.id, `hash-${c.id}`);
 }
+async function presentAll(s: LocalStore) {
+  for (let id=1;id<=35;id++) await s.checkIn(id, `p-${id}`);
+}
 async function startDraft(s: LocalStore) {
+  await presentAll(s);
   await claimAll(s);
   for (const c of CAPTAINS) await s.setReady(`hash-${c.id}`, true);
+  await s.adminStart();
 }
 async function bestAvailable(s: LocalStore) {
   return (await s.getState()).players.find((p) => p.team_captain_id === null)!;
@@ -62,7 +67,7 @@ test('release frees the name in the lobby only', async () => {
   await rejects(s.release('hash-1'), /lobby/);
 });
 
-test('draft starts only when all 8 are claimed and ready; un-ready allowed', async () => {
+test('ready never starts automatically; organizer approves after attendance', async () => {
   const s = new LocalStore();
   await claimAll(s);
   for (const c of CAPTAINS.slice(0, 7)) await s.setReady(`hash-${c.id}`, true);
@@ -70,7 +75,9 @@ test('draft starts only when all 8 are claimed and ready; un-ready allowed', asy
   await s.setReady('hash-8', true);
   assert.equal((await s.getState()).draft.phase, 'lobby');
   const r = await s.setReady('hash-1', true);
-  assert.equal(r.started, true);
+  assert.equal(r.started, false);
+  await presentAll(s);
+  await s.adminStart();
   assert.equal((await s.getState()).draft.phase, 'drafting');
   await rejects(s.setReady('hash-1', false), /already started/);
 });
@@ -87,7 +94,8 @@ test('32 picks follow snake order; only the captain on the clock can pick', asyn
     assert.equal(res.pick, k + 1);
   }
   const st = await s.getState();
-  assert.equal(st.draft.phase, 'complete');
+  assert.equal(st.draft.phase, 'review');
+  await s.adminPublish();
   assert.equal(st.players.filter((p) => p.team_captain_id === null).length, 3);
   for (const c of st.captains) assert.equal(st.players.filter((p) => p.team_captain_id === c.id).length, 4);
   await rejects(s.pick('hash-1', st.players[34].id), /not running/);
@@ -99,6 +107,8 @@ test('already drafted, stale board, unknown token and lobby picks are rejected',
   await claimAll(s);
   await rejects(s.pick('hash-1', p.id), /not running/);
   for (const c of CAPTAINS) await s.setReady(`hash-${c.id}`, true);
+  await presentAll(s);
+  await s.adminStart();
   await s.pick('hash-1', p.id);
   await rejects(s.pick('hash-2', p.id), `${p.display_name} was already drafted`);
   await rejects(s.pick('hash-2', (await bestAvailable(s)).id, 0), 'The board changed. Try again.');
@@ -142,13 +152,16 @@ test('admin release revokes the token and allows reclaim mid-draft', async () =>
 
 test('force start, picks per team, reset and full reset', async () => {
   const s = new LocalStore();
-  await rejects(s.adminSetPicksPerTeam(5), /between 1 and 4/);
-  await s.adminSetPicksPerTeam(3);
+  await rejects(s.adminSetPicksPerTeam(5), /four picks/);
+  await rejects(s.adminSetPicksPerTeam(3), /four picks/);
+  await s.adminSetPicksPerTeam(4);
+  await presentAll(s);
   await s.claim(1, 'a');
   await s.adminStart();
   await rejects(s.adminSetPicksPerTeam(4), /lobby/);
-  for (let k = 0; k < 24; k++) await s.adminPick((await bestAvailable(s)).id);
-  assert.equal((await s.getState()).draft.phase, 'complete');
+  for (let k = 0; k < 32; k++) await s.adminPick((await bestAvailable(s)).id);
+  assert.equal((await s.getState()).draft.phase, 'review');
+  await s.adminPublish();
   await s.adminReset(false);
   let st = await s.getState();
   assert.equal(st.draft.phase, 'lobby');

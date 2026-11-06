@@ -10,11 +10,13 @@ export function PlayerPool({
   onPick,
   disabled = false,
   complete = false,
+  showAttendance = false,
 }: {
   players: Player[];
   onPick?: (p: Player) => void;
   disabled?: boolean;
   complete?: boolean;
+  showAttendance?: boolean;
 }) {
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<"rank" | "name">("rank");
@@ -70,6 +72,7 @@ export function PlayerPool({
               <th>PLAYER</th>
               <th>PEAK RANK</th>
               <th>RIOT ID</th>
+              {showAttendance && <th>ATTENDANCE</th>}
               {onPick && (
                 <th>
                   <span className="sr-only">Draft action</span>
@@ -102,6 +105,17 @@ export function PlayerPool({
                     <Arrow diagonal />
                   </a>
                 </td>
+                {showAttendance && (
+                  <td>
+                    <span
+                      className={
+                        "attendance-badge " + (p.present ? "present" : "")
+                      }
+                    >
+                      {p.present ? "✓ Present" : "Not checked in"}
+                    </span>
+                  </td>
+                )}
                 {onPick && (
                   <td>
                     <button

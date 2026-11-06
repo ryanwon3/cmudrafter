@@ -13,6 +13,7 @@ import {
 } from "@/components/ui";
 import { PlayerPool } from "@/components/player-pool";
 import { TeamGrid } from "@/components/team-grid";
+import { AttendancePanel } from "@/components/attendance-panel";
 import {
   captainSlotAt,
   currentCaptain,
@@ -164,6 +165,12 @@ export default function Home() {
                 event.
               </div>
             )}
+            {state.draft.announcement && (
+              <aside className="organizer-announcement" role="status">
+                <span className="eyebrow">FROM THE ORGANIZER</span>
+                <p>{state.draft.announcement}</p>
+              </aside>
+            )}
             <section className="hero">
               <div className="hero-copy">
                 <div className="eyebrow">
@@ -183,6 +190,10 @@ export default function Home() {
                       <br />
                       changes everything<span className="accent">.</span>
                     </>
+                  ) : state.draft.phase === "review" ? (
+                    <>
+                      Every pick is in<span className="accent">.</span>
+                    </>
                   ) : (
                     <>
                       The teams are set<span className="accent">.</span>
@@ -194,7 +205,9 @@ export default function Home() {
                     ? "Eight captains. One snake draft. Find your seat and build your five."
                     : state.draft.phase === "drafting"
                       ? "Make your read. Trust your team. Follow every pick as it happens."
-                      : "From the draft board to the Rift. Here’s your CMU × Pitt lineup."}
+                      : state.draft.phase === "review"
+                        ? "The organizer is reviewing the teams before confirming the next phase."
+                        : "From the draft board to the Rift. Here’s your CMU × Pitt lineup."}
                 </p>
               </div>
               <div className="event-ticket">
@@ -244,7 +257,8 @@ export default function Home() {
                       {ready === 8 ? "Everyone is ready." : "The lobby is open"}
                     </strong>
                     <span className="status-caption">
-                      The draft starts when all captains are ready.
+                      The organizer starts the draft after reviewing attendance
+                      and captain readiness.
                     </span>
                   </div>
                   <div className="lobby-counts">
@@ -287,11 +301,11 @@ export default function Home() {
                       <h2>You are {me.display_name}</h2>
                       <p>
                         {me.ready
-                          ? "You’re ready. Waiting for the rest of the captains."
+                          ? "You’re ready. Waiting for the organizer to start the draft."
                           : "Take a breath, check your pool, then ready up."}
                       </p>
                       <button
-                        className="text-button"
+                        className="button secondary unselect-seat"
                         disabled={busy}
                         onClick={() =>
                           setConfirmation({
@@ -306,7 +320,7 @@ export default function Home() {
                           })
                         }
                       >
-                        Not me, release this name
+                        Unselect seat
                       </button>
                     </div>
                     <button
@@ -415,6 +429,11 @@ export default function Home() {
                     </article>
                   ))}
                 </div>
+                <AttendancePanel
+                  players={state.players}
+                  onChanged={() => refresh(true)}
+                  onError={setError}
+                />
                 <div className="section-divider">
                   <span>THE LINEUP</span>
                   <span>
@@ -422,7 +441,7 @@ export default function Home() {
                     {state.draft.picks_per_team + 1} PER TEAM
                   </span>
                 </div>
-                <PlayerPool players={state.players} />
+                <PlayerPool players={state.players} showAttendance />
               </>
             ) : (
               <>
@@ -549,7 +568,7 @@ export default function Home() {
                         </section>
                       )}
                     <PlayerPool
-                      players={state.players}
+                      players={state.players.filter((p) => p.present)}
                       onPick={isMyTurn ? pick : undefined}
                       disabled={busy}
                     />
@@ -566,37 +585,49 @@ export default function Home() {
                         <span className="complete-check">✓</span>
                         <div>
                           <span className="eyebrow">GG, WELL DRAFTED</span>
-                          <h2>Eight teams. Ready for the Rift.</h2>
+                          <h2>
+                            {state.draft.phase === "review"
+                              ? "Teams drafted. Awaiting admin confirmation."
+                              : "Eight teams. Ready for the Rift."}
+                          </h2>
                           <p>
                             {total} picks made ·{" "}
                             {
                               state.players.filter(
-                                (p) => p.team_captain_id === null,
+                                (p) => p.present && p.team_captain_id === null,
                               ).length
                             }{" "}
                             players undrafted
                           </p>
                         </div>
                       </div>
-                      <div className="results-actions">
-                        <button
-                          className="button primary"
-                          onClick={() => void copyResults()}
-                        >
-                          {copied ? "✓ Copied for Discord" : "Copy results"}
-                          <Arrow />
-                        </button>
-                        <button className="button secondary" onClick={download}>
-                          Download CSV <span aria-hidden="true">↓</span>
-                        </button>
-                      </div>
+                      {state.draft.phase === "complete" && (
+                        <div className="results-actions">
+                          <button
+                            className="button primary"
+                            onClick={() => void copyResults()}
+                          >
+                            {copied ? "✓ Copied for Discord" : "Copy results"}
+                            <Arrow />
+                          </button>
+                          <button
+                            className="button secondary"
+                            onClick={download}
+                          >
+                            Download CSV <span aria-hidden="true">↓</span>
+                          </button>
+                        </div>
+                      )}
                     </section>
                     <TeamGrid state={state} />
                     <div className="section-divider">
                       <span>STILL IN THE POOL</span>
                       <span>UNDRAFTED PLAYERS</span>
                     </div>
-                    <PlayerPool players={state.players} complete />
+                    <PlayerPool
+                      players={state.players.filter((p) => p.present)}
+                      complete
+                    />
                   </>
                 )}
               </>

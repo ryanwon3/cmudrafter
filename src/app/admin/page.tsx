@@ -12,6 +12,7 @@ import {
 } from "@/components/ui";
 import { PlayerPool } from "@/components/player-pool";
 import { TeamGrid } from "@/components/team-grid";
+import { AdminAttendance } from "@/components/admin-attendance";
 import { currentCaptain } from "@/lib/draft";
 import { request } from "@/lib/client";
 
@@ -22,7 +23,7 @@ export default function Admin() {
   const [authorized, setAuthorized] = useState(false);
   const [busy, setBusy] = useState(false);
   const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
-  const [picks, setPicks] = useState(4);
+  const [announcement, setAnnouncement] = useState("");
   const [notice, setNotice] = useState("");
   const onClock = state ? currentCaptain(state) : undefined;
 
@@ -56,8 +57,8 @@ export default function Admin() {
     }
   }, []);
   useEffect(() => {
-    if (state) setPicks(state.draft.picks_per_team);
-  }, [state?.draft.picks_per_team]);
+    if (state) setAnnouncement(state.draft.announcement || "");
+  }, [state?.draft.announcement]);
   async function action(name: string, payload: Record<string, unknown> = {}) {
     await request("/api/admin", { action: name, ...payload }, key);
   }
@@ -114,23 +115,23 @@ export default function Admin() {
             }}
           >
             <span className="eyebrow">ORGANIZER ACCESS</span>
-            <h2>Enter your admin key.</h2>
+            <h2>Admin login</h2>
             <p>
-              Use the ADMIN_KEY configured on your server. It stays in this
-              tab’s session.
+              Enter the organizer password to manage attendance, draft phases
+              and resets.
             </p>
-            <label htmlFor="admin-key">Admin key</label>
+            <label htmlFor="admin-key">Admin password</label>
             <input
               id="admin-key"
               type="password"
-              autoComplete="off"
+              autoComplete="current-password"
               value={key}
               onChange={(e) => setKey(e.target.value)}
-              placeholder="Your organizer key"
+              placeholder="Enter admin password"
               required
             />
             <button className="button primary" disabled={busy || !key}>
-              {busy ? "Verifying…" : "Unlock controls"}
+              {busy ? "Signing in…" : "Log in as admin"}
               <Arrow />
             </button>
           </form>
@@ -168,27 +169,55 @@ export default function Admin() {
                         ? "Waiting in lobby"
                         : state.draft.phase === "drafting"
                           ? `Pick ${state.draft.pick_index + 1} · ${onClock?.display_name}`
-                          : "Draft complete"}
+                          : state.draft.phase === "review"
+                            ? "Review final teams"
+                            : "Results published"}
                     </h2>
                     <p>
                       {state.captains.filter((c) => c.ready).length}/8 captains
-                      ready · {state.draft.pick_index} picks made
+                      ready · {state.players.filter((p) => p.present).length}/35
+                      players present · {state.draft.pick_index}/32 picks made
+                    </p>
+                    <p>
+                      Eight teams · four picks each. At least 32 present players
+                      are required. Readiness never starts the draft
+                      automatically.
                     </p>
                     <div className="control-buttons">
                       <button
                         className="button primary"
-                        disabled={busy || state.draft.phase !== "lobby"}
+                        disabled={
+                          busy ||
+                          state.draft.phase !== "lobby" ||
+                          state.players.filter((p) => p.present).length < 32
+                        }
                         onClick={() =>
                           confirm(
                             "Start the draft now?",
-                            "The draft will start for everyone. You can pick for captains who have not checked in.",
+                            `Attendance will close and drafting will begin for everyone. ${state.captains.filter((c) => c.ready).length}/8 captains are ready. You can pick for captains who have not checked in.`,
                             "Start draft",
                             () => action("start"),
                           )
                         }
                       >
-                        Force start <Arrow />
+                        Confirm draft start <Arrow />
                       </button>
+                      {state.draft.phase === "review" && (
+                        <button
+                          className="button primary"
+                          disabled={busy}
+                          onClick={() =>
+                            confirm(
+                              "Publish the final teams?",
+                              "Confirm these rosters and move everyone to the results phase. You can still undo a pick if needed.",
+                              "Publish results",
+                              () => action("publish"),
+                            )
+                          }
+                        >
+                          Confirm teams &amp; publish results <Arrow />
+                        </button>
+                      )}
                       <button
                         className="button secondary"
                         disabled={busy || state.draft.pick_index === 0}
@@ -210,42 +239,54 @@ export default function Admin() {
                     onSubmit={(e) => {
                       e.preventDefault();
                       void run(() =>
-                        action("settings", { picksPerTeam: picks }),
+                        action("announcement", { message: announcement }),
                       );
                     }}
                   >
-                    <span className="eyebrow">LOBBY SETTINGS</span>
-                    <h2>Picks per captain</h2>
+                    <span className="eyebrow">NEXT PHASE</span>
+                    <h2>Tell everyone what’s next</h2>
                     <p>
-                      Four picks makes teams of five, including each captain.
+                      Publish a lobby update, start time or next-phase
+                      announcement. It appears on the live board for everyone.
                     </p>
                     <div className="settings-input">
-                      <label htmlFor="picks">Picks</label>
-                      <input
-                        id="picks"
-                        type="number"
-                        min={1}
-                        max={
-                          state
-                            ? Math.floor(
-                                state.players.length / state.captains.length,
-                              )
-                            : 4
+                      <label htmlFor="announcement">Announcement</label>
+                      <textarea
+                        id="announcement"
+                        maxLength={500}
+                        rows={3}
+                        value={announcement}
+                        onChange={(event) =>
+                          setAnnouncement(event.target.value)
                         }
-                        value={picks}
-                        onChange={(e) => setPicks(Number(e.target.value))}
-                        disabled={busy || state.draft.phase !== "lobby"}
-                        required
+                        disabled={busy}
+                        placeholder="Draft begins at 7:30 PM after attendance is confirmed."
                       />
-                      <button
-                        className="button secondary"
-                        disabled={busy || state.draft.phase !== "lobby"}
-                      >
-                        Save setting
+                      <button className="button secondary" disabled={busy}>
+                        Publish announcement
                       </button>
                     </div>
                   </form>
                 </section>
+                <AdminAttendance
+                  players={state.players}
+                  lobby={state.draft.phase === "lobby"}
+                  busy={busy}
+                  onToggle={(p) =>
+                    confirm(
+                      `${p.present ? "Mark absent" : "Mark present"}: ${p.display_name}?`,
+                      p.present
+                        ? "This removes the player from the eligible pool and revokes their check-in token."
+                        : "This confirms the player is here and eligible for drafting.",
+                      p.present ? "Mark absent" : "Mark present",
+                      () =>
+                        action("attendance", {
+                          playerId: p.id,
+                          present: !p.present,
+                        }),
+                    )
+                  }
+                />
                 <section className="admin-seats">
                   <div className="section-heading">
                     <div>
@@ -297,7 +338,7 @@ export default function Admin() {
                       <span>ON THE CLOCK: {onClock?.display_name}</span>
                     </div>
                     <PlayerPool
-                      players={state.players}
+                      players={state.players.filter((p) => p.present)}
                       disabled={busy}
                       onPick={(p) =>
                         confirm(
@@ -335,7 +376,7 @@ export default function Admin() {
                       onClick={() =>
                         confirm(
                           "Reset the draft, keep seats?",
-                          "All picks and Ready statuses will be cleared. Captains will keep their claimed seats.",
+                          "All picks and Ready statuses will be cleared. Captain seats and player attendance will be kept.",
                           "Reset draft",
                           () => action("reset"),
                           true,
@@ -350,7 +391,7 @@ export default function Admin() {
                       onClick={() =>
                         confirm(
                           "Full reset: clear every seat?",
-                          "All picks, Ready statuses and captain claims will be cleared. Everyone must claim a seat again.",
+                          "All picks, captain claims and player attendance will be cleared. Everyone must check in again.",
                           "Full reset",
                           () => action("full-reset"),
                           true,

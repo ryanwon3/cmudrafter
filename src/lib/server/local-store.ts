@@ -14,6 +14,7 @@ export class LocalStore implements DraftStore {
   mode = 'local' as const;
   private state!: Omit<DraftState, 'mode'>;
   private tokens = new Map<number, string>(); // captain id -> token hash
+  private playerTokens = new Map<number, string>();
 
   constructor() {
     this.seed();
@@ -21,11 +22,12 @@ export class LocalStore implements DraftStore {
 
   private seed() {
     this.state = {
-      draft: { id: 1, phase: 'lobby', pick_index: 0, picks_per_team: 4, started_at: null, updated_at: now() },
+      draft: { id: 1, phase: 'lobby', pick_index: 0, picks_per_team: 4, started_at: null, updated_at: now(), announcement: '' },
       captains: CAPTAINS.map((c) => ({ ...c, claimed: false, ready: false })),
-      players: PLAYERS.map((p, i) => ({ ...p, id: i + 1, team_captain_id: null, pick_number: null })),
+      players: PLAYERS.map((p, i) => ({ ...p, id: i + 1, team_captain_id: null, pick_number: null, present: false })),
     };
     this.tokens.clear();
+    this.playerTokens.clear();
   }
 
   private touch() {
@@ -88,10 +90,8 @@ export class LocalStore implements DraftStore {
     const id = this.requireCaptain(tokenHash);
     if (this.state.draft.phase !== 'lobby') throw new DraftError('The draft has already started');
     this.captain(id).ready = ready;
-    const started = this.state.captains.filter((c) => c.claimed && c.ready).length === N_CAPTAINS;
-    if (started) this.start();
     this.touch();
-    return { started };
+    return { started: false };
   }
 
   private start() {
@@ -107,10 +107,11 @@ export class LocalStore implements DraftStore {
     const p: Player | undefined = this.state.players.find((x) => x.id === playerId);
     if (!p) throw new DraftError("That player doesn't exist");
     if (p.team_captain_id !== null) throw new DraftError(`${p.display_name} was already drafted`, 409);
+    if (!p.present) throw new DraftError(`${p.display_name} is not marked present`, 409);
     p.team_captain_id = onClock.id;
     p.pick_number = d.pick_index + 1;
     d.pick_index += 1;
-    if (d.pick_index >= N_CAPTAINS * d.picks_per_team) d.phase = 'complete';
+    if (d.pick_index >= N_CAPTAINS * d.picks_per_team) d.phase = 'review';
     this.touch();
     return { pick: p.pick_number, captain: onClock.display_name, player: p.display_name };
   }
@@ -126,6 +127,7 @@ export class LocalStore implements DraftStore {
 
   async adminStart() {
     if (this.state.draft.phase !== 'lobby') throw new DraftError('The draft has already started');
+    if (this.state.players.filter(p => p.present).length < 32) throw new DraftError('At least 32 players must be marked present before starting', 409);
     this.start();
     this.touch();
   }
@@ -149,8 +151,7 @@ export class LocalStore implements DraftStore {
 
   async adminSetPicksPerTeam(picks: number) {
     if (this.state.draft.phase !== 'lobby') throw new DraftError('Picks per team can only change in the lobby');
-    const max = Math.floor(this.state.players.length / N_CAPTAINS);
-    if (picks < 1 || picks > max) throw new DraftError(`Picks per team must be between 1 and ${max}`);
+    if (picks !== 4) throw new DraftError('This event uses four picks per captain', 409);
     this.state.draft.picks_per_team = picks;
     this.touch();
   }
@@ -159,13 +160,61 @@ export class LocalStore implements DraftStore {
     for (const p of this.state.players) {
       p.team_captain_id = null;
       p.pick_number = null;
+      if (full) p.present = false;
     }
     for (const c of this.state.captains) {
       c.ready = false;
       if (full) c.claimed = false;
     }
-    if (full) this.tokens.clear();
-    Object.assign(this.state.draft, { phase: 'lobby', pick_index: 0, started_at: null });
+    if (full) { this.tokens.clear(); this.playerTokens.clear(); }
+    Object.assign(this.state.draft, { phase: 'lobby', pick_index: 0, started_at: null, announcement: '' });
+    this.touch();
+  }
+
+  private attendanceLobby() {
+    if (this.state.draft.phase !== 'lobby') throw new DraftError('Attendance can only change in the lobby', 409);
+  }
+  private player(id: number) {
+    const player = this.state.players.find(p => p.id === id);
+    if (!player) throw new DraftError("That player doesn't exist");
+    return player;
+  }
+  async checkIn(playerId: number, tokenHash: string) {
+    this.attendanceLobby();
+    const p = this.player(playerId);
+    if (p.present) throw new DraftError('That player is already checked in', 409);
+    if ([...this.playerTokens.values()].includes(tokenHash)) throw new DraftError('This attendance token is already in use', 409);
+    p.present = true;
+    this.playerTokens.set(playerId, tokenHash);
+    this.touch();
+  }
+  private tokenPlayer(tokenHash: string) {
+    for (const [id, hash] of this.playerTokens) if (hash === tokenHash) return id;
+    return null;
+  }
+  async playerForToken(tokenHash: string) { return this.tokenPlayer(tokenHash); }
+  async leave(tokenHash: string) {
+    this.attendanceLobby();
+    const id = this.tokenPlayer(tokenHash);
+    if (id === null) throw new DraftError('You are not checked in', 403);
+    this.player(id).present = false;
+    this.playerTokens.delete(id);
+    this.touch();
+  }
+  async adminSetAttendance(playerId: number, present: boolean) {
+    this.attendanceLobby();
+    this.player(playerId).present = present;
+    if (!present) this.playerTokens.delete(playerId);
+    this.touch();
+  }
+  async adminAnnouncement(message: string) {
+    if (message.length > 500) throw new DraftError('Announcement must be 500 characters or fewer');
+    this.state.draft.announcement = message.trim();
+    this.touch();
+  }
+  async adminPublish() {
+    if (this.state.draft.phase !== 'review') throw new DraftError('Results can only be published after draft review', 409);
+    this.state.draft.phase = 'complete';
     this.touch();
   }
 }

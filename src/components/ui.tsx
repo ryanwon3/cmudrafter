@@ -29,7 +29,8 @@ export function Header({
           <span
             key={p}
             className={
-              (phase === ["lobby", "drafting", "complete"][i]
+              ((phase === "review" ? "drafting" : phase) ===
+              ["lobby", "drafting", "complete"][i]
                 ? "active "
                 : "") + "nav-phase"
             }
@@ -39,10 +40,17 @@ export function Header({
           </span>
         ))}
       </nav>
-      <span className={"connection " + (connected ? "online" : "")}>
-        <i />
-        {admin ? "Organizer" : connected ? "Board live" : "Connecting"}
-      </span>
+      <div className="header-actions">
+        {!admin && (
+          <a className="admin-login-link" href="/admin">
+            Admin login <Arrow />
+          </a>
+        )}
+        <span className={"connection " + (connected ? "online" : "")}>
+          <i />
+          {admin ? "Organizer" : connected ? "Board live" : "Connecting"}
+        </span>
+      </div>
     </header>
   );
 }

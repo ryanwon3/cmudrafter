@@ -1,5 +1,14 @@
 # Verification record — November 5, 2026
 
+## Attendance and organizer update
+
+- Node 24: 39 tests passed, including the real PostgreSQL attendance lifecycle, non-destructive migration preserving an existing claim, API validation, private tokens and a DOM regression for delayed cross-tab attendance responses. Production build and TypeScript checks passed.
+- Local HTTP acceptance passed: attendance ownership, start blocked below 32 present players, fixed four picks per captain, no auto-start on Ready, absent picks rejected, 32 snake picks, organizer result publication, undo and resets.
+- Independent review found and reproduced one cross-tab token race; the fix and regression both pass, with no remaining actionable findings.
+- The hosted attendance migration preserved the existing claimed captain seat and token. Hosted acceptance uses read-only checks and rejected operations; the current event is not reset for testing.
+- The organizer password is configured only as a production Vercel Secret and in ignored local configuration. No password appears in source or public bundles.
+- Native Chrome navigation/capture is unreliable in this session, so the new UI has DOM coverage but final visual inspection remains limited.
+
 Claude authored the initial database, server adapters, API routes and backend tests. Codex authored the UI, shared contracts and integration tests, and completed integration and hosted setup. Independent review identified and covered authorization and synchronization regressions.
 
 ## Source and database checks
