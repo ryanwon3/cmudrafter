@@ -1,0 +1,5571 @@
+{
+  "checked_at_utc": "2026-11-06T22:16:18.896192+00:00",
+  "scope": "44 players and 8 captains; Ranked Solo/Duo only",
+  "method": "Maximum by tier, division and LP among current rank, current Top tier, all available historical high_rank_info and historical rank_info in the public OP.GG profile HTML. Three independent batch cross-checks agreed.",
+  "limitations": "OP.GG lacks within-season peaks for many older seasons. Season-end records establish a known rank, not proof that no higher unrecorded peak existed. No Flex or ranked-team records included. This is a dated snapshot, not automatic synchronization.",
+  "profiles": [
+    {
+      "id": 1,
+      "slot": 1,
+      "display_name": "Chomania",
+      "riot_id": "Thechomania2#SION",
+      "opgg_url": "https://op.gg/lol/summoners/na/Thechomania2-SION",
+      "peak_rank": "Diamond 4",
+      "rank_score": 24,
+      "kind": "captain",
+      "index": 0,
+      "page_title": "Thechomania2#SION - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 17,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Diamond",
+          "division": 3,
+          "lp": 56,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 73,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Silver",
+          "division": 3,
+          "lp": 81,
+          "season": "S2025",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Diamond",
+        "division": 3,
+        "lp": 56,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Diamond 3 56 LP",
+      "status": "verified",
+      "new_peak_rank": "Diamond 3 56 LP (S2026)",
+      "new_rank_score": 25.56,
+      "change": "tier/division corrected",
+      "html_sha256": "4228554be6dd0c2f2948b525e87b47ffec4f2171f318708ad1a6396f322bb4e8"
+    },
+    {
+      "id": 2,
+      "slot": 2,
+      "display_name": "Admirality",
+      "riot_id": "Admirality#Death",
+      "opgg_url": "https://op.gg/lol/summoners/na/Admirality-Death",
+      "peak_rank": "Emerald 2",
+      "rank_score": 22,
+      "kind": "captain",
+      "index": 1,
+      "page_title": "Admirality#Death - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 19,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 14,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 38,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 24,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 40,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 31,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 89,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 25,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 75,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 26,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 75,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 22,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 0,
+          "season": "S9",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Diamond",
+        "division": 4,
+        "lp": 38,
+        "season": "S2025",
+        "source": "historical peak"
+      },
+      "verified_rank": "Diamond 4 38 LP",
+      "status": "verified",
+      "new_peak_rank": "Diamond 4 38 LP (S2025)",
+      "new_rank_score": 24.38,
+      "change": "tier/division corrected",
+      "html_sha256": "377e05b035b2f2906c50676d4d336586b9c65a54c4d77a911dec58026f795b45"
+    },
+    {
+      "id": 4,
+      "slot": 3,
+      "display_name": "Kyle",
+      "riot_id": "Ezhister#NA1",
+      "opgg_url": "https://op.gg/lol/summoners/na/Ezhister-NA1",
+      "peak_rank": "Diamond 1",
+      "rank_score": 27,
+      "kind": "captain",
+      "index": 2,
+      "page_title": "Ezhister#NA1 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 25,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Diamond",
+          "division": 1,
+          "lp": 58,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 96,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 43,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 66,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 19,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 75,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 28,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 78,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 0,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 2,
+          "lp": 53,
+          "season": "S2020",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Diamond",
+        "division": 1,
+        "lp": 58,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Diamond 1 58 LP",
+      "status": "verified",
+      "new_peak_rank": "Diamond 1 58 LP (S2026)",
+      "new_rank_score": 27.58,
+      "change": "verified / LP and season documented",
+      "html_sha256": "ff5d22d30e501d352bc60fe11c23ab4bcae2c33a512cde453cf19cbda0e8c623"
+    },
+    {
+      "id": 5,
+      "slot": 4,
+      "display_name": "Allen",
+      "riot_id": "CatGPT#YouMe",
+      "opgg_url": "https://op.gg/lol/summoners/na/CatGPT-YouMe",
+      "peak_rank": "Master 2 LP",
+      "rank_score": 28.02,
+      "kind": "captain",
+      "index": 3,
+      "page_title": "CatGPT#YouMe - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 91,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 2,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 74,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 75,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 12,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 75,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 40,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 50,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 1,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 1,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 42,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 83,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 93,
+          "season": "S9",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 41,
+          "season": "S8",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 68,
+          "season": "S7",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 2,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 2 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 2 LP (S2026)",
+      "new_rank_score": 28.02,
+      "change": "verified / LP and season documented",
+      "html_sha256": "ebccb697c6f3e9a2c2107a5847b837fd3f82ea6bfbae7b00a2dc44d9c0ca1d59"
+    },
+    {
+      "id": 6,
+      "slot": 5,
+      "display_name": "Brian (Holiday)",
+      "riot_id": "holiday#001",
+      "opgg_url": "https://op.gg/lol/summoners/na/holiday-001",
+      "peak_rank": "Master 415 LP",
+      "rank_score": 32.15,
+      "kind": "captain",
+      "index": 4,
+      "page_title": "holiday#001 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 1,
+          "lp": 74,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 415,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Diamond",
+          "division": 1,
+          "lp": 92,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 14,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 38,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Diamond",
+          "division": 3,
+          "lp": 28,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 1,
+          "lp": 11,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 10,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 3,
+          "lp": 0,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 3,
+          "lp": 97,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 0,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 78,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 3,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 75,
+          "season": "S9",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 5,
+          "lp": 48,
+          "season": "S8",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 415,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 415 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 415 LP (S2026)",
+      "new_rank_score": 32.15,
+      "change": "verified / LP and season documented",
+      "html_sha256": "4b17330d585b3ead53396f07a5c289b5b94514ff99fa948a576e3cb32295d506"
+    },
+    {
+      "id": 7,
+      "slot": 6,
+      "display_name": "Envy",
+      "riot_id": "foryoutoenvy#astro",
+      "opgg_url": "https://op.gg/lol/summoners/na/foryoutoenvy-astro",
+      "peak_rank": "Master 330 LP",
+      "rank_score": 31.3,
+      "kind": "captain",
+      "index": 5,
+      "page_title": "foryoutoenvy#astro - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 315,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 330,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 66,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 4,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 65,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 19,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 7,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 34,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 69,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 55,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 75,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 0,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 0,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 3,
+          "lp": 100,
+          "season": "S9",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 5,
+          "lp": 21,
+          "season": "S8",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 330,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 330 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 330 LP (S2026)",
+      "new_rank_score": 31.3,
+      "change": "verified / LP and season documented",
+      "html_sha256": "b4ba74920e2f42bb5ab7d2376b0d1c67e66c1f9dd17a5d1b74d1abda2bfbac53"
+    },
+    {
+      "id": 8,
+      "slot": 7,
+      "display_name": "Ethan",
+      "riot_id": "UPMC Kassadin#CMU",
+      "opgg_url": "https://op.gg/lol/summoners/na/UPMC%20Kassadin-CMU",
+      "peak_rank": "Master 594 LP",
+      "rank_score": 33.94,
+      "kind": "captain",
+      "index": 6,
+      "page_title": "UPMC Kassadin#CMU - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 594,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 717,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 154,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 40,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 1,
+          "lp": 3,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 50,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 75,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 75,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 24,
+          "season": "S2022",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 717,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 717 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 717 LP (S2026)",
+      "new_rank_score": 35.17,
+      "change": "peak LP corrected",
+      "html_sha256": "98f3af0452c9452ad4024e1553fd783253f4ee38f4d0c5654163d3d80d773886"
+    },
+    {
+      "id": 9,
+      "slot": 8,
+      "display_name": "Nelson",
+      "riot_id": "rakwillsuk#uwu",
+      "opgg_url": "https://op.gg/lol/summoners/na/rakwillsuk-uwu",
+      "peak_rank": "Master 1041 LP",
+      "rank_score": 38.41,
+      "kind": "captain",
+      "index": 7,
+      "page_title": "Rakwillsuk#uwu - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 45,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 1041,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 438,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 75,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 79,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 75,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 348,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 53,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 1,
+          "lp": 36,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 60,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 24,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 75,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 19,
+          "season": "S9",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 5,
+          "lp": 18,
+          "season": "S8",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 19,
+          "season": "S7",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 1041,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 1041 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 1041 LP (S2026)",
+      "new_rank_score": 38.41,
+      "change": "verified / LP and season documented",
+      "html_sha256": "1733f1ab62a57bbfe75dba27d3251f606bf72067baeab0e46c7c219941bad347"
+    },
+    {
+      "display_name": "Umbry",
+      "riot_id": "elfaria#wand",
+      "opgg_url": "https://op.gg/lol/summoners/na/elfaria-wand",
+      "peak_rank": "Master 817 LP",
+      "rank_score": 36.17,
+      "kind": "player",
+      "index": 8,
+      "page_title": "elfaria#wand - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 460,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 817,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 95,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 55,
+          "season": "S2025",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 817,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 817 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 817 LP (S2026)",
+      "new_rank_score": 36.17,
+      "change": "verified / LP and season documented",
+      "html_sha256": "753b0d58518ac7674a4b0bf59b4a97fbb4d72d63990db955b582789a08add20e"
+    },
+    {
+      "display_name": "Caden",
+      "riot_id": "GamerNamer#NA1",
+      "opgg_url": "https://op.gg/lol/summoners/na/GamerNamer-NA1",
+      "peak_rank": "Master 551 LP (S2026)",
+      "rank_score": 33.51,
+      "kind": "player",
+      "index": 9,
+      "page_title": "GamerNamer#NA1 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 278,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 551,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 5,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 50,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 66,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 75,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 37,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 75,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 42,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 94,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 1,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 19,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 3,
+          "lp": 50,
+          "season": "S2020",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 551,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 551 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 551 LP (S2026)",
+      "new_rank_score": 33.51,
+      "change": "verified / LP and season documented",
+      "html_sha256": "0a1938cca6be4b7aa3187994fe2326c77259b4ea6715130f0a1f9d9ab92afd7c"
+    },
+    {
+      "display_name": "Muffintopper66 (Nick Crosson)",
+      "riot_id": "Muffintopper66#NA1",
+      "opgg_url": "https://op.gg/lol/summoners/na/Muffintopper66-NA1",
+      "peak_rank": "Master 409 LP (S2026)",
+      "rank_score": 32.09,
+      "kind": "player",
+      "index": 10,
+      "page_title": "Muffintopper66#NA1 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 93,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 409,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 25,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 70,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 86,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 38,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 1,
+          "lp": 17,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 1,
+          "lp": 44,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 1,
+          "lp": 0,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 3,
+          "lp": 0,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 93,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 5,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 0,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 17,
+          "season": "S9",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 5,
+          "lp": 36,
+          "season": "S8",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 5,
+          "season": "S7",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 75,
+          "season": "S6",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 0,
+          "season": "S5",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 1,
+          "lp": null,
+          "season": "S4",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 409,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 409 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 409 LP (S2026)",
+      "new_rank_score": 32.09,
+      "change": "verified / LP and season documented",
+      "html_sha256": "9357df7bc926a28ae8081b776a72a4c04d025d6081e6f1e1f37909fdd414698f"
+    },
+    {
+      "display_name": "victor",
+      "riot_id": "Xeuhktal#NA1",
+      "opgg_url": "https://op.gg/lol/summoners/na/Xeuhktal-NA1",
+      "peak_rank": "Master 326 LP (S2026)",
+      "rank_score": 31.26,
+      "kind": "player",
+      "index": 11,
+      "page_title": "Xeuhktal#NA1 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 73,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 326,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 127,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 20,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 2,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 20,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 10,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 0,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 14,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 3,
+          "lp": 24,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 0,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 0,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 0,
+          "season": "S2020",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 326,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 326 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 326 LP (S2026)",
+      "new_rank_score": 31.26,
+      "change": "verified / LP and season documented",
+      "html_sha256": "6561f08b0527b3a631500ac0314c4a0c8af6682b795f72fdd947ebeb3ddfa867"
+    },
+    {
+      "display_name": "Ulysses",
+      "riot_id": "westieyy#3uu",
+      "opgg_url": "https://op.gg/lol/summoners/na/westieyy-3uu",
+      "peak_rank": "Master 300 LP (S2023 S1)",
+      "rank_score": 31,
+      "kind": "player",
+      "index": 12,
+      "page_title": "westieyy#3uu - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 75,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Diamond",
+          "division": 3,
+          "lp": 70,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 29,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 75,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 63,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 63,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 10,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 1,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 300,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 39,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 25,
+          "season": "S2021",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 300,
+        "season": "S2023 S1",
+        "source": "season end"
+      },
+      "verified_rank": "Master 300 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 300 LP (S2023 S1)",
+      "new_rank_score": 31.0,
+      "change": "verified / LP and season documented",
+      "html_sha256": "7402260a3dc7464db4adb4e5eddb3dc38b608ad732454204e8ebacabada2b18a"
+    },
+    {
+      "display_name": "Wythe89#SEXY",
+      "riot_id": "Wythe89#SEXY",
+      "opgg_url": "https://op.gg/lol/summoners/na/Wythe89-SEXY",
+      "peak_rank": "Master 175 LP (S2026)",
+      "rank_score": 29.75,
+      "kind": "player",
+      "index": 13,
+      "page_title": "Wythe89#SEXY - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 1,
+          "lp": 20,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 175,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 65,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 75,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 43,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 66,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 80,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 19,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 46,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 75,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 52,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 46,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 0,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 0,
+          "season": "S9",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 5,
+          "lp": 0,
+          "season": "S8",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 175,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 175 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 175 LP (S2026)",
+      "new_rank_score": 29.75,
+      "change": "verified / LP and season documented",
+      "html_sha256": "53ef8f9ac624377bd9651d768dadc148295c45ad68d9f151bf09f99701a2c641"
+    },
+    {
+      "display_name": "Jenesis / Jacob",
+      "riot_id": "jenesis#oguri",
+      "opgg_url": "https://op.gg/lol/summoners/na/jenesis-oguri",
+      "peak_rank": "Master 171 LP (S2026)",
+      "rank_score": 29.71,
+      "kind": "player",
+      "index": 14,
+      "page_title": "jenesis#oguri - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 62,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 171,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 68,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Diamond",
+          "division": 3,
+          "lp": 67,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 10,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 65,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 1,
+          "lp": 25,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 1,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 26,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 3,
+          "lp": 0,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 16,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 75,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 0,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 10,
+          "season": "S9",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 24,
+          "season": "S8",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 5,
+          "lp": 44,
+          "season": "S7",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 171,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 171 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 171 LP (S2026)",
+      "new_rank_score": 29.71,
+      "change": "verified / LP and season documented",
+      "html_sha256": "475fe4b9bc0464867177a54db625f997d998b11cb0c5bf8bb0e1f5c1dfd1a36a"
+    },
+    {
+      "display_name": "dragonguy168 / David",
+      "riot_id": "Curse Of Dragons#NA1",
+      "opgg_url": "https://op.gg/lol/summoners/na/Curse%20Of%20Dragons-NA1",
+      "peak_rank": "Master 147 LP (S2026)",
+      "rank_score": 29.47,
+      "kind": "player",
+      "index": 15,
+      "page_title": "Curse Of Dragons#NA1 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 97,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 147,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Diamond",
+          "division": 3,
+          "lp": 48,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 0,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 26,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 3,
+          "lp": 3,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 0,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 15,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 37,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 5,
+          "season": "S9",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 75,
+          "season": "S8",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 75,
+          "season": "S7",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 5,
+          "lp": 11,
+          "season": "S6",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 63,
+          "season": "S5",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": null,
+          "season": "S4",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 147,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 147 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 147 LP (S2026)",
+      "new_rank_score": 29.47,
+      "change": "verified / LP and season documented",
+      "html_sha256": "67aaf992684027db44c881b72ecc84fd0e93d78ba387539917748f3ab5258cec"
+    },
+    {
+      "display_name": "Mizrah/Zach",
+      "riot_id": "Mizrah#NA1",
+      "opgg_url": "https://op.gg/lol/summoners/na/Mizrah-NA1",
+      "peak_rank": "Master 139 LP (S2026)",
+      "rank_score": 29.39,
+      "kind": "player",
+      "index": 16,
+      "page_title": "Mizrah#NA1 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 70,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 139,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 80,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 0,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 16,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 28,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 0,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 55,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 23,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 58,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 79,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 51,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 75,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 45,
+          "season": "S9",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 2,
+          "lp": 17,
+          "season": "S8",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 139,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 139 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 139 LP (S2026)",
+      "new_rank_score": 29.39,
+      "change": "verified / LP and season documented",
+      "html_sha256": "20bf31054a8c486d8bb52f501c101b802271b9c0b036ab05b6db075c39135e94"
+    },
+    {
+      "display_name": "Drock/Derek",
+      "riot_id": "Drock#2000",
+      "opgg_url": "https://op.gg/lol/summoners/na/Drock-2000",
+      "peak_rank": "Master 132 LP (S2026)",
+      "rank_score": 29.32,
+      "kind": "player",
+      "index": 17,
+      "page_title": "Drock#2000 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 31,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 132,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 3,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 44,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 3,
+          "lp": 0,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 54,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 72,
+          "season": "S9",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 5,
+          "season": "S8",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 5,
+          "lp": 53,
+          "season": "S7",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 5,
+          "lp": 74,
+          "season": "S6",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 3,
+          "lp": 100,
+          "season": "S5",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 1,
+          "lp": null,
+          "season": "S4",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 132,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 132 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 132 LP (S2026)",
+      "new_rank_score": 29.32,
+      "change": "verified / LP and season documented",
+      "html_sha256": "8deeeae8ce10e3ca535c3ccdb2727f572072edaba9a667ff89f77fca295ae36e"
+    },
+    {
+      "display_name": "Alex/Rukasuk",
+      "riot_id": "Rukasuk#000",
+      "opgg_url": "https://op.gg/lol/summoners/na/Rukasuk-000",
+      "peak_rank": "Master 130 LP (S2023 S2)",
+      "rank_score": 29.3,
+      "kind": "player",
+      "index": 18,
+      "page_title": "Rukasuk#000 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 77,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Diamond",
+          "division": 3,
+          "lp": 63,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 118,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 96,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 75,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 2,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 0,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 21,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 130,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 22,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 91,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 0,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 2,
+          "lp": 30,
+          "season": "S9",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 130,
+        "season": "S2023 S2",
+        "source": "season end"
+      },
+      "verified_rank": "Master 130 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 130 LP (S2023 S2)",
+      "new_rank_score": 29.3,
+      "change": "verified / LP and season documented",
+      "html_sha256": "e2481bc4830b55f0b81c1223735bdc650a203f6f57a4c3c5acef879c84ff3606"
+    },
+    {
+      "display_name": "Jubilatory | Jamie",
+      "riot_id": "Jubilatory#that",
+      "opgg_url": "https://op.gg/lol/summoners/na/Jubilatory-that",
+      "peak_rank": "Master 90 LP (S2026)",
+      "rank_score": 28.9,
+      "kind": "player",
+      "index": 19,
+      "page_title": "Jubilatory#that - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 77,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 90,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Diamond",
+          "division": 1,
+          "lp": 29,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 58,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 74,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 22,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 70,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 0,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 0,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 60,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 1,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 1,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 43,
+          "season": "S2020",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 90,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 90 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 90 LP (S2026)",
+      "new_rank_score": 28.9,
+      "change": "verified / LP and season documented",
+      "html_sha256": "490b605b22a7c4863755d4aad1bc06c64b494b3f3b621f6adafa405b645ccc08"
+    },
+    {
+      "display_name": "ethers#000",
+      "riot_id": "ethers#000",
+      "opgg_url": "https://op.gg/lol/summoners/na/ethers-000",
+      "peak_rank": "Master 16 LP (S2026)",
+      "rank_score": 28.16,
+      "kind": "player",
+      "index": 20,
+      "page_title": "ethers#000 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 16,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Master",
+          "division": null,
+          "lp": 16,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 93,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 75,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 27,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 0,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 96,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 1,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 3,
+          "lp": 1,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 25,
+          "season": "S9",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 5,
+          "lp": 64,
+          "season": "S8",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 30,
+          "season": "S7",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 5,
+          "lp": 0,
+          "season": "S6",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 5,
+          "lp": 46,
+          "season": "S5",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 5,
+          "lp": null,
+          "season": "S4",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Master",
+        "division": null,
+        "lp": 16,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Master 16 LP",
+      "status": "verified",
+      "new_peak_rank": "Master 16 LP (S2026)",
+      "new_rank_score": 28.16,
+      "change": "verified / LP and season documented",
+      "html_sha256": "6b2cd043c4d1e86937f13a078cbf552e04deadf9e7d4e76a1d5a737a9b292533"
+    },
+    {
+      "display_name": "greyswag",
+      "riot_id": "GreySwag#6877",
+      "opgg_url": "https://op.gg/lol/summoners/na/GreySwag-6877",
+      "peak_rank": "Diamond 1 (S2026)",
+      "rank_score": 27,
+      "kind": "player",
+      "index": 21,
+      "page_title": "GreySwag#6877 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 86,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Diamond",
+          "division": 1,
+          "lp": 2,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 17,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 0,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 85,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 62,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 5,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 15,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 1,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 100,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 58,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 1,
+          "lp": 46,
+          "season": "S2021",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Diamond",
+        "division": 1,
+        "lp": 2,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Diamond 1 2 LP",
+      "status": "verified",
+      "new_peak_rank": "Diamond 1 2 LP (S2026)",
+      "new_rank_score": 27.02,
+      "change": "verified / LP and season documented",
+      "html_sha256": "2689f7d3c3d7ec926b27863b93b00dd161372a6117dd75fdc3c9bc7bd29541c4"
+    },
+    {
+      "display_name": "wa_ge314",
+      "riot_id": "WaGe#314",
+      "opgg_url": "https://op.gg/lol/summoners/na/WaGe-314",
+      "peak_rank": "Diamond 1 (S2026)",
+      "rank_score": 27,
+      "kind": "player",
+      "index": 22,
+      "page_title": "WaGe#314 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 29,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Diamond",
+          "division": 1,
+          "lp": 16,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Diamond",
+          "division": 3,
+          "lp": 59,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 0,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 67,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 0,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 0,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 3,
+          "lp": 22,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 2,
+          "lp": 20,
+          "season": "S2023 S2",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Diamond",
+        "division": 1,
+        "lp": 16,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Diamond 1 16 LP",
+      "status": "verified",
+      "new_peak_rank": "Diamond 1 16 LP (S2026)",
+      "new_rank_score": 27.16,
+      "change": "verified / LP and season documented",
+      "html_sha256": "4db24f33d589eb94155762b7193aaedc0b59d6e1d800b9009cb7634335ab4962"
+    },
+    {
+      "display_name": "boomsiru",
+      "riot_id": "boomsiru#NA1",
+      "opgg_url": "https://op.gg/lol/summoners/na/boomsiru-NA1",
+      "peak_rank": "Diamond 2 (S2026)",
+      "rank_score": 26,
+      "kind": "player",
+      "index": 23,
+      "page_title": "boomsiru#NA1 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 14,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 32,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 64,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 81,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 81,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 4,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 33,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 80,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 21,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 43,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 32,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 2,
+          "lp": 63,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 10,
+          "season": "S2020",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Diamond",
+        "division": 2,
+        "lp": 64,
+        "season": "S2025",
+        "source": "historical peak"
+      },
+      "verified_rank": "Diamond 2 64 LP",
+      "status": "verified",
+      "new_peak_rank": "Diamond 2 64 LP (S2025)",
+      "new_rank_score": 26.64,
+      "change": "verified / LP and season documented",
+      "html_sha256": "461cf501ebe24fa5be3ec0787eb7fe700803d1068d47faf5f80fc28c058fd06f"
+    },
+    {
+      "display_name": "Yazurak",
+      "riot_id": "Yazurak#000",
+      "opgg_url": "https://op.gg/lol/summoners/na/Yazurak-000",
+      "peak_rank": "Diamond 3 (S2026)",
+      "rank_score": 25,
+      "kind": "player",
+      "index": 24,
+      "page_title": "Yazurak#000 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 61,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 31,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 28,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 9,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 95,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 30,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 0,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 30,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 39,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 36,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 14,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 1,
+          "lp": 7,
+          "season": "S2021",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Diamond",
+        "division": 2,
+        "lp": 31,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Diamond 2 31 LP",
+      "status": "verified",
+      "new_peak_rank": "Diamond 2 31 LP (S2026)",
+      "new_rank_score": 26.31,
+      "change": "tier/division corrected",
+      "html_sha256": "ac25251feffe295f767d52ec09204eb9e3cfd03bd03b6cf6878750ae46804bf1"
+    },
+    {
+      "display_name": "Alex",
+      "riot_id": "Azenkora#na2",
+      "opgg_url": "https://op.gg/lol/summoners/na/Azenkora-na2",
+      "peak_rank": "Diamond 4 (S2026)",
+      "rank_score": 24,
+      "kind": "player",
+      "index": 25,
+      "page_title": "Azenkora#NA2 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 14,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 14,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 95,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 34,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 40,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 24,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 3,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 71,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 0,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 75,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 0,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 2,
+          "lp": 0,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 1,
+          "lp": 48,
+          "season": "S2020",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Diamond",
+        "division": 4,
+        "lp": 14,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Diamond 4 14 LP",
+      "status": "verified",
+      "new_peak_rank": "Diamond 4 14 LP (S2026)",
+      "new_rank_score": 24.14,
+      "change": "verified / LP and season documented",
+      "html_sha256": "061ca1e90dc1e2f182f33d51cb54d94619b6797362689e4b08f330017be84528"
+    },
+    {
+      "display_name": "mrbbone / Bryce",
+      "riot_id": "mrbbone#NA1",
+      "opgg_url": "https://op.gg/lol/summoners/na/mrbbone-NA1",
+      "peak_rank": "Diamond 4 (S2026)",
+      "rank_score": 24,
+      "kind": "player",
+      "index": 26,
+      "page_title": "mrbbone#NA1 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 17,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 55,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 40,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 11,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 21,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 99,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 5,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 8,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 40,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 66,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 0,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 0,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 59,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 53,
+          "season": "S9",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Diamond",
+        "division": 4,
+        "lp": 55,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Diamond 4 55 LP",
+      "status": "verified",
+      "new_peak_rank": "Diamond 4 55 LP (S2026)",
+      "new_rank_score": 24.55,
+      "change": "verified / LP and season documented",
+      "html_sha256": "26ced00fbed5e645860e4af0b4230113fc1e8f26d6f8a65a14afa8e575593f64"
+    },
+    {
+      "display_name": "physiX / Phy",
+      "riot_id": "physiX#TPX",
+      "opgg_url": "https://op.gg/lol/summoners/na/physiX-TPX",
+      "peak_rank": "Diamond 4 (S2026)",
+      "rank_score": 24,
+      "kind": "player",
+      "index": 27,
+      "page_title": "physiX#TPX - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 35,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 95,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 56,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 3,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 14,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 14,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 3,
+          "lp": 17,
+          "season": "S2024 S2",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Diamond",
+        "division": 4,
+        "lp": 95,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Diamond 4 95 LP",
+      "status": "verified",
+      "new_peak_rank": "Diamond 4 95 LP (S2026)",
+      "new_rank_score": 24.95,
+      "change": "verified / LP and season documented",
+      "html_sha256": "4eca47e81cc189dc00032bc23b1252296c0144cc0d5feefc542c4a5e1d497112"
+    },
+    {
+      "display_name": "Sparkeyz / Austin",
+      "riot_id": "Sparkeyz#NA1",
+      "opgg_url": "https://op.gg/lol/summoners/na/Sparkeyz-NA1",
+      "peak_rank": "Diamond 4 (S2026)",
+      "rank_score": 24,
+      "kind": "player",
+      "index": 28,
+      "page_title": "Sparkeyz#NA1 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 62,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 62,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 36,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 14,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 75,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 75,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 6,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 50,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 1,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 21,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 60,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 0,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Diamond",
+          "division": 4,
+          "lp": 20,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 48,
+          "season": "S9",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 21,
+          "season": "S8",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 20,
+          "season": "S7",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 5,
+          "lp": 0,
+          "season": "S6",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 40,
+          "season": "S5",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": null,
+          "season": "S4",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Diamond",
+        "division": 4,
+        "lp": 62,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Diamond 4 62 LP",
+      "status": "verified",
+      "new_peak_rank": "Diamond 4 62 LP (S2026)",
+      "new_rank_score": 24.62,
+      "change": "verified / LP and season documented",
+      "html_sha256": "2234ee4aa453da7a36b650402062e58f94bf60cca4b02b6f6435f57f0a38977d"
+    },
+    {
+      "display_name": "Roswaalu / Ros or Josh",
+      "riot_id": "Roswaalu#0000",
+      "opgg_url": "https://op.gg/lol/summoners/na/Roswaalu-0000",
+      "peak_rank": "Emerald 1 (S2026)",
+      "rank_score": 23,
+      "kind": "player",
+      "index": 29,
+      "page_title": "Roswaalu#0000 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 63,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Emerald",
+          "division": 1,
+          "lp": 80,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 44,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 22,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 26,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 46,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 91,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 92,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 70,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 15,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 1,
+          "lp": 100,
+          "season": "S2022",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Emerald",
+        "division": 1,
+        "lp": 80,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Emerald 1 80 LP",
+      "status": "verified",
+      "new_peak_rank": "Emerald 1 80 LP (S2026)",
+      "new_rank_score": 23.8,
+      "change": "verified / LP and season documented",
+      "html_sha256": "470488259fc8718c4b0885bb3763dcb1f92c27e33abdfe7cac8a391d990768a7"
+    },
+    {
+      "display_name": "Seven",
+      "riot_id": "seven#0715",
+      "opgg_url": "https://op.gg/lol/summoners/na/seven-0715",
+      "peak_rank": "Emerald 1 (S2026)",
+      "rank_score": 23,
+      "kind": "player",
+      "index": 30,
+      "page_title": "seven#0715 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 68,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Diamond",
+          "division": 2,
+          "lp": 12,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 78,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 0,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 1,
+          "lp": 30,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Bronze",
+          "division": 3,
+          "lp": 72,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Iron",
+          "division": 3,
+          "lp": 71,
+          "season": "S2024 S2",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Diamond",
+        "division": 2,
+        "lp": 12,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Diamond 2 12 LP",
+      "status": "verified",
+      "new_peak_rank": "Diamond 2 12 LP (S2026)",
+      "new_rank_score": 26.12,
+      "change": "tier/division corrected",
+      "html_sha256": "ebf6f916b1f5935e241d01597a7d39bb67d6b7145ba02076cdc4ddcc3118de6c"
+    },
+    {
+      "display_name": "adocado",
+      "riot_id": "TPX adocado1024#TPX",
+      "opgg_url": "https://op.gg/lol/summoners/na/TPX%20adocado1024-TPX",
+      "peak_rank": "Emerald 2 (S2026)",
+      "rank_score": 22,
+      "kind": "player",
+      "index": 31,
+      "page_title": "TPX adocado1024#TPX - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 8,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 57,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 3,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Silver",
+          "division": 2,
+          "lp": 13,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Iron",
+          "division": 1,
+          "lp": 55,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Iron",
+          "division": 2,
+          "lp": 63,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Iron",
+          "division": 3,
+          "lp": 50,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Iron",
+          "division": 4,
+          "lp": 17,
+          "season": "S2024 S1",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Emerald",
+        "division": 2,
+        "lp": 57,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Emerald 2 57 LP",
+      "status": "verified",
+      "new_peak_rank": "Emerald 2 57 LP (S2026)",
+      "new_rank_score": 22.57,
+      "change": "verified / LP and season documented",
+      "html_sha256": "7df27615f0b995e8f8427bb757b8801b6a6d5b8ced0e8e8eebc7cc67c059d137"
+    },
+    {
+      "display_name": "Charlie- SquigglyLine",
+      "riot_id": "SquigglyLine#Fart",
+      "opgg_url": "https://op.gg/lol/summoners/na/SquigglyLine-Fart",
+      "peak_rank": "Emerald 2 (S2026)",
+      "rank_score": 22,
+      "kind": "player",
+      "index": 32,
+      "page_title": "SquigglyLine#Fart - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 4,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 75,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 10,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 8,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 64,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Silver",
+          "division": 2,
+          "lp": 77,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 39,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 38,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 48,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 22,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 2,
+          "lp": 12,
+          "season": "S2022",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Emerald",
+        "division": 2,
+        "lp": 75,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Emerald 2 75 LP",
+      "status": "verified",
+      "new_peak_rank": "Emerald 2 75 LP (S2026)",
+      "new_rank_score": 22.75,
+      "change": "verified / LP and season documented",
+      "html_sha256": "fa64322642cbd4cc663ad8afe3eb9b817e73936b1defa06753f018ae391e65fe"
+    },
+    {
+      "display_name": "luffydoc777/Peter",
+      "riot_id": "luffydoc777#Unc",
+      "opgg_url": "https://op.gg/lol/summoners/na/luffydoc777-Unc",
+      "peak_rank": "Emerald 2 (S2026)",
+      "rank_score": 22,
+      "kind": "player",
+      "index": 33,
+      "page_title": "luffydoc777#Unc - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 47,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 21,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 42,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 42,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 11,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 11,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 20,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 9,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 42,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 34,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 5,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 0,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 48,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 0,
+          "season": "S8",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 3,
+          "lp": 0,
+          "season": "S7",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 9,
+          "season": "S6",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Emerald",
+        "division": 2,
+        "lp": 21,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Emerald 2 21 LP",
+      "status": "verified",
+      "new_peak_rank": "Emerald 2 21 LP (S2026)",
+      "new_rank_score": 22.21,
+      "change": "verified / LP and season documented",
+      "html_sha256": "cf4133f98042ad7e46e8165267fcb21b94a52d2c54f94de79864e79f27134a11"
+    },
+    {
+      "display_name": "Sid",
+      "riot_id": "Dark#zhang",
+      "opgg_url": "https://op.gg/lol/summoners/na/Dark-zhang",
+      "peak_rank": "Emerald 2 (S2026)",
+      "rank_score": 22,
+      "kind": "player",
+      "index": 34,
+      "page_title": "Dark#zhang - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 6,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Emerald",
+          "division": 2,
+          "lp": 92,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 36,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 66,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 22,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 20,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 47,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 3,
+          "lp": 76,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 0,
+          "season": "S2023 S2",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Emerald",
+        "division": 2,
+        "lp": 92,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Emerald 2 92 LP",
+      "status": "verified",
+      "new_peak_rank": "Emerald 2 92 LP (S2026)",
+      "new_rank_score": 22.92,
+      "change": "verified / LP and season documented",
+      "html_sha256": "fac96a8066f06e3c4ca16fe8491b3d111ace44b6ea10a3b4a55b4b3189cdf4c8"
+    },
+    {
+      "display_name": "billiam",
+      "riot_id": "owlCrest#268",
+      "opgg_url": "https://op.gg/lol/summoners/na/owlCrest-268",
+      "peak_rank": "Emerald 3 (S2026)",
+      "rank_score": 21,
+      "kind": "player",
+      "index": 35,
+      "page_title": "owlCrest#268 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 20,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 24,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 38,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 5,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 93,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 44,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 31,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 0,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 0,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 0,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 75,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 35,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 0,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 0,
+          "season": "S9",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 18,
+          "season": "S8",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 1,
+          "lp": 0,
+          "season": "S7",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Emerald",
+        "division": 3,
+        "lp": 24,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Emerald 3 24 LP",
+      "status": "verified",
+      "new_peak_rank": "Emerald 3 24 LP (S2026)",
+      "new_rank_score": 21.24,
+      "change": "verified / LP and season documented",
+      "html_sha256": "82c9b52ae7e967867bc49727794b08f31a2d6139e20a6806c56e5aa41a3f478d"
+    },
+    {
+      "display_name": "Jade",
+      "riot_id": "HinYok#777",
+      "opgg_url": "https://op.gg/lol/summoners/na/HinYok-777",
+      "peak_rank": "Emerald 3 (S2024 S2)",
+      "rank_score": 21,
+      "kind": "player",
+      "index": 36,
+      "page_title": "HinYok#777 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 0,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 20,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 49,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 49,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 96,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 96,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 79,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 63,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 98,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 48,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 66,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 53,
+          "season": "S2021",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 0,
+          "season": "S2020",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 0,
+          "season": "S9",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Emerald",
+        "division": 3,
+        "lp": 98,
+        "season": "S2023 S2",
+        "source": "season end"
+      },
+      "verified_rank": "Emerald 3 98 LP",
+      "status": "verified",
+      "new_peak_rank": "Emerald 3 98 LP (S2023 S2)",
+      "new_rank_score": 21.98,
+      "change": "verified / LP and season documented",
+      "html_sha256": "aeaa17fbfea3330788f3964e6acd4da67102320bd1f98d414318e982d25071d1"
+    },
+    {
+      "display_name": "小E长官#0722",
+      "riot_id": "小E长官#0722",
+      "opgg_url": "https://op.gg/lol/summoners/na/%E5%B0%8FE%E9%95%BF%E5%AE%98-0722",
+      "peak_rank": "Emerald 3 (S2024 S1)",
+      "rank_score": 21,
+      "kind": "player",
+      "index": 37,
+      "page_title": "小E长官#0722 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 20,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 84,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 0,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 57,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 90,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 0,
+          "season": "S2021",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Emerald",
+        "division": 3,
+        "lp": 0,
+        "season": "S2024 S1",
+        "source": "season end"
+      },
+      "verified_rank": "Emerald 3 0 LP",
+      "status": "verified",
+      "new_peak_rank": "Emerald 3 0 LP (S2024 S1)",
+      "new_rank_score": 21.0,
+      "change": "verified / LP and season documented",
+      "html_sha256": "50236a4e2de6069cd071a2b18c83f8acf0960a54a89ad234d06ecf6a2c05b020"
+    },
+    {
+      "display_name": "Doh",
+      "riot_id": "Doh#9054",
+      "opgg_url": "https://op.gg/lol/summoners/na/Doh-9054",
+      "peak_rank": "Emerald 4 (S2026)",
+      "rank_score": 20,
+      "kind": "player",
+      "index": 38,
+      "page_title": "Doh#9054 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 8,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 8,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 32,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 20,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 3,
+          "lp": 63,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Silver",
+          "division": 3,
+          "lp": 35,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 1,
+          "lp": 90,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 1,
+          "lp": 98,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 48,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 2,
+          "lp": 72,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 32,
+          "season": "S2021",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Emerald",
+        "division": 4,
+        "lp": 8,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Emerald 4 8 LP",
+      "status": "verified",
+      "new_peak_rank": "Emerald 4 8 LP (S2026)",
+      "new_rank_score": 20.08,
+      "change": "verified / LP and season documented",
+      "html_sha256": "a89cda22c0c925a1ed3cc5b4e88bef9c826627051353ffb5e90608968ef70e9c"
+    },
+    {
+      "display_name": "Gato",
+      "riot_id": "Gato#Fato",
+      "opgg_url": "https://op.gg/lol/summoners/na/Gato-Fato",
+      "peak_rank": "Emerald 4 (S2026)",
+      "rank_score": 20,
+      "kind": "player",
+      "index": 39,
+      "page_title": "Gato#Fato - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 8,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Emerald",
+          "division": 3,
+          "lp": 8,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 80,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 13,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 55,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 17,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 50,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 0,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 31,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 2,
+          "lp": 48,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 3,
+          "lp": 77,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Iron",
+          "division": 1,
+          "lp": 74,
+          "season": "S2020",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Emerald",
+        "division": 3,
+        "lp": 8,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Emerald 3 8 LP",
+      "status": "verified",
+      "new_peak_rank": "Emerald 3 8 LP (S2026)",
+      "new_rank_score": 21.08,
+      "change": "tier/division corrected",
+      "html_sha256": "a238ddc1a675ac3946c48a4050543e720c996971846c4051991c8d2846de5d09"
+    },
+    {
+      "display_name": "moon",
+      "riot_id": "moon#90849",
+      "opgg_url": "https://op.gg/lol/summoners/na/moon-90849",
+      "peak_rank": "Emerald 4 (S2026)",
+      "rank_score": 20,
+      "kind": "player",
+      "index": 40,
+      "page_title": "moon#90849 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 78,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 62,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 90,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 34,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 49,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 27,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 0,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 64,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 2,
+          "lp": 58,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 0,
+          "season": "S2022",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Emerald",
+        "division": 4,
+        "lp": 62,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Emerald 4 62 LP",
+      "status": "verified",
+      "new_peak_rank": "Emerald 4 62 LP (S2026)",
+      "new_rank_score": 20.62,
+      "change": "verified / LP and season documented",
+      "html_sha256": "079ddb2ad065e92c1c78c607a6f5fb0bf9a5f8e4af1bd395e59ae185b5eb49f6"
+    },
+    {
+      "display_name": "Cat",
+      "riot_id": "Catheon#2nd",
+      "opgg_url": "https://op.gg/lol/summoners/na/Catheon-2nd",
+      "peak_rank": "Platinum 1 (S2025)",
+      "rank_score": 19,
+      "kind": "player",
+      "index": 41,
+      "page_title": "catheon#2nd - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 1,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 1,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 17,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 1,
+          "lp": 88,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 29,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 59,
+          "season": "S2023 S1",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Emerald",
+        "division": 4,
+        "lp": 17,
+        "season": "S2025",
+        "source": "historical peak"
+      },
+      "verified_rank": "Emerald 4 17 LP",
+      "status": "verified",
+      "new_peak_rank": "Emerald 4 17 LP (S2025)",
+      "new_rank_score": 20.17,
+      "change": "tier/division corrected",
+      "html_sha256": "c4aafaeb2a90462b00579745b0a1474547ba2ef04aca35f4485d57848714f136"
+    },
+    {
+      "display_name": "Ironscoutb/Khalid",
+      "riot_id": "ironscoutb#7420",
+      "opgg_url": "https://op.gg/lol/summoners/na/ironscoutb-7420",
+      "peak_rank": "Platinum 2 (S2026)",
+      "rank_score": 18,
+      "kind": "player",
+      "index": 42,
+      "page_title": "ironscoutb#7420 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 45,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 27,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 1,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 1,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 54,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 54,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 0,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 47,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Platinum",
+          "division": 3,
+          "lp": 5,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 49,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 1,
+          "season": "S2022",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Platinum",
+        "division": 2,
+        "lp": 27,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Platinum 2 27 LP",
+      "status": "verified",
+      "new_peak_rank": "Platinum 2 27 LP (S2026)",
+      "new_rank_score": 18.27,
+      "change": "verified / LP and season documented",
+      "html_sha256": "a327bf1453bcc13237a6a2ae5bda938d311943e327de394312b7cc653515865d"
+    },
+    {
+      "display_name": "Psychopomp333",
+      "riot_id": "Psychopomp333#NA1",
+      "opgg_url": "https://op.gg/lol/summoners/na/Psychopomp333-NA1",
+      "peak_rank": "Platinum 2 (S2026)",
+      "rank_score": 18,
+      "kind": "player",
+      "index": 43,
+      "page_title": "Psychopomp333#NA1 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 60,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Emerald",
+          "division": 4,
+          "lp": 60,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Silver",
+          "division": 3,
+          "lp": 51,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Silver",
+          "division": 3,
+          "lp": 3,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 1,
+          "lp": 64,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Bronze",
+          "division": 1,
+          "lp": 64,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 2,
+          "lp": 57,
+          "season": "S2024 S2",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Emerald",
+        "division": 4,
+        "lp": 60,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Emerald 4 60 LP",
+      "status": "verified",
+      "new_peak_rank": "Emerald 4 60 LP (S2026)",
+      "new_rank_score": 20.6,
+      "change": "tier/division corrected",
+      "html_sha256": "92b4577264cea17c1731cf559207794132f83b31016f2ce57e5df2d329d961c1"
+    },
+    {
+      "display_name": "SonionEmperor",
+      "riot_id": "Insulated Window#toot",
+      "opgg_url": "https://op.gg/lol/summoners/na/Insulated%20Window-toot",
+      "peak_rank": "Platinum 2 (S2026)",
+      "rank_score": 18,
+      "kind": "player",
+      "index": 44,
+      "page_title": "Insulated Window#toot - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 33,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Platinum",
+          "division": 2,
+          "lp": 73,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 12,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 74,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 3,
+          "lp": 31,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Bronze",
+          "division": 4,
+          "lp": 82,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 3,
+          "lp": 56,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 4,
+          "lp": 0,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 2,
+          "lp": 75,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 1,
+          "lp": 0,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 48,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 1,
+          "lp": 0,
+          "season": "S2021",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Platinum",
+        "division": 2,
+        "lp": 73,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Platinum 2 73 LP",
+      "status": "verified",
+      "new_peak_rank": "Platinum 2 73 LP (S2026)",
+      "new_rank_score": 18.73,
+      "change": "verified / LP and season documented",
+      "html_sha256": "971bbe2c4ca7f9b4c7129b4ba41ee6a52c728cfff4fb4532cfe54fb20936c264"
+    },
+    {
+      "display_name": "ChessDouDou",
+      "riot_id": "ChessDouDou#2383",
+      "opgg_url": "https://op.gg/lol/summoners/na/ChessDouDou-2383",
+      "peak_rank": "Platinum 4 (S2026)",
+      "rank_score": 16,
+      "kind": "player",
+      "index": 45,
+      "page_title": "ChessDouDou#2383 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 37,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 55,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 69,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 60,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 2,
+          "lp": 32,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Bronze",
+          "division": 4,
+          "lp": 65,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 3,
+          "lp": 6,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 2,
+          "lp": 61,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 4,
+          "lp": 1,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 3,
+          "lp": 34,
+          "season": "S2023 S1",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Platinum",
+        "division": 4,
+        "lp": 55,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Platinum 4 55 LP",
+      "status": "verified",
+      "new_peak_rank": "Platinum 4 55 LP (S2026)",
+      "new_rank_score": 16.55,
+      "change": "verified / LP and season documented",
+      "html_sha256": "233d2b8412c204ae05a7110351d171b65037a2c9d53806b1c97228501f3e0f6e"
+    },
+    {
+      "display_name": "Ethan",
+      "riot_id": "lil E955#NA1",
+      "opgg_url": "https://op.gg/lol/summoners/na/lil%20E955-NA1",
+      "peak_rank": "Platinum 4 (S2026)",
+      "rank_score": 16,
+      "kind": "player",
+      "index": 46,
+      "page_title": "lil E955#NA1 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 55,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Platinum",
+          "division": 4,
+          "lp": 87,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 25,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 25,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 10,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 1,
+          "lp": 27,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 75,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Iron",
+          "division": 1,
+          "lp": 17,
+          "season": "S2022",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 2,
+          "lp": 4,
+          "season": "S2021",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Platinum",
+        "division": 4,
+        "lp": 87,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Platinum 4 87 LP",
+      "status": "verified",
+      "new_peak_rank": "Platinum 4 87 LP (S2026)",
+      "new_rank_score": 16.87,
+      "change": "verified / LP and season documented",
+      "html_sha256": "4202355fd900fea4e73255f42d098d110bf7162947e482201169de7f32e1697a"
+    },
+    {
+      "display_name": "Koral / Andrew",
+      "riot_id": "BorkenBlender347#kor4l",
+      "opgg_url": "https://op.gg/lol/summoners/na/BorkenBlender347-kor4l",
+      "peak_rank": "Gold 1 (S2026)",
+      "rank_score": 15,
+      "kind": "player",
+      "index": 47,
+      "page_title": "BorkenBlender347#kor4l - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 70,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Gold",
+          "division": 1,
+          "lp": 70,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Silver",
+          "division": 2,
+          "lp": 79,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Silver",
+          "division": 2,
+          "lp": 29,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 4,
+          "lp": 28,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Bronze",
+          "division": 4,
+          "lp": 28,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 3,
+          "lp": 16,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Silver",
+          "division": 2,
+          "lp": 9,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 4,
+          "lp": 1,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 3,
+          "lp": 56,
+          "season": "S2023 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 4,
+          "lp": 89,
+          "season": "S2022",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Gold",
+        "division": 1,
+        "lp": 70,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Gold 1 70 LP",
+      "status": "verified",
+      "new_peak_rank": "Gold 1 70 LP (S2026)",
+      "new_rank_score": 15.7,
+      "change": "verified / LP and season documented",
+      "html_sha256": "bcd1c21993fa054483714b31b6f96aa5ae32ebb38ed00f4a0bc3b7d2fffdd4f3"
+    },
+    {
+      "display_name": "gostmeaper",
+      "riot_id": "Gost#5757",
+      "opgg_url": "https://op.gg/lol/summoners/na/Gost-5757",
+      "peak_rank": "Gold 2 (S2026)",
+      "rank_score": 14,
+      "kind": "player",
+      "index": 48,
+      "page_title": "Gost#5757 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 1,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Gold",
+          "division": 2,
+          "lp": 1,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Bronze",
+          "division": 4,
+          "lp": 73,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Bronze",
+          "division": 4,
+          "lp": 15,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 3,
+          "lp": 49,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Bronze",
+          "division": 3,
+          "lp": 14,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Iron",
+          "division": 2,
+          "lp": 87,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Iron",
+          "division": 1,
+          "lp": 39,
+          "season": "S2024 S1",
+          "source": "season end"
+        },
+        {
+          "tier": "Iron",
+          "division": 1,
+          "lp": 0,
+          "season": "S2023 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 4,
+          "lp": 61,
+          "season": "S2023 S1",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Gold",
+        "division": 2,
+        "lp": 1,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Gold 2 1 LP",
+      "status": "verified",
+      "new_peak_rank": "Gold 2 1 LP (S2026)",
+      "new_rank_score": 14.01,
+      "change": "verified / LP and season documented",
+      "html_sha256": "038b062d4c3f32db479cec75ea7ce764d6726b169b857e69c3e6c4de234114e2"
+    },
+    {
+      "display_name": "Mitosis/Max",
+      "riot_id": "Mitosis#143",
+      "opgg_url": "https://op.gg/lol/summoners/na/Mitosis-143",
+      "peak_rank": "Gold 3 (S2026)",
+      "rank_score": 13,
+      "kind": "player",
+      "index": 49,
+      "page_title": "Mitosis#143 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 20,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Gold",
+          "division": 3,
+          "lp": 79,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Silver",
+          "division": 3,
+          "lp": 75,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Silver",
+          "division": 4,
+          "lp": 22,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 2,
+          "lp": 60,
+          "season": "S2024 S3",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Bronze",
+          "division": 2,
+          "lp": 60,
+          "season": "S2024 S3",
+          "source": "season end"
+        },
+        {
+          "tier": "Bronze",
+          "division": 2,
+          "lp": 46,
+          "season": "S2024 S2",
+          "source": "season end"
+        },
+        {
+          "tier": "Iron",
+          "division": 3,
+          "lp": 26,
+          "season": "S2024 S1",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Gold",
+        "division": 3,
+        "lp": 79,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Gold 3 79 LP",
+      "status": "verified",
+      "new_peak_rank": "Gold 3 79 LP (S2026)",
+      "new_rank_score": 13.79,
+      "change": "verified / LP and season documented",
+      "html_sha256": "c34de771d6ce83ffc25da734954de40de474cb1f74b22c3cbdfb46eeba660e81"
+    },
+    {
+      "display_name": "qtrf",
+      "riot_id": "mymelody#428",
+      "opgg_url": "https://op.gg/lol/summoners/na/mymelody-428",
+      "peak_rank": "Gold 4 (S2026)",
+      "rank_score": 12,
+      "kind": "player",
+      "index": 50,
+      "page_title": "mymelody#428 - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 45,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Gold",
+          "division": 4,
+          "lp": 55,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [],
+      "peak": {
+        "tier": "Gold",
+        "division": 4,
+        "lp": 55,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Gold 4 55 LP",
+      "status": "verified",
+      "new_peak_rank": "Gold 4 55 LP (S2026)",
+      "new_rank_score": 12.55,
+      "change": "verified / LP and season documented",
+      "html_sha256": "8a0e4116704ab34bb707eab1d7fb693178205b97a33dfeebe3155cfff5c0008c"
+    },
+    {
+      "display_name": "Noah - Sumeguy whatever works",
+      "riot_id": "诺音和#FtFF",
+      "opgg_url": "https://op.gg/lol/summoners/na/%E8%AF%BA%E9%9F%B3%E5%92%8C-FtFF",
+      "peak_rank": "Silver 3 (S2026)",
+      "rank_score": 9,
+      "kind": "player",
+      "index": 51,
+      "page_title": "诺音和#FtFF - Summoner stats - League of Legends",
+      "current": [
+        {
+          "tier": "Bronze",
+          "division": 2,
+          "lp": 41,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        },
+        {
+          "tier": "Silver",
+          "division": 3,
+          "lp": 25,
+          "season": "S2026",
+          "source": "current rank/top tier"
+        }
+      ],
+      "history": [
+        {
+          "tier": "Bronze",
+          "division": 3,
+          "lp": 85,
+          "season": "S2025",
+          "source": "historical peak"
+        },
+        {
+          "tier": "Bronze",
+          "division": 3,
+          "lp": 27,
+          "season": "S2025",
+          "source": "season end"
+        },
+        {
+          "tier": "Iron",
+          "division": 1,
+          "lp": 0,
+          "season": "S2024 S1",
+          "source": "season end"
+        }
+      ],
+      "peak": {
+        "tier": "Silver",
+        "division": 3,
+        "lp": 25,
+        "season": "S2026",
+        "source": "current rank/top tier"
+      },
+      "verified_rank": "Silver 3 25 LP",
+      "status": "verified",
+      "new_peak_rank": "Silver 3 25 LP (S2026)",
+      "new_rank_score": 9.25,
+      "change": "verified / LP and season documented",
+      "html_sha256": "f8ab589cd96a683380fba5a747fc61357387b9c9e131ef8d6113f46b0ed4bc51"
+    }
+  ]
+}
