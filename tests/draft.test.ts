@@ -34,6 +34,8 @@ const state: DraftState = {
     started_at: null,
     updated_at: "",
     announcement: "",
+    bracket: null,
+    bracket_revision: 0,
   },
   captains: [
     {

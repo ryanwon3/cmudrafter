@@ -12,6 +12,8 @@ import {
 import { PlayerPool } from "@/components/player-pool";
 import { TeamGrid } from "@/components/team-grid";
 import { AdminAttendance } from "@/components/admin-attendance";
+import { AdminBracket } from "@/components/admin-bracket";
+import { bracketMatches, effectiveBracket } from "@/lib/bracket";
 import { currentCaptain } from "@/lib/draft";
 import { request } from "@/lib/client";
 
@@ -261,6 +263,28 @@ export default function Admin() {
                     </div>
                   </form>
                 </section>
+                {state.draft.phase === "complete" && (
+                  <AdminBracket
+                    state={state}
+                    busy={busy}
+                    onSeeds={(captainIds,expectedRevision)=>confirm(
+                      "Save bracket matchups?",
+                      "All recorded match results will be cleared.",
+                      "Save matchups",
+                      ()=>action("bracket-seeds",{captainIds,expectedRevision}),
+                    )}
+                    onResult={(match,winnerCaptainId,expectedRevision)=>{
+                      const name=state.captains.find(c=>c.id===winnerCaptainId)?.display_name;
+                      const label=bracketMatches(effectiveBracket(state)).find(m=>m.id===match)?.label;
+                      confirm(
+                        winnerCaptainId===null ? `Clear ${label}?` : `Advance ${name}?`,
+                        "Later results on this match’s path will be cleared.",
+                        winnerCaptainId===null ? "Clear result" : "Advance team",
+                        ()=>action("bracket-result",{match,winnerCaptainId,expectedRevision}),
+                      );
+                    }}
+                  />
+                )}
                 <AdminAttendance
                   players={state.players}
                   lobby={state.draft.phase === "lobby"}

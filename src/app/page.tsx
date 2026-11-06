@@ -431,6 +431,9 @@ export default function Home() {
                       </div>
                       {state.draft.phase === "complete" && (
                         <div className="results-actions">
+                          <a className="button primary" href="/bracket">
+                            View bracket <span aria-hidden="true">→</span>
+                          </a>
                           <button
                             className="button primary"
                             onClick={() => void copyResults()}

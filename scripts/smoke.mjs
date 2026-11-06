@@ -161,10 +161,33 @@ try {
   assert.equal(s.players.filter((p) => p.team_captain_id === null).length, initial.players.length - 32);
   for (const {id} of initial.captains)
     assert.equal(s.players.filter((p) => p.team_captain_id === id).length, 4);
+  const captainId = slot => initial.captains.find(c=>c.slot===slot).id;
+  let bracketRevision=(await snapshot()).draft.bracket_revision;
+  assert.equal((await call('/api/admin',{action:'bracket-result',match:'qf1',winnerCaptainId:captainId(1),expectedRevision:bracketRevision},'wrong-key')).status,401);
+  assert.equal((await admin('bracket-result',{match:'sf1',winnerCaptainId:captainId(1),expectedRevision:bracketRevision})).status,409);
+  const tournament=[['qf1',1],['qf2',4],['qf3',2],['qf4',3],['sf1',1],['sf2',2],['final',2]];
+  for(const [match,slot] of tournament) {
+    assert.equal((await admin('bracket-result',{match,winnerCaptainId:captainId(slot),expectedRevision:bracketRevision})).status,200);
+    bracketRevision++;
+  }
+  assert.equal((await snapshot()).draft.bracket.winners.final,captainId(2));
+  assert.equal((await admin('bracket-result',{match:'final',winnerCaptainId:captainId(1),expectedRevision:bracketRevision-1})).status,409);
+  assert.equal((await admin('bracket-result',{match:'qf1',winnerCaptainId:captainId(8),expectedRevision:bracketRevision})).status,200);
+  bracketRevision++;
+  let bracket=(await snapshot()).draft.bracket;
+  assert.equal(bracket.winners.sf1,undefined);
+  assert.equal(bracket.winners.final,undefined);
+  assert.equal(bracket.winners.sf2,captainId(2));
+  assert.equal((await admin('bracket-seeds',{captainIds:[8,1,4,5,2,7,3,6].map(captainId),expectedRevision:bracketRevision})).status,200);
+  bracketRevision++;
+  assert.deepEqual((await snapshot()).draft.bracket.winners,{});
+  assert.equal((await fetch(base+'/bracket')).status,200);
   await admin("undo");
   s = await snapshot();
   assert.equal(s.draft.phase, "drafting");
   assert.equal(s.draft.pick_index, 31);
+  assert.equal(s.draft.bracket,null);
+  assert.equal(s.draft.bracket_revision,bracketRevision+1);
   const oldToken = clients.get(1);
   await admin("release", { captainId: 1 });
   assert.equal(
@@ -200,7 +223,7 @@ try {
     true,
   );
   console.log(
-    "PASS: HTTP attendance ownership, incomplete-roster phase overrides, manual phases, absent-pick rejection, 8-way claim race, 32 snake picks, publish, undo, revocation and resets.",
+    "PASS: HTTP attendance, phase overrides, claim race, 32 snake picks, publish, seven-match tournament, corrections, reseeding, stale-write rejection, undo and resets.",
   );
 } finally {
   await admin("full-reset");

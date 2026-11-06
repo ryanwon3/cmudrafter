@@ -1,4 +1,5 @@
-import type { Captain, DraftState, Player } from '../types';
+import type { BracketMatchId, Captain, DraftState, Player } from '../types';
+import { bracketMatches, defaultBracket, MATCH_DESCENDANTS } from '../bracket';
 import { DraftError } from './errors';
 import { slotOnClock, N_CAPTAINS } from './rules';
 import { CAPTAINS, PLAYERS } from './seed-data';
@@ -22,7 +23,7 @@ export class LocalStore implements DraftStore {
 
   private seed() {
     this.state = {
-      draft: { id: 1, phase: 'lobby', pick_index: 0, picks_per_team: 4, started_at: null, updated_at: now(), announcement: '' },
+      draft: { id: 1, phase: 'lobby', pick_index: 0, picks_per_team: 4, started_at: null, updated_at: now(), announcement: '', bracket:null, bracket_revision:0 },
       captains: CAPTAINS.map((c) => ({ ...c, claimed: false, ready: false })),
       players: PLAYERS.map((p, i) => ({ ...p, id: i + 1, team_captain_id: null, pick_number: null, present: false })),
     };
@@ -151,6 +152,8 @@ export class LocalStore implements DraftStore {
     }
     d.pick_index -= 1;
     d.phase = 'drafting';
+    d.bracket = null;
+    d.bracket_revision += 1;
     this.touch();
   }
 
@@ -173,6 +176,8 @@ export class LocalStore implements DraftStore {
     }
     if (full) { this.tokens.clear(); this.playerTokens.clear(); }
     Object.assign(this.state.draft, { phase: 'lobby', pick_index: 0, started_at: null, announcement: '' });
+    this.state.draft.bracket = null;
+    this.state.draft.bracket_revision += 1;
     this.touch();
   }
 
@@ -220,6 +225,42 @@ export class LocalStore implements DraftStore {
   async adminPublish() {
     if (this.state.draft.phase !== 'review') throw new DraftError('Results can only be published after draft review', 409);
     this.state.draft.phase = 'complete';
+    this.touch();
+  }
+
+  private requireBracketRevision(expected: number) {
+    const d=this.state.draft;
+    if(d.phase!=='complete') throw new DraftError('Bracket editing requires published results',409);
+    if(!Number.isSafeInteger(expected)||expected<0||expected!==d.bracket_revision) throw new DraftError('The bracket changed. Refresh and try again.',409);
+    return d;
+  }
+
+  async adminBracketSeeds(captainIds: number[], expectedRevision: number) {
+    const d=this.requireBracketRevision(expectedRevision);
+    if(captainIds.length!==8||new Set(captainIds).size!==8||captainIds.some(id=>!this.state.captains.some(c=>c.id===id))) {
+      throw new DraftError('Choose all eight teams exactly once',409);
+    }
+    if(d.bracket && captainIds.every((id,i)=>d.bracket!.seeds[i]===id)) return;
+    d.bracket={seeds:[...captainIds],winners:{}};
+    d.bracket_revision+=1;
+    this.touch();
+  }
+
+  async adminBracketResult(matchId: string, winnerCaptainId: number|null, expectedRevision: number) {
+    const d=this.requireBracketRevision(expectedRevision);
+    const bracket=structuredClone(d.bracket??defaultBracket(this.state.captains));
+    const match=bracketMatches(bracket).find(m=>m.id===matchId);
+    if(!match) throw new DraftError('Unknown bracket match',409);
+    if(winnerCaptainId!==null) {
+      if(match.teamIds.some(id=>id===null)) throw new DraftError('Both match participants must be determined first',409);
+      if(!match.teamIds.includes(winnerCaptainId)) throw new DraftError('The winner must be a participant in this match',409);
+    }
+    if(match.winnerId===winnerCaptainId) return;
+    delete bracket.winners[match.id];
+    for(const id of MATCH_DESCENDANTS[match.id]) delete bracket.winners[id];
+    if(winnerCaptainId!==null) bracket.winners[match.id as BracketMatchId]=winnerCaptainId;
+    d.bracket=bracket;
+    d.bracket_revision+=1;
     this.touch();
   }
 }

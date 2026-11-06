@@ -9,10 +9,12 @@ export function Header({
   phase,
   connected,
   admin = false,
+  activePage,
 }: {
   phase?: string;
   connected: boolean;
   admin?: boolean;
+  activePage?: "bracket";
 }) {
   return (
     <header className="site-header">
@@ -24,7 +26,7 @@ export function Header({
           <span
             key={p}
             className={
-              ((phase === "review" ? "drafting" : phase) ===
+              (!activePage && (phase === "review" ? "drafting" : phase) ===
               ["lobby", "drafting", "complete"][i]
                 ? "active "
                 : "") + "nav-phase"
@@ -33,6 +35,11 @@ export function Header({
             {p}
           </span>
         ))}
+        {(phase === "complete" || activePage === "bracket") && (
+          <a className={"nav-phase" + (activePage === "bracket" ? " active" : "")} href="/bracket">
+            Bracket
+          </a>
+        )}
       </nav>
       <div className="header-actions">
         {!admin && (

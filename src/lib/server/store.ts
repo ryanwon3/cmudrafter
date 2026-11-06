@@ -24,4 +24,6 @@ export interface DraftStore {
   adminSetAttendance(playerId: number, present: boolean): Promise<void>;
   adminAnnouncement(message: string): Promise<void>;
   adminPublish(): Promise<void>;
+  adminBracketSeeds(captainIds: number[], expectedRevision: number): Promise<void>;
+  adminBracketResult(match: string, winnerCaptainId: number | null, expectedRevision: number): Promise<void>;
 }

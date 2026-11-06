@@ -44,6 +44,16 @@ export async function POST(req: Request) {
       case 'publish':
         await store.adminPublish();
         return {ok:true};
+      case 'bracket-seeds':
+        if(!Array.isArray(b.captainIds)||b.captainIds.length!==8||!b.captainIds.every(id=>Number.isSafeInteger(id)&&id>0)) {
+          throw new DraftError('Choose all eight teams exactly once',400);
+        }
+        await store.adminBracketSeeds(b.captainIds,intField(b,'expectedRevision'));
+        return {ok:true};
+      case 'bracket-result':
+        if(typeof b.match!=='string') throw new DraftError('Choose a bracket match',400);
+        await store.adminBracketResult(b.match,b.winnerCaptainId===null?null:intField(b,'winnerCaptainId'),intField(b,'expectedRevision'));
+        return {ok:true};
       default:
         throw new DraftError('Unknown admin action', 400);
     }

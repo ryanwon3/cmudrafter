@@ -114,4 +114,10 @@ export class SupabaseStore implements DraftStore {
   }
   async adminAnnouncement(message: string) { await this.call('admin_announcement', {p_message: message}); }
   async adminPublish() { await this.call('admin_publish_results'); }
+  async adminBracketSeeds(captainIds: number[], expectedRevision: number) {
+    await this.call('admin_bracket_seeds',{p_captain_ids:captainIds,p_expected_revision:expectedRevision});
+  }
+  async adminBracketResult(match: string, winnerCaptainId: number|null, expectedRevision: number) {
+    await this.call('admin_bracket_result',{p_match:match,p_winner:winnerCaptainId,p_expected_revision:expectedRevision});
+  }
 }
