@@ -6,7 +6,7 @@ Published results link to `/bracket`, an eight-team single-elimination tournamen
 
 The supplied eclipse clip plays once per tab session on entry and again when the visible phase changes, including navigation to the bracket. It fills the viewport without letterboxing or a skip button, is muted, respects reduced motion, and releases the page if playback fails or stalls. Routine state refreshes and picks do not replay it.
 
-The current video has 25% smaller centered artwork, with the background extended inside the video so full-screen playback stays seamless.
+The current video has centered artwork at 52.5% of the original full-screen size (25% smaller, then another 30% reduction), with the background extended inside the video so full-screen playback stays seamless.
 
 Built with Next.js (App Router, TypeScript, Tailwind), Supabase (Postgres + Realtime) and Vercel.
 
