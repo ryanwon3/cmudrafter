@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
+import { SiteTransition, transitionScreen } from "./site-transition";
 
 export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return <span aria-hidden="true">{diagonal ? "↗" : "→"}</span>;
@@ -17,6 +18,7 @@ export function Header({
   activePage?: "bracket";
 }) {
   return (
+    <>
     <header className="site-header">
       <a className="brand" href="/" aria-label="Draft home">
         Team draft
@@ -53,6 +55,8 @@ export function Header({
         </span>
       </div>
     </header>
+    <SiteTransition screen={transitionScreen(phase,activePage)} />
+    </>
   );
 }
 export function Rank({ rank }: { rank: string }) {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "@/components/tournament-bracket.css";
+import "@/components/site-transition.css";
 
 export const metadata: Metadata = {
   title: "Team Draft",
