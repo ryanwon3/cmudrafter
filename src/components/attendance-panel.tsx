@@ -18,6 +18,7 @@ export function AttendancePanel({
   const [selected, setSelected] = useState("");
   const [token, setToken] = useState("");
   const tokenRef = useRef("");
+  const mountedRef = useRef(false);
   const [playerId, setPlayerId] = useState<number | null>(null);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
@@ -56,6 +57,7 @@ export function AttendancePanel({
     setPlayerId(null);
   }
   useEffect(() => {
+    mountedRef.current = true;
     function sync() {
       try {
         const saved = localStorage.getItem(STORAGE_KEY) || "";
@@ -73,6 +75,7 @@ export function AttendancePanel({
     window.addEventListener("storage", onStorage);
     window.addEventListener("focus", sync);
     return () => {
+      mountedRef.current = false;
       window.removeEventListener("storage", onStorage);
       window.removeEventListener("focus", sync);
     };
@@ -82,22 +85,20 @@ export function AttendancePanel({
       setPlayerId(null);
       return;
     }
-    let cancelled = false;
     request<{ playerId: number | null }>("/api/attendance", {
       action: "me",
       token,
     })
       .then((result) => {
-        if (cancelled || tokenRef.current !== token) return;
+        // A fresh roster snapshot does not invalidate this token's pending
+        // lookup. Token changes/revocation still reject older responses.
+        if (!mountedRef.current || tokenRef.current !== token) return;
         setPlayerId(result.playerId);
         if (result.playerId === null) forget(token);
       })
       .catch(() => {
         /* A temporary sync failure must not discard a valid identity. */
       });
-    return () => {
-      cancelled = true;
-    };
   }, [token, players]);
 
   async function update(leave = false) {

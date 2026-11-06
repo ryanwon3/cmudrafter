@@ -222,7 +222,7 @@ export default function Admin() {
                         onClick={() =>
                           confirm(
                             "Undo the last pick?",
-                            "The player will return to the pool and the turn will return to that captain.",
+                            "The player will return to the pool and drafting will resume from that pick. Published results and bracket results will be cleared.",
                             "Undo pick",
                             () => action("undo"),
                           )
@@ -383,7 +383,7 @@ export default function Admin() {
                       onClick={() =>
                         confirm(
                           "Reset the draft, keep seats?",
-                          "All picks and Ready statuses will be cleared. Captain seats and player attendance will be kept.",
+                          "All picks, Ready statuses, announcements, and bracket results will be cleared. Captain seats and player attendance will be kept.",
                           "Reset draft",
                           () => action("reset"),
                           true,
@@ -398,7 +398,7 @@ export default function Admin() {
                       onClick={() =>
                         confirm(
                           "Full reset: clear every seat?",
-                          "All picks, captain claims and player attendance will be cleared. Everyone must check in again.",
+                          "All picks, captain claims, player attendance, announcements, and bracket results will be cleared. Everyone must check in again.",
                           "Full reset",
                           () => action("full-reset"),
                           true,

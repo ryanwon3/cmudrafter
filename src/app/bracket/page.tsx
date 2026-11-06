@@ -11,6 +11,10 @@ export default function BracketPage() {
     <Header phase={state?.draft.phase} connected={connected} activePage="bracket" />
     <main className="main-shell">
       <ErrorNotice message={error} onDismiss={() => setError("")} />
+      {state?.draft.announcement && <aside className="organizer-announcement" role="status">
+        <span className="eyebrow">Announcement</span>
+        <p>{state.draft.announcement}</p>
+      </aside>}
       <div className="page-heading">
         <h1>Tournament bracket</h1>
         <a className="button secondary" href="/">View results</a>

@@ -1,5 +1,7 @@
 # Verification record
 
+The latest full-phase verification is the [joint Codex/Claude report from November 6, 2026](feature-verification-2026-11-06.md). It records 94 passing tests, browser checks across every phase, live read-only checks, four resolved findings and explicit verification limits. Entries below are historical snapshots; their roster counts and earlier start gates do not describe the current rules.
+
 ## Roster refresh — November 6, 2026
 
 - Imported 51 complete signup-sheet entries: eight captains in the organizer's specified order and 43 draftable players. Ethan uses UPMC Kassadin#CMU; Nelson uses rakwillsuk#uwu. The separate Ethan/lil E955 entry remains a player, and Ethers returns to the pool. An incomplete timestamp-only row was excluded.
