@@ -61,4 +61,5 @@ export const PLAYERS: PlayerSeed[] = [
   p("Mitosis/Max", "Mitosis#143", "Gold 3 (S2026)", 13),
   p("qtrf", "mymelody#428", "Gold 4 (S2026)", 12),
   p("Noah - Sumeguy whatever works", "诺音和#FtFF", "Silver 3 (S2026)", 9),
+  p("Umbry", "elfaria#wand", "Not provided", 0),
 ];

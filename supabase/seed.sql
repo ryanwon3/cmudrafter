@@ -54,4 +54,5 @@ insert into players(display_name,riot_id,opgg_url,peak_rank,rank_score) values
   ('gostmeaper', 'Gost#5757', 'https://op.gg/lol/summoners/na/Gost-5757', 'Gold 2 (S2026)', 14),
   ('Mitosis/Max', 'Mitosis#143', 'https://op.gg/lol/summoners/na/Mitosis-143', 'Gold 3 (S2026)', 13),
   ('qtrf', 'mymelody#428', 'https://op.gg/lol/summoners/na/mymelody-428', 'Gold 4 (S2026)', 12),
-  ('Noah - Sumeguy whatever works', '诺音和#FtFF', 'https://op.gg/lol/summoners/na/%E8%AF%BA%E9%9F%B3%E5%92%8C-FtFF', 'Silver 3 (S2026)', 9);
+  ('Noah - Sumeguy whatever works', '诺音和#FtFF', 'https://op.gg/lol/summoners/na/%E8%AF%BA%E9%9F%B3%E5%92%8C-FtFF', 'Silver 3 (S2026)', 9),
+  ('Umbry', 'elfaria#wand', 'https://op.gg/lol/summoners/na/elfaria-wand', 'Not provided', 0);
