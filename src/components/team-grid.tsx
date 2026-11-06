@@ -21,12 +21,10 @@ export function TeamGrid({
             key={c.id}
           >
             <div className="team-card-heading">
-              <span className="team-index">
-                TEAM {String(c.slot).padStart(2, "0")}
-              </span>
+              <span className="team-index">Team {c.slot}</span>
               {activeId === c.id ? (
                 <span className="clock-label">
-                  <i /> ON THE CLOCK
+                  <i /> Picking
                 </span>
               ) : (
                 <span className="team-size">
@@ -35,9 +33,6 @@ export function TeamGrid({
               )}
             </div>
             <div className="team-captain">
-              <span className="captain-avatar small">
-                {c.display_name.slice(0, 1)}
-              </span>
               <div>
                 <h3>{c.display_name}</h3>
                 <Rank rank={c.peak_rank} />
@@ -62,7 +57,7 @@ export function TeamGrid({
                         </span>
                       </>
                     ) : (
-                      <span className="empty-slot">Awaiting pick</span>
+                      <span className="empty-slot">—</span>
                     )}
                   </li>
                 );

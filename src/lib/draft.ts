@@ -39,7 +39,7 @@ export function teamPlayers(state: DraftState, captainId: number): Player[] {
 }
 export function resultsText(state: DraftState): string {
   return [
-    "CMU × PITT · IN-HOUSE DRAFT",
+    "DRAFT RESULTS",
     "",
     ...state.captains.flatMap((c) => [
       `Team ${c.slot} · ${c.display_name} (captain)`,
@@ -82,7 +82,9 @@ export function resultsCsv(state: DraftState): string {
         p.pick_number ?? "",
       ]);
   }
-  for (const p of state.players.filter((p) => p.present && p.team_captain_id === null))
+  for (const p of state.players.filter(
+    (p) => p.present && p.team_captain_id === null,
+  ))
     rows.push(["Undrafted", "", p.display_name, p.riot_id, p.peak_rank, ""]);
   return "\uFEFF" + rows.map((row) => row.map(cell).join(",")).join("\r\n");
 }

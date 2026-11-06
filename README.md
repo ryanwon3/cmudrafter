@@ -1,6 +1,6 @@
-# CMU x PITT In-House Draft
+# Team Draft
 
-A live snake draft for the CMU x PITT League in-house: 8 captains draft 4 players each from a pool of 35, and everyone (captains and spectators) watches the same board update live.
+A live snake draft: 8 captains draft 4 players each from a pool of 35, and everyone (captains and spectators) watches the same board update live.
 
 Built with Next.js (App Router, TypeScript, Tailwind), Supabase (Postgres + Realtime) and Vercel.
 

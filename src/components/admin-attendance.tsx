@@ -23,15 +23,13 @@ export function AdminAttendance({
     <section className="attendance-panel">
       <div className="section-heading">
         <div>
-          <span className="eyebrow">LOBBY ATTENDANCE</span>
-          <h2>{players.filter((p) => p.present).length}/35 players present</h2>
+          <h2>Attendance</h2>
         </div>
-        <span className="count-pill">32 needed</span>
+        <span className="count-pill">
+          {players.filter((p) => p.present).length}/35 present
+        </span>
       </div>
-      <p>
-        Players check themselves in from the lobby. Correct mistakes here before
-        starting. Attendance is locked during the draft.
-      </p>
+      {!lobby && <p>Attendance locked.</p>}
       <label className="search-field attendance-search">
         <span aria-hidden="true">⌕</span>
         <input

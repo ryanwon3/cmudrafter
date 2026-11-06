@@ -1,4 +1,12 @@
-# Verification record — November 5, 2026
+# Verification record
+
+## Minimal UI update — November 6, 2026
+
+- Removed school branding, promotional hero sections, event ticket, footer, avatars and repeated copy. Kept functional phase/status information, controls and confirmation consequences. Metadata, favicon, exported text title and CSV filename are neutral.
+- Replaced the decorative stylesheet with compact responsive panels, tables and typography. Existing browser-storage keys are retained to preserve captain/player/admin sessions.
+- All 39 existing tests pass. Desktop (1440px) and mobile (390px) browser checks cover the lobby and admin layout; mobile document width matches the viewport without page overflow. Claim, ready, unselect-seat, check-in, admin login and the start gate were exercised in local practice. Draft, review and published results were inspected with a full local draft.
+- Independent review found one dialog-centering regression. Restoring the dialog margin fixed it; browser measurements confirmed centered placement. No other actionable review findings remained. Browser console reported no errors.
+- This update changes no database schema, participant records or draft rules.
 
 ## Attendance and organizer update
 

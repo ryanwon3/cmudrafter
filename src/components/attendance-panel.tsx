@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { Player } from "@/lib/types";
 import { request } from "@/lib/client";
-import { Arrow } from "./ui";
 
 const STORAGE_KEY = "cmu-pitt-player-token";
 
@@ -131,22 +130,16 @@ export function AttendancePanel({
     <section className="attendance-panel" aria-labelledby="attendance-title">
       <div className="section-heading">
         <div>
-          <span className="eyebrow">PLAYER CHECK-IN</span>
-          <h2 id="attendance-title">Here to play? Confirm you’re present.</h2>
+          <h2 id="attendance-title">Player check-in</h2>
         </div>
         <strong className="attendance-count">{present}/35 present</strong>
       </div>
-      <p>
-        Choose your own player name. Only confirmed players enter the draft
-        pool. Captains confirm their attendance by readying up in their seat.
-      </p>
+      <p>Players check in here. Captains use Ready.</p>
       {me ? (
         <div className="attendance-confirmed" role="status">
           <div>
-            <strong>✓ You’re checked in as {me.display_name}</strong>
-            <p>
-              {me.riot_id} · The organizer will confirm when the draft begins.
-            </p>
+            <strong>✓ Present: {me.display_name}</strong>
+            <p>{me.riot_id}</p>
           </div>
           <button
             className="button secondary"
@@ -169,7 +162,7 @@ export function AttendancePanel({
             id="player-check-in"
             value={selected}
             onChange={(event) => setSelected(event.target.value)}
-          disabled={busy || (!!token && playerId === null)}
+            disabled={busy || (!!token && playerId === null)}
             required
           >
             <option value="">Select your name…</option>
@@ -181,15 +174,14 @@ export function AttendancePanel({
             ))}
           </select>
           <button className="button primary" disabled={busy || !selected}>
-            {busy ? "Updating…" : "Confirm attendance"} <Arrow />
+            {busy ? "Updating…" : "Confirm attendance"}
           </button>
         </form>
       )}
       <p className="attendance-help">
         {present < 32
-          ? `${32 - present} more confirmed players needed. The draft waits for at least 32.`
-          : "Attendance requirement met. Waiting for the organizer to start."}{" "}
-        If your name was checked in by mistake, ask the admin to correct it.
+          ? `${32 - present} more players needed to start.`
+          : "Waiting for admin to start."}
       </p>
       {notice && <p role="status">{notice}</p>}
     </section>

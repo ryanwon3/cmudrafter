@@ -16,13 +16,8 @@ export function Header({
 }) {
   return (
     <header className="site-header">
-      <a className="brand" href="/" aria-label="CMU and Pitt In-House home">
-        <span className="brand-mark">
-          C<span>×</span>P
-        </span>
-        <span className="brand-type">
-          CMU <span>×</span> PITT<small>IN-HOUSE LEAGUE</small>
-        </span>
+      <a className="brand" href="/" aria-label="Draft home">
+        Team draft
       </a>
       <nav aria-label="Draft progress" className="phase-nav">
         {["Lobby", "Draft", "Results"].map((p, i) => (
@@ -35,7 +30,6 @@ export function Header({
                 : "") + "nav-phase"
             }
           >
-            <span className="phase-dot">{String(i + 1).padStart(2, "0")}</span>
             {p}
           </span>
         ))}
@@ -43,36 +37,20 @@ export function Header({
       <div className="header-actions">
         {!admin && (
           <a className="admin-login-link" href="/admin">
-            Admin login <Arrow />
+            Admin login
           </a>
         )}
         <span className={"connection " + (connected ? "online" : "")}>
           <i />
-          {admin ? "Organizer" : connected ? "Board live" : "Connecting"}
+          {connected ? "Live" : "Connecting"}
         </span>
       </div>
     </header>
   );
 }
-export function Footer() {
-  return (
-    <footer className="site-footer">
-      <span>CMU × PITT</span>
-      <p>Good teams. Better games.</p>
-      <span>COMMUNITY IN-HOUSE · 2026</span>
-    </footer>
-  );
-}
 export function Rank({ rank }: { rank: string }) {
   const tier = rank.split(" ")[0].toLowerCase();
-  return (
-    <span className={"rank " + tier}>
-      <span aria-hidden="true" className="rank-gem">
-        ◆
-      </span>
-      {rank.replace(/ \(.*\)/, "")}
-    </span>
-  );
+  return <span className={"rank " + tier}>{rank.replace(/ \(.*\)/, "")}</span>;
 }
 export interface Confirmation {
   title: string;
@@ -108,7 +86,6 @@ export function ConfirmDialog({
       aria-labelledby="confirm-title"
     >
       <div className="dialog-inner">
-        <span className="eyebrow">ONE MORE THING</span>
         <h2 id="confirm-title">{confirmation?.title}</h2>
         <div className="dialog-description">{confirmation?.description}</div>
         <div className="dialog-actions">
@@ -127,7 +104,6 @@ export function ConfirmDialog({
             disabled={busy}
           >
             {busy ? "Working…" : confirmation?.label}
-            <Arrow />
           </button>
         </div>
       </div>

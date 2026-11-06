@@ -29,15 +29,15 @@ export function PlayerPool({
     <section className="pool-panel">
       <div className="section-heading">
         <div>
-          <span className="eyebrow">
-            {complete ? "THE FREE AGENTS" : "SCOUT YOUR NEXT PICK"}
-          </span>
           <h2>
-            {complete ? "Undrafted players" : "Player pool"}{" "}
+            {complete
+              ? "Undrafted players"
+              : showAttendance
+                ? "Players"
+                : "Available players"}{" "}
             <span className="count-pill">{available}</span>
           </h2>
         </div>
-        <span className="quiet-label">PEAK SOLO / DUO</span>
       </div>
       <div className="pool-tools">
         <label className="search-field">
@@ -81,13 +81,10 @@ export function PlayerPool({
             </tr>
           </thead>
           <tbody>
-            {pool.map((p, i) => (
+            {pool.map((p) => (
               <tr key={p.id}>
                 <td>
                   <div className="player-name">
-                    <span className="player-number">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
                     <strong>{p.display_name}</strong>
                   </div>
                 </td>
@@ -124,7 +121,7 @@ export function PlayerPool({
                       onClick={() => onPick(p)}
                       aria-label={`Draft ${p.display_name}`}
                     >
-                      Draft <Arrow />
+                      Draft
                     </button>
                   </td>
                 )}
@@ -144,12 +141,7 @@ export function PlayerPool({
       )}
       <div className="pool-bottom">
         <span>
-          {query
-            ? `${pool.length} matching players`
-            : `${available} players available`}
-        </span>
-        <span>
-          Ranks are from the sign-up snapshot <span aria-hidden="true">↗</span>
+          {query ? `${pool.length} matching players` : `${available} players`}
         </span>
       </div>
     </section>

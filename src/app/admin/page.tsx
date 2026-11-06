@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useDraft } from "@/components/use-draft";
 import {
   Header,
-  Footer,
   Arrow,
   ConfirmDialog,
   ErrorNotice,
@@ -70,7 +69,7 @@ export default function Admin() {
     try {
       await fn();
       setConfirmation(null);
-      setNotice("Board updated. All viewers will receive the change.");
+      setNotice("Saved.");
     } catch (e) {
       setError(e instanceof Error ? e.message : "The action failed.");
       setConfirmation(null);
@@ -94,16 +93,10 @@ export default function Admin() {
         <ErrorNotice message={error} onDismiss={() => setError("")} />
         <div className="admin-title">
           <div>
-            <span className="eyebrow">
-              <span className="red-rule" /> ORGANIZER’S DESK
-            </span>
-            <h1>
-              Draft control<span className="accent">.</span>
-            </h1>
-            <p>Keep the lobby moving. Put the board back on track.</p>
+            <h1>Admin</h1>
           </div>
           <a className="button secondary" href="/">
-            View live board <Arrow diagonal />
+            View draft <Arrow diagonal />
           </a>
         </div>
         {!authorized ? (
@@ -114,12 +107,7 @@ export default function Admin() {
               void verify(key);
             }}
           >
-            <span className="eyebrow">ORGANIZER ACCESS</span>
             <h2>Admin login</h2>
-            <p>
-              Enter the organizer password to manage attendance, draft phases
-              and resets.
-            </p>
             <label htmlFor="admin-key">Admin password</label>
             <input
               id="admin-key"
@@ -132,7 +120,6 @@ export default function Admin() {
             />
             <button className="button primary" disabled={busy || !key}>
               {busy ? "Signing in…" : "Log in as admin"}
-              <Arrow />
             </button>
           </form>
         ) : (
@@ -143,7 +130,7 @@ export default function Admin() {
               </div>
             )}
             <div className="admin-session">
-              <span>✓ Organizer session active</span>
+              <span>Signed in</span>
               <button
                 className="text-button"
                 onClick={() => {
@@ -156,21 +143,20 @@ export default function Admin() {
                   }
                 }}
               >
-                Lock controls
+                Log out
               </button>
             </div>
             {state ? (
               <>
                 <section className="admin-controls">
                   <div className="admin-control-card">
-                    <span className="eyebrow">DRAFT STATUS</span>
                     <h2>
                       {state.draft.phase === "lobby"
-                        ? "Waiting in lobby"
+                        ? "Lobby"
                         : state.draft.phase === "drafting"
                           ? `Pick ${state.draft.pick_index + 1} · ${onClock?.display_name}`
                           : state.draft.phase === "review"
-                            ? "Review final teams"
+                            ? "Review teams"
                             : "Results published"}
                     </h2>
                     <p>
@@ -178,11 +164,9 @@ export default function Admin() {
                       ready · {state.players.filter((p) => p.present).length}/35
                       players present · {state.draft.pick_index}/32 picks made
                     </p>
-                    <p>
-                      Eight teams · four picks each. At least 32 present players
-                      are required. Readiness never starts the draft
-                      automatically.
-                    </p>
+                    {state.draft.phase === "lobby" && (
+                      <p>32 present players required to start.</p>
+                    )}
                     <div className="control-buttons">
                       <button
                         className="button primary"
@@ -200,7 +184,7 @@ export default function Admin() {
                           )
                         }
                       >
-                        Confirm draft start <Arrow />
+                        Start draft
                       </button>
                       {state.draft.phase === "review" && (
                         <button
@@ -215,7 +199,7 @@ export default function Admin() {
                             )
                           }
                         >
-                          Confirm teams &amp; publish results <Arrow />
+                          Publish results
                         </button>
                       )}
                       <button
@@ -243,14 +227,11 @@ export default function Admin() {
                       );
                     }}
                   >
-                    <span className="eyebrow">NEXT PHASE</span>
-                    <h2>Tell everyone what’s next</h2>
-                    <p>
-                      Publish a lobby update, start time or next-phase
-                      announcement. It appears on the live board for everyone.
-                    </p>
+                    <h2>Announcement</h2>
                     <div className="settings-input">
-                      <label htmlFor="announcement">Announcement</label>
+                      <label className="sr-only" htmlFor="announcement">
+                        Announcement
+                      </label>
                       <textarea
                         id="announcement"
                         maxLength={500}
@@ -260,7 +241,7 @@ export default function Admin() {
                           setAnnouncement(event.target.value)
                         }
                         disabled={busy}
-                        placeholder="Draft begins at 7:30 PM after attendance is confirmed."
+                        placeholder="Message shown to everyone…"
                       />
                       <button className="button secondary" disabled={busy}>
                         Publish announcement
@@ -290,14 +271,9 @@ export default function Admin() {
                 <section className="admin-seats">
                   <div className="section-heading">
                     <div>
-                      <span className="eyebrow">CAPTAIN ACCESS</span>
-                      <h2>Manage seats</h2>
+                      <h2>Captain seats</h2>
                     </div>
                   </div>
-                  <p className="muted">
-                    Releasing a seat revokes its old token. The captain can
-                    claim it again on another device.
-                  </p>
                   <div className="admin-seat-list">
                     {state.captains.map((c) => (
                       <div key={c.id}>
@@ -325,7 +301,7 @@ export default function Admin() {
                             )
                           }
                         >
-                          Release seat <Arrow />
+                          Release seat
                         </button>
                       </div>
                     ))}
@@ -334,7 +310,7 @@ export default function Admin() {
                 {state.draft.phase === "drafting" && (
                   <>
                     <div className="section-divider">
-                      <span>PICK FOR AN ABSENT CAPTAIN</span>
+                      <h2>Admin pick</h2>
                       <span>ON THE CLOCK: {onClock?.display_name}</span>
                     </div>
                     <PlayerPool
@@ -356,18 +332,13 @@ export default function Admin() {
                   </>
                 )}
                 <div className="section-divider">
-                  <span>CURRENT ROSTERS</span>
-                  <span>{state.draft.pick_index} PICKS MADE</span>
+                  <h2>Teams</h2>
                 </div>
                 <TeamGrid state={state} activeId={onClock?.id} />
                 <section className="reset-panel">
                   <div>
-                    <span className="eyebrow">START OVER</span>
-                    <h2>Reset the board</h2>
-                    <p>
-                      These controls remove all picks and return everyone to the
-                      lobby.
-                    </p>
+                    <h2>Reset</h2>
+                    <p>Returns the draft to the lobby.</p>
                   </div>
                   <div className="control-buttons">
                     <button
@@ -398,7 +369,7 @@ export default function Admin() {
                         )
                       }
                     >
-                      Full reset <Arrow />
+                      Full reset
                     </button>
                   </div>
                 </section>
@@ -411,7 +382,6 @@ export default function Admin() {
           </>
         )}
       </main>
-      <Footer />
       <ConfirmDialog
         confirmation={confirmation}
         busy={busy}

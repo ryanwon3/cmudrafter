@@ -4,8 +4,6 @@ import { useState } from "react";
 import { useDraft } from "@/components/use-draft";
 import {
   Header,
-  Footer,
-  Arrow,
   Rank,
   ConfirmDialog,
   ErrorNotice,
@@ -73,12 +71,7 @@ export default function Home() {
   function claim(c: Captain) {
     setConfirmation({
       title: `Join as ${c.display_name}?`,
-      description: (
-        <p>
-          This browser will be your captain seat. Choose your own name; the
-          organizer can help if you need to switch devices.
-        </p>
-      ),
+      description: <p>Select your own captain name.</p>,
       label: "Claim captain seat",
       onConfirm: async () => {
         const result = await request<{ token: string; captainId: number }>(
@@ -129,7 +122,7 @@ export default function Home() {
     );
     const a = document.createElement("a");
     a.href = url;
-    a.download = "cmu-pitt-draft-results.csv";
+    a.download = "draft-results.csv";
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -141,125 +134,43 @@ export default function Home() {
         <ErrorNotice message={error} onDismiss={() => setError("")} />
         {!state ? (
           <section className="loading-state">
-            <span className="eyebrow">CMU × PITT IN-HOUSE</span>
-            <h1>
-              Getting the board ready<span className="accent">.</span>
-            </h1>
-            <p>
-              {error
-                ? "The board is temporarily unavailable. Your seat is safe."
-                : "Connecting to the live draft…"}
-            </p>
+            <h1>Loading draft…</h1>
+            <p>{error ? "Unable to load the draft." : "Connecting…"}</p>
             {error && (
               <button className="button primary" onClick={() => void refresh()}>
-                Try again <Arrow />
+                Try again
               </button>
             )}
           </section>
         ) : (
           <>
             {state.mode === "local" && (
-              <div className="local-notice">
-                <span className="local-tag">LOCAL PRACTICE</span> Shared across
-                tabs on this server. Connect Supabase before hosting your live
-                event.
-              </div>
+              <div className="local-notice">Local practice</div>
             )}
             {state.draft.announcement && (
               <aside className="organizer-announcement" role="status">
-                <span className="eyebrow">FROM THE ORGANIZER</span>
+                <span className="eyebrow">Announcement</span>
                 <p>{state.draft.announcement}</p>
               </aside>
             )}
-            <section className="hero">
-              <div className="hero-copy">
-                <div className="eyebrow">
-                  <span className="red-rule" /> LEAGUE OF LEGENDS · COMMUNITY
-                  IN-HOUSE
-                </div>
-                <h1>
-                  {state.draft.phase === "lobby" ? (
-                    <>
-                      Rivals on campus.
-                      <br />
-                      Teammates on the Rift<span className="accent">.</span>
-                    </>
-                  ) : state.draft.phase === "drafting" ? (
-                    <>
-                      The next pick
-                      <br />
-                      changes everything<span className="accent">.</span>
-                    </>
-                  ) : state.draft.phase === "review" ? (
-                    <>
-                      Every pick is in<span className="accent">.</span>
-                    </>
-                  ) : (
-                    <>
-                      The teams are set<span className="accent">.</span>
-                    </>
-                  )}
-                </h1>
-                <p>
-                  {state.draft.phase === "lobby"
-                    ? "Eight captains. One snake draft. Find your seat and build your five."
-                    : state.draft.phase === "drafting"
-                      ? "Make your read. Trust your team. Follow every pick as it happens."
-                      : state.draft.phase === "review"
-                        ? "The organizer is reviewing the teams before confirming the next phase."
-                        : "From the draft board to the Rift. Here’s your CMU × Pitt lineup."}
-                </p>
-              </div>
-              <div className="event-ticket">
-                <div className="ticket-top">
-                  <span>
-                    CMU <span className="ticket-x">×</span> PITT
-                  </span>
-                  <span className="ticket-icon">↗</span>
-                </div>
-                <div className="ticket-stats">
-                  <div>
-                    <strong>08</strong>
-                    <span>CAPTAINS</span>
-                  </div>
-                  <div>
-                    <strong>
-                      {String(state.draft.picks_per_team).padStart(2, "0")}
-                    </strong>
-                    <span>ROUNDS</span>
-                  </div>
-                  <div>
-                    <strong>{String(total).padStart(2, "0")}</strong>
-                    <span>PICKS</span>
-                  </div>
-                </div>
-                <div className="ticket-bottom">
-                  <span>
-                    {state.draft.phase === "lobby"
-                      ? "WAITING FOR CAPTAINS"
-                      : state.draft.phase === "drafting"
-                        ? "THE DRAFT IS LIVE"
-                        : "DRAFT COMPLETE"}
-                  </span>
-                  <span className="barcode" aria-hidden="true">
-                    ▥▥▥▥
-                  </span>
-                </div>
-              </div>
-            </section>
+            <div className="page-heading">
+              <h1>
+                {state.draft.phase === "lobby"
+                  ? "Lobby"
+                  : state.draft.phase === "drafting"
+                    ? "Draft"
+                    : state.draft.phase === "review"
+                      ? "Review"
+                      : "Results"}
+              </h1>
+            </div>
 
             {state.draft.phase === "lobby" ? (
               <>
                 <section className="lobby-status">
                   <div>
                     <span className="status-dot" />
-                    <strong>
-                      {ready === 8 ? "Everyone is ready." : "The lobby is open"}
-                    </strong>
-                    <span className="status-caption">
-                      The organizer starts the draft after reviewing attendance
-                      and captain readiness.
-                    </span>
+                    <strong>Waiting for admin</strong>
                   </div>
                   <div className="lobby-counts">
                     <span>
@@ -277,33 +188,15 @@ export default function Home() {
                       </strong>
                     </span>
                   </div>
-                  <div
-                    className="readiness-track"
-                    aria-label={`${ready} of 8 captains ready`}
-                  >
-                    {state.captains.map((c) => (
-                      <i
-                        key={c.id}
-                        className={
-                          c.ready ? "ready" : c.claimed ? "claimed" : ""
-                        }
-                      />
-                    ))}
-                  </div>
                 </section>
                 {me && !spectator ? (
                   <section
                     className={"my-seat " + (me.ready ? "seat-ready" : "")}
                   >
-                    <span className="seat-check">{me.ready ? "✓" : "C"}</span>
                     <div>
-                      <span className="eyebrow">YOUR CAPTAIN SEAT</span>
-                      <h2>You are {me.display_name}</h2>
-                      <p>
-                        {me.ready
-                          ? "You’re ready. Waiting for the organizer to start the draft."
-                          : "Take a breath, check your pool, then ready up."}
-                      </p>
+                      <span className="eyebrow">Your seat</span>
+                      <h2>{me.display_name}</h2>
+
                       <button
                         className="button secondary unselect-seat"
                         disabled={busy}
@@ -337,32 +230,13 @@ export default function Home() {
                         })
                       }
                     >
-                      {busy
-                        ? "Updating…"
-                        : me.ready
-                          ? "✓ Ready · click to unready"
-                          : "I’m ready"}
-                      {!me.ready && <Arrow />}
+                      {busy ? "Updating…" : me.ready ? "Unready" : "Ready"}
                     </button>
                   </section>
                 ) : (
                   <div className="lobby-intro">
                     <div>
-                      <span className="eyebrow">
-                        {spectator
-                          ? "YOU’RE WATCHING THE DRAFT"
-                          : "STEP 01 · TAKE YOUR SEAT"}
-                      </span>
-                      <h2>
-                        {spectator
-                          ? "A front-row seat."
-                          : "Captains, check in."}
-                      </h2>
-                      <p>
-                        {spectator
-                          ? "Sit tight. The board will switch to the draft automatically."
-                          : "Choose your captain name below. Just here for the show?"}
-                      </p>
+                      <h2>{spectator ? "Spectating" : "Captains"}</h2>
                     </div>
                     <button
                       className="button secondary"
@@ -370,9 +244,9 @@ export default function Home() {
                     >
                       {spectator
                         ? me
-                          ? "Return to captain view"
+                          ? "Captain view"
                           : "I’m a captain"
-                        : "Watch as spectator"}
+                        : "Spectate"}
                       <span aria-hidden="true">{spectator ? "→" : "◉"}</span>
                     </button>
                   </div>
@@ -388,9 +262,7 @@ export default function Home() {
                       }
                     >
                       <div className="captain-card-top">
-                        <span className="captain-slot">
-                          CAPTAIN {String(c.slot).padStart(2, "0")}
-                        </span>
+                        <span className="captain-slot">#{c.slot}</span>
                         <span
                           className={
                             "seat-badge " +
@@ -404,25 +276,22 @@ export default function Home() {
                               : "Open seat"}
                         </span>
                       </div>
-                      <span className="captain-avatar">
-                        {c.display_name[0]}
-                      </span>
                       <h3>{c.display_name}</h3>
                       <Rank rank={c.peak_rank} />
                       <div className="captain-card-bottom">
                         {!c.claimed && !spectator && !me ? (
                           <button onClick={() => claim(c)} disabled={busy}>
-                            Claim seat <Arrow />
+                            Claim seat
                           </button>
                         ) : (
                           <span>
                             {me?.id === c.id
                               ? "Your seat"
                               : c.claimed
-                                ? "Captain checked in"
+                                ? "Claimed"
                                 : spectator
-                                  ? "Awaiting captain"
-                                  : "Seat available"}
+                                  ? "Open"
+                                  : "Open"}
                           </span>
                         )}
                       </div>
@@ -434,13 +303,6 @@ export default function Home() {
                   onChanged={() => refresh(true)}
                   onError={setError}
                 />
-                <div className="section-divider">
-                  <span>THE LINEUP</span>
-                  <span>
-                    {state.players.length} PLAYERS ·{" "}
-                    {state.draft.picks_per_team + 1} PER TEAM
-                  </span>
-                </div>
                 <PlayerPool players={state.players} showAttendance />
               </>
             ) : (
@@ -451,7 +313,7 @@ export default function Home() {
                       className={"turn-banner " + (isMyTurn ? "your-turn" : "")}
                     >
                       <div className="turn-pick">
-                        <span className="eyebrow">ON THE BOARD</span>
+                        <span className="eyebrow">Pick</span>
                         <strong>
                           {String(state.draft.pick_index + 1).padStart(2, "0")}
                           <span> / {total}</span>
@@ -459,31 +321,13 @@ export default function Home() {
                       </div>
                       <div className="turn-name">
                         <span className="eyebrow">
-                          {isMyTurn
-                            ? "YOUR PICK · YOU’RE ON THE CLOCK"
-                            : `ROUND ${round} · ON THE CLOCK`}
+                          {isMyTurn ? "Your turn" : `Round ${round}`}
                         </span>
                         <h2>{onClock?.display_name}</h2>
-                        <p>
-                          {isMyTurn
-                            ? "Your team is waiting. Choose a player from the pool."
-                            : "Watching the next team take shape."}
-                        </p>
-                      </div>
-                      <div className="turn-format">
-                        <span className="snake-symbol" aria-hidden="true">
-                          ↝
-                        </span>
-                        <strong>SNAKE DRAFT</strong>
-                        <span>
-                          {state.draft.picks_per_team} rounds · No pick timer
-                        </span>
                       </div>
                     </section>
                     <div className="order-strip">
-                      <span className="order-label">
-                        UP NEXT <Arrow />
-                      </span>
+                      <span className="order-label">Next</span>
                       <div className="order-picks">
                         {Array.from(
                           {
@@ -524,32 +368,22 @@ export default function Home() {
                         </span>
                       </p>
                     )}
-                    {(!me || spectator) && (
+                    {spectator && (
                       <div className="watch-banner">
-                        <span>◉</span>
-                        <p>
-                          You’re watching live. Every pick appears here
-                          automatically.
-                        </p>
-                        {spectator && (
-                          <button
-                            className="text-button"
-                            onClick={() => watch(false)}
-                          >
-                            {me ? "Return to captain view" : "I’m a captain"}
-                          </button>
-                        )}
+                        <span>Spectating</span>
+                        <button
+                          className="text-button"
+                          onClick={() => watch(false)}
+                        >
+                          {me ? "Captain view" : "I’m a captain"}
+                        </button>
                       </div>
                     )}
                     {!me &&
                       !spectator &&
                       state.captains.some((c) => !c.claimed) && (
                         <section className="reclaim-panel">
-                          <h3>Rejoining the draft?</h3>
-                          <p>
-                            The organizer released these seats. Claim your name
-                            to continue.
-                          </p>
+                          <h3>Available captain seats</h3>
                           <div>
                             {state.captains
                               .filter((c) => !c.claimed)
@@ -561,7 +395,6 @@ export default function Home() {
                                   disabled={busy}
                                 >
                                   {c.display_name}
-                                  <Arrow />
                                 </button>
                               ))}
                           </div>
@@ -573,8 +406,7 @@ export default function Home() {
                       disabled={busy}
                     />
                     <div className="section-divider">
-                      <span>THE TEAMS</span>
-                      <span>EVERY ROSTER, IN REAL TIME</span>
+                      <h2>Teams</h2>
                     </div>
                     <TeamGrid state={state} activeId={onClock?.id} />
                   </>
@@ -582,14 +414,10 @@ export default function Home() {
                   <>
                     <section className="results-banner">
                       <div>
-                        <span className="complete-check">✓</span>
                         <div>
-                          <span className="eyebrow">GG, WELL DRAFTED</span>
-                          <h2>
-                            {state.draft.phase === "review"
-                              ? "Teams drafted. Awaiting admin confirmation."
-                              : "Eight teams. Ready for the Rift."}
-                          </h2>
+                          {state.draft.phase === "review" && (
+                            <h2>Awaiting admin approval</h2>
+                          )}
                           <p>
                             {total} picks made ·{" "}
                             {
@@ -607,8 +435,7 @@ export default function Home() {
                             className="button primary"
                             onClick={() => void copyResults()}
                           >
-                            {copied ? "✓ Copied for Discord" : "Copy results"}
-                            <Arrow />
+                            {copied ? "Copied" : "Copy results"}
                           </button>
                           <button
                             className="button secondary"
@@ -620,10 +447,6 @@ export default function Home() {
                       )}
                     </section>
                     <TeamGrid state={state} />
-                    <div className="section-divider">
-                      <span>STILL IN THE POOL</span>
-                      <span>UNDRAFTED PLAYERS</span>
-                    </div>
                     <PlayerPool
                       players={state.players.filter((p) => p.present)}
                       complete
@@ -635,7 +458,6 @@ export default function Home() {
           </>
         )}
       </main>
-      <Footer />
       <ConfirmDialog
         confirmation={confirmation}
         busy={busy}
